@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-label="User Central project image">
+  <rect width="960" height="540" fill="#eef2ff"/>
+  <rect x="94" y="82" width="772" height="376" rx="30" fill="#ffffff"/>
+  <rect x="94" y="82" width="210" height="376" rx="30" fill="#111827"/>
+  <circle cx="199" cy="166" r="44" fill="#0f766e"/>
+  <path d="M169 250h92M169 302h92M169 354h62" stroke="#ffffff" stroke-width="18" stroke-linecap="round"/>
+  <rect x="352" y="132" width="414" height="56" rx="14" fill="#0f766e"/>
+  <rect x="352" y="232" width="184" height="136" rx="20" fill="#f8fafc" stroke="#cbd5e1" stroke-width="4"/>
+  <rect x="582" y="232" width="184" height="136" rx="20" fill="#f8fafc" stroke="#cbd5e1" stroke-width="4"/>
+  <circle cx="444" cy="284" r="26" fill="#dc5f4f"/>
+  <circle cx="674" cy="284" r="26" fill="#0f766e"/>
+  <text x="376" y="168" fill="#ffffff" font-family="Arial, sans-serif" font-size="28" font-weight="700">User Central</text>
+  <text x="386" y="344" fill="#111827" font-family="Arial, sans-serif" font-size="22" font-weight="700">Accounts</text>
+  <text x="616" y="344" fill="#111827" font-family="Arial, sans-serif" font-size="22" font-weight="700">Access</text>
+</svg>

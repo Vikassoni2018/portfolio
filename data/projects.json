@@ -1,0 +1,37 @@
+[
+  {
+    "id": "product-subscription-app",
+    "name": "Product Subscription App",
+    "link": "https://apps.shopify.com/webkul-subscription-app",
+    "image": "/uploads/images/project-product-subscription-app.png",
+    "description": "Shopify subscription application enabling recurring billing, flexible delivery cycles, wallet and card payments, and customer/admin controls for pause, skip, cancel, and renew actions."
+  },
+  {
+    "id": "payment-service-api-docs",
+    "name": "Payment Service API",
+    "link": "https://vikas-soni-sh1.vachak.com/payment-service/public/api/doc",
+    "image": "/uploads/images/project-payment-service-api.svg",
+    "description": "Unified payment integration platform with PayPal, Stripe, Razorpay, webhooks, refunds, transaction status handling, and reusable APIs for external applications."
+  },
+  {
+    "id": "user-central-webkul",
+    "name": "User Central",
+    "link": "https://usercentral.webkul.com/",
+    "image": "/uploads/images/project-user-central-webkul.svg",
+    "description": "Webkul user management portal for centralized account access and customer-facing service workflows."
+  },
+  {
+    "id": "reviewhub-stellen-infotech",
+    "name": "ReviewHub",
+    "link": "https://apps.shopify.com/reviewhub-2",
+    "image": "/uploads/images/project-reviewhub-stellen-infotech.png",
+    "description": "Shopify customer review management app by Stellen Infotech for collecting, managing, and displaying product reviews, star ratings, testimonials, and review widgets on storefronts."
+  },
+  {
+    "id": "shopify-amp-app",
+    "name": "Shopify AMP App",
+    "link": "https://apps.shopify.com/amp-by-webkul",
+    "image": "/uploads/images/project-shopify-amp-app.png",
+    "description": "Shopify AMP solution for fast-loading, mobile-optimized storefront templates with responsive AMP-compatible layouts, SEO compliance, and improved page speed."
+  }
+]

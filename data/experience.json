@@ -1,0 +1,26 @@
+[
+  {
+    "id": "stellen-infotech-sr-php-developer",
+    "company": "Stellen Infotech",
+    "role": "Sr. PHP Developer",
+    "startDate": "Mar 2026",
+    "endDate": "Present",
+    "description": "Developing and maintaining Shopify apps using PHP, Shopify APIs, and scalable backend services for SaaS and eCommerce workflows. Building Shopify themes and Liquid customizations, including storefront sections, theme settings, UI refinements, and performance-focused updates. Managing interns by assigning tasks, reviewing work, guiding implementation, and helping them follow development best practices."
+  },
+  {
+    "id": "webkul-full-stack-developer",
+    "company": "Webkul",
+    "role": "Full Stack Developer | Software Engineer",
+    "startDate": "Feb 2023",
+    "endDate": "Feb 2026",
+    "description": "Worked in PHP, Symfony, and Shopify with hands-on team leadership responsibilities. Managed project execution, assigned tasks to junior developers, conducted knowledge transfer sessions, reviewed code, analyzed requirements, mentored team members, and coordinated with stakeholders. Developed Shopify subscription applications, payment integration services, and Shopify AMP solutions using secure APIs, webhooks, scalable backend services, and performance-focused storefront templates."
+  },
+  {
+    "id": "quantum-it-innovation-tester",
+    "company": "Quantum IT Innovation",
+    "role": "Tester",
+    "startDate": "Jun 2022",
+    "endDate": "Dec 2022",
+    "description": "Tested web applications and Android applications. Performed unit testing, functional testing, and non-functional testing. Created requirement documents according to client needs."
+  }
+]

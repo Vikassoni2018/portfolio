@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="REST and GraphQL APIs icon">
+  <rect width="96" height="96" rx="18" fill="#fff7ed"/>
+  <path d="M48 19 72 33v30L48 77 24 63V33l24-14Z" fill="none" stroke="#dc5f4f" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M24 33 48 48l24-15M48 48v29" fill="none" stroke="#111827" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="48" cy="19" r="5" fill="#0f766e"/>
+  <circle cx="72" cy="33" r="5" fill="#0f766e"/>
+  <circle cx="72" cy="63" r="5" fill="#0f766e"/>
+  <circle cx="48" cy="77" r="5" fill="#0f766e"/>
+  <circle cx="24" cy="63" r="5" fill="#0f766e"/>
+  <circle cx="24" cy="33" r="5" fill="#0f766e"/>
+</svg>

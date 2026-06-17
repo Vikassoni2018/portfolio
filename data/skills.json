@@ -1,0 +1,44 @@
+[
+  {
+    "id": "shopify-app-development",
+    "name": "Shopify App Development",
+    "image": "/uploads/images/skill-shopify-app-development.svg",
+    "description": "Building and maintaining Shopify SaaS applications using Shopify APIs, secure backend services, subscription workflows, and eCommerce-focused architecture."
+  },
+  {
+    "id": "php-symfony",
+    "name": "PHP & Symfony",
+    "image": "/uploads/images/skill-php-symfony.svg",
+    "description": "Strong hands-on experience with PHP, Symfony, scalable backend architecture, Ajax workflows, and production-ready eCommerce application development."
+  },
+  {
+    "id": "rest-graphql-apis",
+    "name": "REST & GraphQL APIs",
+    "image": "/uploads/images/skill-rest-graphql-apis.svg",
+    "description": "Integrating RESTful APIs and GraphQL APIs for Shopify apps, payment services, webhooks, transaction handling, and external platform integrations."
+  },
+  {
+    "id": "payment-integrations",
+    "name": "Payment Gateway Integrations",
+    "image": "/uploads/images/skill-payment-integrations.svg",
+    "description": "Experience with Stripe, PayPal, Razorpay, refunds, webhooks, transaction status handling, wallet payments, card payments, and secure payment flows."
+  },
+  {
+    "id": "shopify-liquid-themes",
+    "name": "Shopify Liquid & Themes",
+    "image": "/uploads/images/skill-shopify-liquid-themes.svg",
+    "description": "Creating Shopify themes and Liquid customizations, storefront sections, theme settings, UI refinements, and performance-focused updates."
+  },
+  {
+    "id": "frontend-optimization",
+    "name": "JavaScript, UI/UX & Performance",
+    "image": "/uploads/images/skill-frontend-optimization.svg",
+    "description": "JavaScript development, UI/UX optimization, component development, Less CSS, performance tuning, code optimization, and mobile-first storefront improvements."
+  },
+  {
+    "id": "developer-tools",
+    "name": "Git, Postman, Redis, RabbitMQ & SQL",
+    "image": "/uploads/images/skill-developer-tools.svg",
+    "description": "Using Git, GitHub, Agile workflows, Postman, Redis, RabbitMQ, and SQL to support reliable development, testing, and delivery."
+  }
+]

@@ -1,0 +1,18 @@
+[
+  {
+    "id": "mca-sgt-university",
+    "institution": "SGT University, Gurugram",
+    "degree": "MCA (Master of Application)",
+    "startYear": "2021",
+    "endYear": "2023",
+    "description": "Completed MCA with CGPA 8.6."
+  },
+  {
+    "id": "bcom-kuk-university",
+    "institution": "KUK University",
+    "degree": "B.Com",
+    "startYear": "2018",
+    "endYear": "2021",
+    "description": "Completed B.Com with 71%."
+  }
+]
