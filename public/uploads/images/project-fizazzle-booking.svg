@@ -1,0 +1,27 @@
+<svg width="960" height="540" viewBox="0 0 960 540" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="960" height="540" rx="32" fill="#0A0D14"/>
+  <rect x="72" y="68" width="816" height="404" rx="28" fill="#111725" stroke="#2B354B" stroke-width="2"/>
+  <rect x="112" y="108" width="736" height="64" rx="18" fill="#171F31"/>
+  <circle cx="147" cy="140" r="12" fill="#9B7CFF"/>
+  <rect x="178" y="128" width="168" height="12" rx="6" fill="#E8E2FF"/>
+  <rect x="178" y="148" width="104" height="8" rx="4" fill="#6F7890"/>
+  <rect x="689" y="123" width="118" height="34" rx="17" fill="#34D399"/>
+  <rect x="112" y="208" width="218" height="196" rx="20" fill="#0F1523" stroke="#26324A" stroke-width="2"/>
+  <rect x="149" y="242" width="144" height="14" rx="7" fill="#E8E2FF"/>
+  <rect x="149" y="274" width="116" height="10" rx="5" fill="#7E879D"/>
+  <rect x="149" y="302" width="144" height="10" rx="5" fill="#7E879D"/>
+  <rect x="149" y="343" width="112" height="34" rx="17" fill="#9B7CFF"/>
+  <rect x="371" y="208" width="218" height="196" rx="20" fill="#0F1523" stroke="#26324A" stroke-width="2"/>
+  <path d="M416 266H544" stroke="#34D399" stroke-width="12" stroke-linecap="round"/>
+  <path d="M416 308H516" stroke="#7E879D" stroke-width="10" stroke-linecap="round"/>
+  <path d="M416 340H548" stroke="#7E879D" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="526" cy="254" r="33" fill="#34D399" fill-opacity=".16" stroke="#34D399" stroke-width="6"/>
+  <path d="M512 254L523 265L543 241" stroke="#34D399" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="630" y="208" width="218" height="196" rx="20" fill="#0F1523" stroke="#26324A" stroke-width="2"/>
+  <rect x="671" y="244" width="136" height="14" rx="7" fill="#E8E2FF"/>
+  <rect x="671" y="278" width="98" height="10" rx="5" fill="#7E879D"/>
+  <rect x="671" y="316" width="136" height="10" rx="5" fill="#7E879D"/>
+  <rect x="671" y="348" width="88" height="30" rx="15" fill="#F59E0B"/>
+  <text x="112" y="450" fill="#E8E2FF" font-family="Arial, sans-serif" font-size="36" font-weight="700">Fizazzle</text>
+  <text x="286" y="450" fill="#9AA4B8" font-family="Arial, sans-serif" font-size="28" font-weight="600">Booking Platform</text>
+</svg>

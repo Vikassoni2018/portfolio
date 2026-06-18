@@ -51,7 +51,7 @@ export function PortfolioPage({ data }: { data: PortfolioData }) {
       <div className="relative">
         <PublicNavbar profile={profile} />
 
-        <section className="mx-auto max-w-[1052px] px-6 pb-16 pt-20 md:pt-28">
+        <section className="mx-auto max-w-[1280px] px-4 pb-16 pt-20 sm:px-6 lg:px-8 md:pt-28">
           <div className="inline-flex items-center gap-3 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-4 py-2 text-sm font-bold text-emerald-400">
             <span className="h-2 w-2 rounded-full bg-emerald-400" />
             Available for remote work
@@ -134,7 +134,7 @@ export function PortfolioPage({ data }: { data: PortfolioData }) {
 
         <Section id="projects" eyebrow="Selected Work" title="Featured Projects">
           {projects.length ? (
-            <div className="grid gap-5 md:grid-cols-2">
+            <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
               {projects.map((project) => (
                 <Card key={project.id} className="overflow-hidden">
                   <div className="aspect-video border-b border-white/10 bg-[#111018]">{imageOrFallback(project.image, project.name)}</div>
@@ -232,7 +232,7 @@ export function PortfolioPage({ data }: { data: PortfolioData }) {
         </Section>
 
         <footer className="border-t border-white/[0.06] bg-[#0b0912]/70">
-          <div className="mx-auto flex max-w-[1052px] flex-col gap-4 px-6 py-8 text-sm text-[#5e5967] sm:flex-row sm:items-center sm:justify-between">
+          <div className="mx-auto flex max-w-[1280px] flex-col gap-4 px-4 py-8 text-sm text-[#5e5967] sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
             <p className="inline-flex items-center gap-2 font-semibold">
               <span className="h-2 w-2 rounded-full bg-[#9b7cff] shadow-[0_0_18px_rgba(155,124,255,0.95)]" />
               {profile.name} <span className="font-normal">- {profile.title}</span>

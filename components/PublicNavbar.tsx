@@ -12,7 +12,7 @@ const links = [
 export function PublicNavbar({ profile }: { profile: Profile }) {
   return (
     <header className="sticky top-0 z-40 border-b border-white/[0.06] bg-[#08080d]/90 backdrop-blur-xl">
-      <nav className="mx-auto flex max-w-[1052px] items-center justify-between px-6 py-3">
+      <nav className="mx-auto flex max-w-[1280px] items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
         <a href="#" className="inline-flex items-center gap-2 text-sm font-bold text-white">
           <span className="h-2.5 w-2.5 rounded-full bg-[#9b7cff] shadow-[0_0_18px_rgba(155,124,255,0.95)]" />
           {profile.name || "Portfolio"}
