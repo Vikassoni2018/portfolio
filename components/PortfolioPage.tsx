@@ -90,7 +90,7 @@ export function PortfolioPage({ data }: { data: PortfolioData }) {
         <div className="pointer-events-none absolute -right-32 top-12 h-96 w-96 rounded-full bg-blue-200/40 blur-3xl" />
         <div className="pointer-events-none absolute -left-32 bottom-0 h-72 w-72 rounded-full bg-indigo-100/60 blur-3xl" />
 
-        <div className="relative mx-auto grid max-w-[1240px] gap-14 px-5 pb-20 pt-20 sm:px-8 sm:pb-28 sm:pt-28 lg:grid-cols-[1.08fr_0.92fr] lg:items-center lg:px-10">
+        <div className="relative mx-auto grid max-w-[1240px] gap-10 px-5 pb-14 pt-14 sm:px-8 sm:pb-20 sm:pt-20 lg:grid-cols-[1.08fr_0.92fr] lg:items-center lg:px-10">
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-white px-3.5 py-2 text-xs font-bold text-blue-700 shadow-sm">
               <span className="relative flex h-2 w-2">
@@ -100,17 +100,17 @@ export function PortfolioPage({ data }: { data: PortfolioData }) {
               Available for select projects
             </div>
 
-            <p className="mt-8 text-sm font-bold uppercase tracking-[0.18em] text-blue-600">Full-stack commerce engineer</p>
-            <h1 className="mt-5 max-w-3xl text-5xl font-black leading-[1.03] tracking-[-0.045em] text-slate-950 sm:text-6xl lg:text-[4.65rem]">
+            <p className="mt-6 text-sm font-bold uppercase tracking-[0.18em] text-blue-600">Sr. Shopify Developer</p>
+            <h1 className="mt-4 max-w-3xl text-5xl font-black leading-[1.03] tracking-[-0.045em] text-slate-950 sm:text-6xl lg:text-[4.65rem]">
               Engineering commerce that{" "}
               <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">scales.</span>
             </h1>
-            <p className="mt-7 max-w-2xl text-lg font-medium leading-8 text-slate-600">
+            <p className="mt-5 max-w-2xl text-lg font-medium leading-8 text-slate-600">
               I&apos;m {profile.name}, a Shopify specialist and full-stack developer building reliable SaaS products,
               payment systems, and high-performing eCommerce experiences.
             </p>
 
-            <div className="mt-9 flex flex-wrap gap-3">
+            <div className="mt-7 flex flex-wrap gap-3">
               <a
                 href="#projects"
                 className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-blue-600/20 transition hover:-translate-y-0.5 hover:bg-blue-700"
@@ -125,7 +125,7 @@ export function PortfolioPage({ data }: { data: PortfolioData }) {
               </a>
             </div>
 
-            <div className="mt-9 flex items-center gap-3">
+            <div className="mt-7 flex items-center gap-3">
               <SocialLink href={profile.linkedin} label="LinkedIn">
                 <Linkedin size={18} />
               </SocialLink>
@@ -201,7 +201,7 @@ export function PortfolioPage({ data }: { data: PortfolioData }) {
         </div>
 
         <div className="relative border-t border-slate-200 bg-white/80">
-          <div className="mx-auto flex max-w-[1240px] flex-wrap items-center justify-center gap-x-9 gap-y-4 px-5 py-5 text-xs font-bold text-slate-400 sm:px-8 lg:px-10">
+          <div className="mx-auto flex max-w-[1240px] flex-wrap items-center justify-center gap-x-9 gap-y-3 px-5 py-4 text-xs font-bold text-slate-400 sm:px-8 lg:px-10">
             {["Shopify Apps", "PHP & Symfony", "GraphQL", "Stripe", "Liquid", "React"].map((item) => (
               <span key={item} className="inline-flex items-center gap-2">
                 <span className="h-1.5 w-1.5 rounded-full bg-blue-500" />
@@ -219,7 +219,7 @@ export function PortfolioPage({ data }: { data: PortfolioData }) {
         description="A selection of commerce, payment, subscription, and platform products engineered for reliability, usability, and growth."
       >
         {projects.length ? (
-          <div className="grid gap-6 lg:grid-cols-2">
+          <div className="grid gap-5 lg:grid-cols-2">
             {projects.map((project, index) => (
               <article
                 key={project.id}
@@ -282,22 +282,22 @@ export function PortfolioPage({ data }: { data: PortfolioData }) {
         tone="soft"
       >
         {skills.length ? (
-          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {skills.map((skill) => (
               <article
                 key={skill.id}
-                className="rounded-2xl border border-slate-200 bg-white p-6 shadow-[0_8px_24px_rgba(15,23,42,0.04)] transition hover:-translate-y-1 hover:border-blue-200 hover:shadow-[0_16px_36px_rgba(30,64,175,0.09)]"
+                className="rounded-2xl border border-slate-200 bg-white p-5 shadow-[0_8px_24px_rgba(15,23,42,0.04)] transition hover:-translate-y-1 hover:border-blue-200 hover:shadow-[0_16px_36px_rgba(30,64,175,0.09)]"
               >
-                <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-xl border border-blue-100 bg-blue-50 p-2.5">
+                <div className="inline-flex h-16 w-16 items-center justify-center rounded-2xl border border-slate-200 bg-slate-50 p-3">
                   {skill.image ? (
                     // eslint-disable-next-line @next/next/no-img-element
-                    <img src={skill.image} alt="" className="h-full w-full object-contain" />
+                    <img src={skill.image} alt="" className="h-10 w-10 object-contain" />
                   ) : (
-                    <Code2 className="text-blue-600" size={22} />
+                    <Code2 className="text-blue-600" size={34} />
                   )}
                 </div>
-                <h3 className="mt-5 text-lg font-extrabold tracking-[-0.015em] text-slate-900">{skill.name}</h3>
-                <p className="mt-3 text-sm font-medium leading-6 text-slate-600">{skill.description}</p>
+                <h3 className="mt-4 text-lg font-extrabold tracking-[-0.015em] text-slate-900">{skill.name}</h3>
+                <p className="mt-2 text-sm font-medium leading-6 text-slate-600">{skill.description}</p>
               </article>
             ))}
           </div>
@@ -307,18 +307,18 @@ export function PortfolioPage({ data }: { data: PortfolioData }) {
       </Section>
 
       <section id="experience" className="bg-slate-950 text-white">
-        <div className="mx-auto max-w-[1240px] px-5 py-20 sm:px-8 lg:px-10 lg:py-28">
-          <div className="grid gap-10 lg:grid-cols-[0.75fr_1.25fr] lg:gap-20">
+        <div className="mx-auto max-w-[1240px] px-5 py-14 sm:px-8 sm:py-16 lg:px-10 lg:py-20">
+          <div className="grid gap-8 lg:grid-cols-[0.75fr_1.25fr] lg:gap-12">
             <div>
               <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-blue-400">Experience</p>
-              <h2 className="mt-5 text-4xl font-black leading-tight tracking-[-0.04em] sm:text-5xl">
+              <h2 className="mt-4 text-4xl font-black leading-tight tracking-[-0.04em] sm:text-5xl">
                 From hands-on delivery to technical leadership.
               </h2>
-              <p className="mt-6 max-w-lg text-base font-medium leading-7 text-slate-400">
+              <p className="mt-4 max-w-lg text-base font-medium leading-7 text-slate-400">
                 Four-plus years shipping commerce products, reviewing architecture, mentoring developers, and keeping
                 delivery aligned with business goals.
               </p>
-              <div className="mt-8 inline-flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
+              <div className="mt-6 inline-flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
                 <BriefcaseBusiness className="text-blue-400" size={20} />
                 <div>
                   <p className="text-sm font-extrabold">Currently at Stellen Infotech</p>
@@ -332,7 +332,7 @@ export function PortfolioPage({ data }: { data: PortfolioData }) {
                 {experience.map((item, index) => (
                   <article
                     key={item.id}
-                    className="relative rounded-2xl border border-white/10 bg-white/[0.045] p-6 pl-16 transition hover:border-blue-500/40 hover:bg-white/[0.065]"
+                    className="relative rounded-2xl border border-white/10 bg-white/[0.045] p-5 pl-16 transition hover:border-blue-500/40 hover:bg-white/[0.065]"
                   >
                     <span className="absolute left-4 top-6 z-10 flex h-4 w-4 items-center justify-center rounded-full border-4 border-slate-950 bg-blue-500 ring-4 ring-blue-500/15" />
                     <div className="flex flex-wrap items-start justify-between gap-4">
@@ -344,8 +344,8 @@ export function PortfolioPage({ data }: { data: PortfolioData }) {
                         {item.startDate} — {item.endDate}
                       </span>
                     </div>
-                    <p className="mt-4 text-sm font-medium leading-6 text-slate-400">{item.description}</p>
-                    <p className="mt-4 text-[10px] font-bold text-white/20">0{index + 1}</p>
+                    <p className="mt-3 text-sm font-medium leading-6 text-slate-400">{item.description}</p>
+                    <p className="mt-3 text-[10px] font-bold text-white/20">0{index + 1}</p>
                   </article>
                 ))}
               </div>
@@ -367,19 +367,19 @@ export function PortfolioPage({ data }: { data: PortfolioData }) {
             {education.map((item) => (
               <article
                 key={item.id}
-                className="relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-7 shadow-[0_8px_28px_rgba(15,23,42,0.05)]"
+                className="relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-[0_8px_28px_rgba(15,23,42,0.05)]"
               >
                 <div className="absolute -right-8 -top-8 h-28 w-28 rounded-full bg-blue-50" />
                 <div className="relative">
                   <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-600 text-white shadow-lg shadow-blue-600/20">
                     <GraduationCap size={22} />
                   </div>
-                  <p className="mt-6 text-xs font-bold uppercase tracking-[0.13em] text-blue-600">{item.institution}</p>
+                  <p className="mt-5 text-xs font-bold uppercase tracking-[0.13em] text-blue-600">{item.institution}</p>
                   <h3 className="mt-2 text-2xl font-extrabold tracking-[-0.025em] text-slate-950">{item.degree}</h3>
                   <p className="mt-2 text-xs font-bold text-slate-400">
                     {item.startYear} — {item.endYear}
                   </p>
-                  <p className="mt-5 text-sm font-medium leading-6 text-slate-600">{item.description}</p>
+                  <p className="mt-4 text-sm font-medium leading-6 text-slate-600">{item.description}</p>
                 </div>
               </article>
             ))}
@@ -389,17 +389,17 @@ export function PortfolioPage({ data }: { data: PortfolioData }) {
         )}
       </Section>
 
-      <section id="contact" className="bg-white px-5 pb-10 pt-4 sm:px-8 lg:px-10 lg:pb-14">
-        <div className="relative mx-auto max-w-[1160px] overflow-hidden rounded-[2rem] bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800 px-6 py-12 text-white shadow-[0_30px_70px_rgba(30,64,175,0.24)] sm:px-10 sm:py-16 lg:px-16">
+      <section id="contact" className="bg-white px-5 pb-8 sm:px-8 lg:px-10 lg:pb-10">
+        <div className="relative mx-auto max-w-[1160px] overflow-hidden rounded-[2rem] bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800 px-6 py-10 text-white shadow-[0_30px_70px_rgba(30,64,175,0.24)] sm:px-10 sm:py-12 lg:px-14">
           <div className="pointer-events-none absolute -right-20 -top-32 h-96 w-96 rounded-full border-[70px] border-white/[0.06]" />
           <div className="pointer-events-none absolute -bottom-28 -left-24 h-72 w-72 rounded-full bg-blue-400/20 blur-2xl" />
-          <div className="relative grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end">
+          <div className="relative grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
             <div>
               <p className="text-xs font-extrabold uppercase tracking-[0.17em] text-blue-200">Have a project in mind?</p>
-              <h2 className="mt-5 max-w-3xl text-4xl font-black leading-tight tracking-[-0.04em] sm:text-5xl">
+              <h2 className="mt-4 max-w-3xl text-4xl font-black leading-tight tracking-[-0.04em] sm:text-5xl">
                 Let&apos;s build a commerce product that performs.
               </h2>
-              <p className="mt-5 max-w-2xl text-base font-medium leading-7 text-blue-100">
+              <p className="mt-4 max-w-2xl text-base font-medium leading-7 text-blue-100">
                 Tell me about your Shopify app, payment integration, or eCommerce platform. I&apos;ll help turn the
                 requirements into a dependable product.
               </p>
@@ -412,7 +412,7 @@ export function PortfolioPage({ data }: { data: PortfolioData }) {
             </a>
           </div>
 
-          <div className="relative mt-10 flex flex-wrap gap-x-8 gap-y-4 border-t border-white/15 pt-6 text-sm font-semibold text-blue-100">
+          <div className="relative mt-8 flex flex-wrap gap-x-8 gap-y-3 border-t border-white/15 pt-5 text-sm font-semibold text-blue-100">
             {profile.email ? (
               <a href={`mailto:${profile.email}`} className="inline-flex items-center gap-2 hover:text-white">
                 <Mail size={16} /> {profile.email}
@@ -431,10 +431,10 @@ export function PortfolioPage({ data }: { data: PortfolioData }) {
       </section>
 
       <footer className="border-t border-slate-200 bg-white">
-        <div className="mx-auto flex max-w-[1240px] flex-col gap-6 px-5 py-8 sm:px-8 md:flex-row md:items-center md:justify-between lg:px-10">
+        <div className="mx-auto flex max-w-[1240px] flex-col gap-5 px-5 py-6 sm:px-8 md:flex-row md:items-center md:justify-between lg:px-10">
           <div>
             <p className="font-extrabold text-slate-900">{profile.name}</p>
-            <p className="mt-1 text-xs font-semibold text-slate-500">Full-stack commerce engineer · © {new Date().getFullYear()}</p>
+            <p className="mt-1 text-xs font-semibold text-slate-500">Sr. Shopify Developer · © {new Date().getFullYear()}</p>
           </div>
           <div className="flex flex-wrap items-center gap-2">
             <SocialLink href={profile.linkedin} label="LinkedIn">

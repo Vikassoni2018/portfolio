@@ -24,7 +24,7 @@ export function PublicNavbar({ profile }: { profile: Profile }) {
           </span>
           <span className="hidden sm:block">
             <span className="block text-sm font-extrabold leading-none text-slate-900">{profile.name || "Portfolio"}</span>
-            <span className="mt-1 block text-[10px] font-bold text-slate-400">Commerce Engineer</span>
+            <span className="mt-1 block text-[10px] font-bold text-slate-400">Sr. Shopify Developer</span>
           </span>
         </a>
 
