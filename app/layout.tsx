@@ -17,13 +17,13 @@ export const metadata: Metadata = {
     title,
     description,
     type: "website",
-    images: [{ url: `${siteUrl}/og.png`, width: 1200, height: 630, alt: "Vikas Soni portfolio" }]
+    images: [{ url: `${siteUrl}/og-clean.png`, width: 1200, height: 630, alt: "Vikas Soni portfolio" }]
   },
   twitter: {
     card: "summary_large_image",
     title,
     description,
-    images: [`${siteUrl}/og.png`]
+    images: [`${siteUrl}/og-clean.png`]
   }
 };
 

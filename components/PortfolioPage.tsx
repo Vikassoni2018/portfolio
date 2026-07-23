@@ -1,54 +1,55 @@
 import {
-  ArrowDownRight,
+  ArrowRight,
   ArrowUpRight,
   BriefcaseBusiness,
+  Check,
+  Code2,
   Download,
   Github,
   GraduationCap,
+  Layers3,
   Linkedin,
   Mail,
   MapPin,
-  Phone
+  Phone,
+  ShoppingBag
 } from "lucide-react";
 import { EmptyState } from "@/components/EmptyState";
 import { PublicNavbar } from "@/components/PublicNavbar";
 import { Section } from "@/components/Section";
 import type { PortfolioData, Project } from "@/lib/types";
 
-const projectLabels = [
-  ["Subscriptions", "Shopify", "Payments"],
-  ["API platform", "Fintech", "Symfony"],
-  ["Booking", "Operations", "Payments"],
-  ["Identity", "Platform", "Webkul"],
-  ["Reviews", "Shopify", "SaaS"],
-  ["Performance", "Mobile", "Shopify"]
+const projectTags = [
+  ["Shopify", "Subscriptions", "Payments"],
+  ["Symfony", "Payment APIs", "Webhooks"],
+  ["Booking", "Operations", "Fintech"],
+  ["Identity", "Platform", "Customer UX"],
+  ["Shopify", "Reviews", "SaaS"],
+  ["AMP", "Performance", "SEO"]
 ];
 
-const capabilityStrip = [
-  "Shopify apps",
-  "Subscription systems",
-  "Payment infrastructure",
-  "GraphQL APIs",
-  "Symfony backends"
+const stackLayers = [
+  { icon: ShoppingBag, label: "Commerce", value: "Shopify apps & themes" },
+  { icon: Code2, label: "Backend", value: "PHP, Symfony & Node.js" },
+  { icon: Layers3, label: "Integrations", value: "GraphQL, REST & payments" }
 ];
 
-function ProjectVisual({ project, index }: { project: Project; index: number }) {
+function ProjectImage({ project }: { project: Project }) {
   if (project.image) {
     return (
-      // Admin-managed images can be local uploads or external URLs.
+      // Admin-managed images can be either local uploads or external URLs.
       // eslint-disable-next-line @next/next/no-img-element
       <img
         src={project.image}
         alt=""
-        className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.025]"
+        className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
       />
     );
   }
 
   return (
-    <div className="flex h-full w-full items-end justify-between bg-[#1638ff] p-6 text-[#f2f0e8]">
-      <span className="display-face text-7xl leading-none">{String(index + 1).padStart(2, "0")}</span>
-      <ArrowDownRight size={36} strokeWidth={1.5} />
+    <div className="flex h-full items-center justify-center bg-gradient-to-br from-blue-600 to-indigo-700 text-5xl font-black text-white">
+      {project.name.slice(0, 1)}
     </div>
   );
 }
@@ -70,7 +71,7 @@ function SocialLink({
       target={href.startsWith("http") ? "_blank" : undefined}
       rel={href.startsWith("http") ? "noreferrer" : undefined}
       aria-label={label}
-      className="inline-flex h-12 w-12 items-center justify-center border border-black/20 transition hover:-translate-y-1 hover:border-black hover:bg-black hover:text-white"
+      className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-500 transition hover:-translate-y-0.5 hover:border-blue-300 hover:text-blue-600 hover:shadow-md"
     >
       {children}
     </a>
@@ -81,178 +82,222 @@ export function PortfolioPage({ data }: { data: PortfolioData }) {
   const { profile, projects, skills, experience, education } = data;
 
   return (
-    <main className="overflow-hidden bg-[#f2f0e8] text-[#111111]">
+    <main className="overflow-hidden bg-white text-slate-950">
       <PublicNavbar profile={profile} />
 
-      <section id="top" className="border-b border-black">
-        <div className="site-grid mx-auto max-w-[1440px]">
-          <div className="border-b border-black px-5 py-4 sm:px-8 lg:col-span-12 lg:px-10">
-            <div className="flex flex-wrap items-center justify-between gap-3 font-mono text-[10px] font-bold uppercase tracking-[0.18em] sm:text-xs">
-              <p>Independent commerce engineer / India</p>
-              <p className="inline-flex items-center gap-2">
-                <span className="status-dot" />
-                Available for select projects
-              </p>
-            </div>
-          </div>
+      <section id="top" className="relative border-b border-slate-200 bg-gradient-to-b from-blue-50/80 via-white to-white">
+        <div className="hero-grid pointer-events-none absolute inset-0 opacity-60" />
+        <div className="pointer-events-none absolute -right-32 top-12 h-96 w-96 rounded-full bg-blue-200/40 blur-3xl" />
+        <div className="pointer-events-none absolute -left-32 bottom-0 h-72 w-72 rounded-full bg-indigo-100/60 blur-3xl" />
 
-          <div className="relative px-5 pb-10 pt-12 sm:px-8 sm:pb-14 sm:pt-16 lg:col-span-8 lg:border-r lg:border-black lg:px-10 lg:pb-20 lg:pt-24">
-            <p className="mb-5 font-mono text-xs font-bold uppercase tracking-[0.18em] text-[#1638ff]">
-              Full-stack / Shopify / SaaS
-            </p>
-            <h1 className="display-face max-w-[960px] text-[clamp(4.5rem,11vw,10.5rem)] uppercase leading-[0.78] tracking-[-0.055em]">
-              I build
-              <br />
-              commerce
-              <br />
-              <span className="text-[#1638ff]">systems.</span>
+        <div className="relative mx-auto grid max-w-[1240px] gap-14 px-5 pb-20 pt-20 sm:px-8 sm:pb-28 sm:pt-28 lg:grid-cols-[1.08fr_0.92fr] lg:items-center lg:px-10">
+          <div>
+            <div className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-white px-3.5 py-2 text-xs font-bold text-blue-700 shadow-sm">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-70" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+              </span>
+              Available for select projects
+            </div>
+
+            <p className="mt-8 text-sm font-bold uppercase tracking-[0.18em] text-blue-600">Full-stack commerce engineer</p>
+            <h1 className="mt-5 max-w-3xl text-5xl font-black leading-[1.03] tracking-[-0.045em] text-slate-950 sm:text-6xl lg:text-[4.65rem]">
+              Engineering commerce that{" "}
+              <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">scales.</span>
             </h1>
-            <div className="absolute right-8 top-16 hidden h-20 w-20 rounded-full bg-[#ff4d00] xl:block" />
-          </div>
+            <p className="mt-7 max-w-2xl text-lg font-medium leading-8 text-slate-600">
+              I&apos;m {profile.name}, a Shopify specialist and full-stack developer building reliable SaaS products,
+              payment systems, and high-performing eCommerce experiences.
+            </p>
 
-          <div className="flex flex-col justify-between px-5 py-10 sm:px-8 lg:col-span-4 lg:px-10 lg:py-14">
-            <div>
-              <p className="max-w-lg text-lg font-semibold leading-7 sm:text-xl">
-                {profile.bio ||
-                  "Full-stack developer building Shopify apps, reliable APIs, and payment-led commerce products."}
-              </p>
-              <p className="mt-8 font-mono text-[11px] uppercase leading-5 tracking-[0.14em] text-black/60">
-                Product-minded engineering for teams that need robust systems, clean execution, and measurable speed.
-              </p>
-            </div>
-
-            <div className="mt-12 grid gap-3">
+            <div className="mt-9 flex flex-wrap gap-3">
               <a
                 href="#projects"
-                className="group flex items-center justify-between bg-[#1638ff] px-5 py-4 font-bold text-white transition hover:bg-black"
+                className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-blue-600/20 transition hover:-translate-y-0.5 hover:bg-blue-700"
               >
-                Explore selected work
-                <ArrowDownRight className="transition group-hover:rotate-45" size={20} />
+                View selected work <ArrowRight size={17} />
               </a>
               <a
                 href="#contact"
-                className="group flex items-center justify-between border border-black px-5 py-4 font-bold transition hover:bg-[#ff4d00]"
+                className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-6 py-3.5 text-sm font-bold text-slate-700 shadow-sm transition hover:-translate-y-0.5 hover:border-blue-300 hover:text-blue-700"
               >
-                Start a conversation
-                <ArrowUpRight className="transition group-hover:rotate-45" size={20} />
+                Let&apos;s work together <ArrowUpRight size={17} />
               </a>
+            </div>
+
+            <div className="mt-9 flex items-center gap-3">
+              <SocialLink href={profile.linkedin} label="LinkedIn">
+                <Linkedin size={18} />
+              </SocialLink>
+              <SocialLink href={profile.github} label="GitHub">
+                <Github size={18} />
+              </SocialLink>
+              <SocialLink href={profile.email ? `mailto:${profile.email}` : ""} label="Email">
+                <Mail size={18} />
+              </SocialLink>
+              <p className="ml-2 hidden text-xs font-semibold text-slate-500 sm:block">
+                Based in {profile.location || "India"}
+                <br />
+                Working remotely worldwide
+              </p>
+            </div>
+          </div>
+
+          <div className="relative mx-auto w-full max-w-[540px]">
+            <div className="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-blue-200/60 to-indigo-200/30 blur-2xl" />
+            <div className="relative overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white p-5 shadow-[0_30px_80px_rgba(30,64,175,0.14)] sm:p-7">
+              <div className="flex items-center justify-between border-b border-slate-100 pb-5">
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-[0.14em] text-blue-600">Commerce stack</p>
+                  <h2 className="mt-1 text-lg font-extrabold text-slate-900">Production-ready systems</h2>
+                </div>
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-600 text-white shadow-lg shadow-blue-600/20">
+                  <Code2 size={21} />
+                </div>
+              </div>
+
+              <div className="mt-3 space-y-2">
+                {stackLayers.map(({ icon: Icon, label, value }, index) => (
+                  <div
+                    key={label}
+                    className="group flex items-center gap-4 rounded-2xl border border-transparent p-3 transition hover:border-blue-100 hover:bg-blue-50/70"
+                  >
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-slate-700 group-hover:bg-blue-100 group-hover:text-blue-700">
+                      <Icon size={19} />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <p className="text-xs font-bold uppercase tracking-[0.12em] text-slate-400">{label}</p>
+                      <p className="mt-0.5 truncate text-sm font-bold text-slate-800">{value}</p>
+                    </div>
+                    <span className="text-xs font-bold text-slate-300">0{index + 1}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-5 grid grid-cols-3 gap-2 rounded-2xl bg-slate-950 p-4 text-white">
+                {[
+                  ["4+", "Years"],
+                  ["12+", "Apps"],
+                  [`${projects.length}`, "Projects"]
+                ].map(([value, label]) => (
+                  <div key={label} className="text-center">
+                    <p className="text-2xl font-black">{value}</p>
+                    <p className="mt-0.5 text-[10px] font-bold uppercase tracking-[0.12em] text-slate-400">{label}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="absolute -bottom-5 -left-5 hidden items-center gap-3 rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-xl sm:flex">
+              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-emerald-100 text-emerald-600">
+                <Check size={17} strokeWidth={3} />
+              </span>
+              <div>
+                <p className="text-xs font-extrabold text-slate-900">Built for production</p>
+                <p className="text-[10px] font-semibold text-slate-500">Secure · Scalable · Maintainable</p>
+              </div>
             </div>
           </div>
         </div>
 
-        <div className="border-t border-black bg-[#ff4d00]">
-          <div className="marquee-track flex w-max items-center py-3 font-mono text-[11px] font-bold uppercase tracking-[0.16em]">
-            {[...capabilityStrip, ...capabilityStrip].map((item, index) => (
-              <span key={`${item}-${index}`} className="inline-flex items-center">
-                <span className="px-5 sm:px-8">{item}</span>
-                <span aria-hidden="true">✦</span>
+        <div className="relative border-t border-slate-200 bg-white/80">
+          <div className="mx-auto flex max-w-[1240px] flex-wrap items-center justify-center gap-x-9 gap-y-4 px-5 py-5 text-xs font-bold text-slate-400 sm:px-8 lg:px-10">
+            {["Shopify Apps", "PHP & Symfony", "GraphQL", "Stripe", "Liquid", "React"].map((item) => (
+              <span key={item} className="inline-flex items-center gap-2">
+                <span className="h-1.5 w-1.5 rounded-full bg-blue-500" />
+                {item}
               </span>
             ))}
           </div>
         </div>
       </section>
 
-      <section aria-label="Portfolio statistics" className="border-b border-black">
-        <div className="mx-auto grid max-w-[1440px] sm:grid-cols-2 lg:grid-cols-4">
-          {[
-            ["04+", "Years in production"],
-            [`0${projects.length}`, "Selected builds"],
-            ["12+", "Shopify apps shipped"],
-            ["03", "Payment rails integrated"]
-          ].map(([value, label], index) => (
-            <div
-              key={label}
-              className={`px-5 py-8 sm:px-8 lg:px-10 lg:py-10 ${index ? "border-t border-black sm:border-l lg:border-t-0" : ""} ${index === 2 ? "sm:border-t" : ""}`}
-            >
-              <p className="display-face text-6xl tracking-[-0.04em] text-[#1638ff]">{value}</p>
-              <p className="mt-2 font-mono text-[10px] font-bold uppercase tracking-[0.16em]">{label}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
       <Section
         id="projects"
-        index="01"
-        eyebrow="Selected casework"
-        title="Products built to perform in the real world."
-        intro="A cross-section of subscription, payment, booking, identity, review, and storefront systems—designed around business-critical workflows."
+        eyebrow="Selected work"
+        title="Products designed around real business outcomes."
+        description="A selection of commerce, payment, subscription, and platform products engineered for reliability, usability, and growth."
       >
         {projects.length ? (
-          <div className="grid border-l border-t border-black lg:grid-cols-2">
+          <div className="grid gap-6 lg:grid-cols-2">
             {projects.map((project, index) => (
               <article
                 key={project.id}
-                className="group grid min-h-[560px] grid-rows-[minmax(250px,1fr)_auto] border-b border-r border-black bg-[#ebe8df]"
+                className="group overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-[0_12px_35px_rgba(15,23,42,0.06)] transition duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-[0_22px_50px_rgba(30,64,175,0.12)]"
               >
                 <a
                   href={project.link || "#projects"}
                   target={project.link ? "_blank" : undefined}
                   rel={project.link ? "noreferrer" : undefined}
-                  className="relative min-h-[250px] overflow-hidden border-b border-black bg-white"
                   aria-label={project.link ? `Open ${project.name}` : undefined}
+                  className="relative block aspect-[16/9] overflow-hidden border-b border-slate-100 bg-slate-50"
                 >
-                  <ProjectVisual project={project} index={index} />
-                  <span className="absolute left-4 top-4 bg-[#f2f0e8] px-3 py-2 font-mono text-[10px] font-bold uppercase tracking-[0.16em]">
-                    Case {String(index + 1).padStart(2, "0")}
+                  <ProjectImage project={project} />
+                  <span className="absolute left-4 top-4 rounded-full border border-white/80 bg-white/90 px-3 py-1.5 text-[10px] font-extrabold uppercase tracking-[0.12em] text-slate-700 shadow-sm backdrop-blur">
+                    Project {String(index + 1).padStart(2, "0")}
                   </span>
                 </a>
-
-                <div className="p-5 sm:p-7">
+                <div className="p-6 sm:p-7">
                   <div className="flex items-start justify-between gap-5">
-                    <h3 className="max-w-md text-2xl font-black tracking-[-0.03em] sm:text-3xl">{project.name}</h3>
+                    <div>
+                      <h3 className="text-2xl font-extrabold tracking-[-0.025em] text-slate-950">{project.name}</h3>
+                      <div className="mt-3 flex flex-wrap gap-2">
+                        {(projectTags[index] || ["Product", "Engineering"]).map((tag) => (
+                          <span
+                            key={tag}
+                            className="rounded-full bg-blue-50 px-2.5 py-1 text-[10px] font-bold text-blue-700"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
                     {project.link ? (
                       <a
                         href={project.link}
                         target="_blank"
                         rel="noreferrer"
                         aria-label={`Open ${project.name}`}
-                        className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-black transition hover:bg-[#1638ff] hover:text-white"
+                        className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-slate-200 text-slate-500 transition hover:border-blue-600 hover:bg-blue-600 hover:text-white"
                       >
-                        <ArrowUpRight size={20} />
+                        <ArrowUpRight size={19} />
                       </a>
                     ) : null}
                   </div>
-                  <p className="mt-5 max-w-xl text-sm font-medium leading-6 text-black/65">{project.description}</p>
-                  <div className="mt-6 flex flex-wrap gap-2">
-                    {(projectLabels[index] || ["Product", "Engineering"]).map((tag) => (
-                      <span
-                        key={tag}
-                        className="border border-black/30 px-3 py-1.5 font-mono text-[9px] font-bold uppercase tracking-[0.12em]"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
+                  <p className="mt-5 text-sm font-medium leading-6 text-slate-600">{project.description}</p>
                 </div>
               </article>
             ))}
           </div>
         ) : (
-          <EmptyState label="Selected work is being prepared." />
+          <EmptyState label="Selected projects are being prepared." />
         )}
       </Section>
 
       <Section
         id="skills"
-        index="02"
-        eyebrow="Capabilities"
-        title="Deep commerce expertise. Full-stack range."
-        intro="Focused on the difficult parts: secure transactions, platform integrations, scalable services, and storefront performance."
-        tone="blue"
+        eyebrow="Core capabilities"
+        title="Specialized where it matters. Versatile everywhere else."
+        description="A practical toolkit for building end-to-end commerce products—from storefront experience to backend architecture and secure integrations."
+        tone="soft"
       >
         {skills.length ? (
-          <div className="divide-y divide-white/30 border-y border-white/30">
-            {skills.map((skill, index) => (
+          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {skills.map((skill) => (
               <article
                 key={skill.id}
-                className="group grid gap-4 py-6 sm:grid-cols-[80px_1fr] sm:items-start lg:grid-cols-[110px_0.9fr_1.1fr] lg:gap-8 lg:py-8"
+                className="rounded-2xl border border-slate-200 bg-white p-6 shadow-[0_8px_24px_rgba(15,23,42,0.04)] transition hover:-translate-y-1 hover:border-blue-200 hover:shadow-[0_16px_36px_rgba(30,64,175,0.09)]"
               >
-                <p className="font-mono text-xs font-bold tracking-[0.18em] text-[#ffb39a]">
-                  /{String(index + 1).padStart(2, "0")}
-                </p>
-                <h3 className="text-2xl font-black tracking-[-0.03em] sm:text-3xl">{skill.name}</h3>
-                <p className="max-w-2xl text-sm font-medium leading-6 text-white/70">{skill.description}</p>
+                <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-xl border border-blue-100 bg-blue-50 p-2.5">
+                  {skill.image ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={skill.image} alt="" className="h-full w-full object-contain" />
+                  ) : (
+                    <Code2 className="text-blue-600" size={22} />
+                  )}
+                </div>
+                <h3 className="mt-5 text-lg font-extrabold tracking-[-0.015em] text-slate-900">{skill.name}</h3>
+                <p className="mt-3 text-sm font-medium leading-6 text-slate-600">{skill.description}</p>
               </article>
             ))}
           </div>
@@ -261,72 +306,81 @@ export function PortfolioPage({ data }: { data: PortfolioData }) {
         )}
       </Section>
 
-      <section id="experience" className="border-b border-black bg-[#111111] text-[#f2f0e8]">
-        <div className="mx-auto max-w-[1440px] px-5 py-20 sm:px-8 lg:px-10 lg:py-28">
-          <div className="grid gap-10 border-b border-white/25 pb-10 lg:grid-cols-[0.8fr_1.2fr]">
+      <section id="experience" className="bg-slate-950 text-white">
+        <div className="mx-auto max-w-[1240px] px-5 py-20 sm:px-8 lg:px-10 lg:py-28">
+          <div className="grid gap-10 lg:grid-cols-[0.75fr_1.25fr] lg:gap-20">
             <div>
-              <p className="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-[#ff4d00]">03 / Experience</p>
-              <h2 className="display-face mt-6 max-w-xl text-6xl uppercase leading-[0.88] tracking-[-0.04em] sm:text-7xl">
-                Built in
-                <br />
-                production.
+              <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-blue-400">Experience</p>
+              <h2 className="mt-5 text-4xl font-black leading-tight tracking-[-0.04em] sm:text-5xl">
+                From hands-on delivery to technical leadership.
               </h2>
+              <p className="mt-6 max-w-lg text-base font-medium leading-7 text-slate-400">
+                Four-plus years shipping commerce products, reviewing architecture, mentoring developers, and keeping
+                delivery aligned with business goals.
+              </p>
+              <div className="mt-8 inline-flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
+                <BriefcaseBusiness className="text-blue-400" size={20} />
+                <div>
+                  <p className="text-sm font-extrabold">Currently at Stellen Infotech</p>
+                  <p className="mt-0.5 text-xs font-medium text-slate-400">Senior PHP Developer</p>
+                </div>
+              </div>
             </div>
-            <p className="max-w-xl self-end text-lg font-semibold leading-7 text-white/70">
-              Four-plus years moving from quality assurance to technical leadership—shipping systems, mentoring engineers, and owning delivery.
-            </p>
-          </div>
 
-          {experience.length ? (
-            <div className="divide-y divide-white/25">
-              {experience.map((item, index) => (
-                <article
-                  key={item.id}
-                  className="grid gap-5 py-8 sm:grid-cols-[80px_1fr] lg:grid-cols-[110px_0.8fr_0.8fr_1.4fr] lg:gap-8 lg:py-10"
-                >
-                  <p className="font-mono text-xs font-bold text-[#ff4d00]">0{index + 1}</p>
-                  <div>
-                    <p className="inline-flex items-center gap-2 font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-white/50">
-                      <BriefcaseBusiness size={14} /> {item.company}
-                    </p>
-                    <h3 className="mt-3 text-xl font-black">{item.role}</h3>
-                  </div>
-                  <p className="font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-white/60">
-                    {item.startDate} — {item.endDate}
-                  </p>
-                  <p className="text-sm font-medium leading-6 text-white/60">{item.description}</p>
-                </article>
-              ))}
-            </div>
-          ) : (
-            <EmptyState label="Experience is being updated." />
-          )}
+            {experience.length ? (
+              <div className="relative space-y-5 before:absolute before:bottom-8 before:left-[23px] before:top-8 before:w-px before:bg-white/10">
+                {experience.map((item, index) => (
+                  <article
+                    key={item.id}
+                    className="relative rounded-2xl border border-white/10 bg-white/[0.045] p-6 pl-16 transition hover:border-blue-500/40 hover:bg-white/[0.065]"
+                  >
+                    <span className="absolute left-4 top-6 z-10 flex h-4 w-4 items-center justify-center rounded-full border-4 border-slate-950 bg-blue-500 ring-4 ring-blue-500/15" />
+                    <div className="flex flex-wrap items-start justify-between gap-4">
+                      <div>
+                        <p className="text-xs font-bold uppercase tracking-[0.12em] text-blue-400">{item.company}</p>
+                        <h3 className="mt-2 text-xl font-extrabold">{item.role}</h3>
+                      </div>
+                      <span className="rounded-full bg-white/5 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.1em] text-slate-300">
+                        {item.startDate} — {item.endDate}
+                      </span>
+                    </div>
+                    <p className="mt-4 text-sm font-medium leading-6 text-slate-400">{item.description}</p>
+                    <p className="mt-4 text-[10px] font-bold text-white/20">0{index + 1}</p>
+                  </article>
+                ))}
+              </div>
+            ) : (
+              <EmptyState label="Experience is being updated." />
+            )}
+          </div>
         </div>
       </section>
 
       <Section
         id="education"
-        index="04"
-        eyebrow="Foundation"
-        title="Formal learning, practical momentum."
-        intro="A strong academic base paired with continuous, hands-on learning across modern commerce systems."
+        eyebrow="Education"
+        title="A strong foundation for continuous learning."
+        description="Formal computer application and commerce education, strengthened by years of production experience."
       >
         {education.length ? (
-          <div className="grid border-l border-t border-black md:grid-cols-2">
-            {education.map((item, index) => (
-              <article key={item.id} className="min-h-[300px] border-b border-r border-black p-6 sm:p-8">
-                <div className="flex items-start justify-between gap-6">
-                  <GraduationCap size={34} strokeWidth={1.5} className="text-[#1638ff]" />
-                  <p className="font-mono text-[10px] font-bold uppercase tracking-[0.14em]">
+          <div className="grid gap-5 md:grid-cols-2">
+            {education.map((item) => (
+              <article
+                key={item.id}
+                className="relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-7 shadow-[0_8px_28px_rgba(15,23,42,0.05)]"
+              >
+                <div className="absolute -right-8 -top-8 h-28 w-28 rounded-full bg-blue-50" />
+                <div className="relative">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-600 text-white shadow-lg shadow-blue-600/20">
+                    <GraduationCap size={22} />
+                  </div>
+                  <p className="mt-6 text-xs font-bold uppercase tracking-[0.13em] text-blue-600">{item.institution}</p>
+                  <h3 className="mt-2 text-2xl font-extrabold tracking-[-0.025em] text-slate-950">{item.degree}</h3>
+                  <p className="mt-2 text-xs font-bold text-slate-400">
                     {item.startYear} — {item.endYear}
                   </p>
+                  <p className="mt-5 text-sm font-medium leading-6 text-slate-600">{item.description}</p>
                 </div>
-                <p className="mt-12 font-mono text-[10px] font-bold uppercase tracking-[0.15em] text-black/55">
-                  {item.institution}
-                </p>
-                <h3 className="mt-3 text-3xl font-black tracking-[-0.04em]">{item.degree}</h3>
-                <p className="mt-4 text-sm font-medium leading-6 text-black/60">{item.description}</p>
-                <p className="mt-8 display-face text-5xl text-black/10">0{index + 1}</p>
               </article>
             ))}
           </div>
@@ -335,80 +389,71 @@ export function PortfolioPage({ data }: { data: PortfolioData }) {
         )}
       </Section>
 
-      <section id="contact" className="bg-[#ff4d00]">
-        <div className="mx-auto max-w-[1440px]">
-          <div className="grid border-b border-black lg:grid-cols-[1.4fr_0.6fr]">
-            <div className="px-5 py-16 sm:px-8 lg:border-r lg:border-black lg:px-10 lg:py-24">
-              <p className="font-mono text-[11px] font-bold uppercase tracking-[0.18em]">05 / Contact</p>
-              <h2 className="display-face mt-8 max-w-5xl text-[clamp(4rem,10vw,9rem)] uppercase leading-[0.8] tracking-[-0.05em]">
-                Let&apos;s make
-                <br />
-                it work.
+      <section id="contact" className="bg-white px-5 pb-10 pt-4 sm:px-8 lg:px-10 lg:pb-14">
+        <div className="relative mx-auto max-w-[1160px] overflow-hidden rounded-[2rem] bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800 px-6 py-12 text-white shadow-[0_30px_70px_rgba(30,64,175,0.24)] sm:px-10 sm:py-16 lg:px-16">
+          <div className="pointer-events-none absolute -right-20 -top-32 h-96 w-96 rounded-full border-[70px] border-white/[0.06]" />
+          <div className="pointer-events-none absolute -bottom-28 -left-24 h-72 w-72 rounded-full bg-blue-400/20 blur-2xl" />
+          <div className="relative grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end">
+            <div>
+              <p className="text-xs font-extrabold uppercase tracking-[0.17em] text-blue-200">Have a project in mind?</p>
+              <h2 className="mt-5 max-w-3xl text-4xl font-black leading-tight tracking-[-0.04em] sm:text-5xl">
+                Let&apos;s build a commerce product that performs.
               </h2>
-            </div>
-            <div className="flex flex-col justify-between px-5 py-10 sm:px-8 lg:px-10 lg:py-14">
-              <p className="max-w-md text-xl font-black leading-7">
-                Have a Shopify app, payment flow, or commerce platform that needs experienced hands?
+              <p className="mt-5 max-w-2xl text-base font-medium leading-7 text-blue-100">
+                Tell me about your Shopify app, payment integration, or eCommerce platform. I&apos;ll help turn the
+                requirements into a dependable product.
               </p>
-              <a
-                href={profile.email ? `mailto:${profile.email}` : "#top"}
-                className="group mt-12 flex items-center justify-between border border-black bg-[#f2f0e8] px-5 py-5 font-bold transition hover:bg-[#1638ff] hover:text-white"
-              >
-                Tell me about the project
-                <ArrowUpRight className="transition group-hover:rotate-45" size={22} />
-              </a>
             </div>
+            <a
+              href={profile.email ? `mailto:${profile.email}` : "#top"}
+              className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-white px-6 py-4 text-sm font-extrabold text-blue-700 shadow-xl transition hover:-translate-y-0.5 hover:bg-blue-50"
+            >
+              Start a conversation <ArrowUpRight size={18} />
+            </a>
           </div>
 
-          <div className="grid border-b border-black md:grid-cols-3">
+          <div className="relative mt-10 flex flex-wrap gap-x-8 gap-y-4 border-t border-white/15 pt-6 text-sm font-semibold text-blue-100">
             {profile.email ? (
-              <a
-                className="flex items-center gap-3 border-b border-black px-5 py-5 font-mono text-xs font-bold md:border-b-0 md:border-r sm:px-8 lg:px-10"
-                href={`mailto:${profile.email}`}
-              >
-                <Mail size={18} /> {profile.email}
+              <a href={`mailto:${profile.email}`} className="inline-flex items-center gap-2 hover:text-white">
+                <Mail size={16} /> {profile.email}
               </a>
             ) : null}
             {profile.mobile ? (
-              <a
-                className="flex items-center gap-3 border-b border-black px-5 py-5 font-mono text-xs font-bold md:border-b-0 md:border-r sm:px-8 lg:px-10"
-                href={`tel:${profile.mobile}`}
-              >
-                <Phone size={18} /> {profile.mobile}
+              <a href={`tel:${profile.mobile}`} className="inline-flex items-center gap-2 hover:text-white">
+                <Phone size={16} /> {profile.mobile}
               </a>
             ) : null}
-            <p className="flex items-center gap-3 px-5 py-5 font-mono text-xs font-bold sm:px-8 lg:px-10">
-              <MapPin size={18} /> {profile.location || "India"} / Remote
-            </p>
+            <span className="inline-flex items-center gap-2">
+              <MapPin size={16} /> {profile.location || "India"} · Remote
+            </span>
           </div>
-
-          <footer className="flex flex-col gap-6 px-5 py-8 sm:px-8 lg:flex-row lg:items-center lg:justify-between lg:px-10">
-            <div>
-              <p className="text-lg font-black">{profile.name}</p>
-              <p className="mt-1 font-mono text-[9px] font-bold uppercase tracking-[0.14em]">
-                Full-stack commerce engineer © {new Date().getFullYear()}
-              </p>
-            </div>
-
-            <div className="flex flex-wrap items-center gap-2">
-              <SocialLink href={profile.linkedin} label="LinkedIn">
-                <Linkedin size={18} />
-              </SocialLink>
-              <SocialLink href={profile.github} label="GitHub">
-                <Github size={18} />
-              </SocialLink>
-              {profile.resume ? (
-                <a
-                  href={profile.resume}
-                  className="inline-flex h-12 items-center gap-2 border border-black px-4 font-mono text-[10px] font-bold uppercase tracking-[0.12em] transition hover:bg-black hover:text-white"
-                >
-                  <Download size={16} /> Resume
-                </a>
-              ) : null}
-            </div>
-          </footer>
         </div>
       </section>
+
+      <footer className="border-t border-slate-200 bg-white">
+        <div className="mx-auto flex max-w-[1240px] flex-col gap-6 px-5 py-8 sm:px-8 md:flex-row md:items-center md:justify-between lg:px-10">
+          <div>
+            <p className="font-extrabold text-slate-900">{profile.name}</p>
+            <p className="mt-1 text-xs font-semibold text-slate-500">Full-stack commerce engineer · © {new Date().getFullYear()}</p>
+          </div>
+          <div className="flex flex-wrap items-center gap-2">
+            <SocialLink href={profile.linkedin} label="LinkedIn">
+              <Linkedin size={18} />
+            </SocialLink>
+            <SocialLink href={profile.github} label="GitHub">
+              <Github size={18} />
+            </SocialLink>
+            {profile.resume ? (
+              <a
+                href={profile.resume}
+                className="inline-flex h-11 items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 text-xs font-bold text-slate-600 transition hover:border-blue-300 hover:text-blue-700"
+              >
+                <Download size={16} /> Download resume
+              </a>
+            ) : null}
+          </div>
+        </div>
+      </footer>
     </main>
   );
 }
