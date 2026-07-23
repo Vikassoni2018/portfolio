@@ -82,7 +82,7 @@ export function PortfolioPage({ data }: { data: PortfolioData }) {
   const { profile, projects, skills, experience, education } = data;
 
   return (
-    <main className="overflow-hidden bg-white text-slate-950">
+    <main className="overflow-x-clip bg-white text-slate-950">
       <PublicNavbar profile={profile} />
 
       <section id="top" className="relative border-b border-slate-200 bg-gradient-to-b from-blue-50/80 via-white to-white">
