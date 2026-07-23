@@ -1,39 +1,52 @@
-import { Menu } from "lucide-react";
+import { ArrowUpRight, Download } from "lucide-react";
 import type { Profile } from "@/lib/types";
 
 const links = [
-  ["Home", "#"],
-  ["Skills", "#skills"],
   ["Work", "#projects"],
-  ["Experience", "#experience"],
-  ["Contact", "#contact"]
+  ["Capabilities", "#skills"],
+  ["Experience", "#experience"]
 ];
 
 export function PublicNavbar({ profile }: { profile: Profile }) {
   return (
-    <header className="sticky top-0 z-40 border-b border-white/[0.06] bg-[#08080d]/90 backdrop-blur-xl">
-      <nav className="mx-auto flex max-w-[1280px] items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
-        <a href="#" className="inline-flex items-center gap-2 text-sm font-bold text-white">
-          <span className="h-2.5 w-2.5 rounded-full bg-[#9b7cff] shadow-[0_0_18px_rgba(155,124,255,0.95)]" />
-          {profile.name || "Portfolio"}
+    <header className="sticky top-0 z-50 border-b border-black bg-[#f2f0e8]/95 backdrop-blur-md">
+      <nav className="mx-auto flex h-[70px] max-w-[1440px] items-center">
+        <a
+          href="#top"
+          className="flex h-full min-w-0 flex-1 items-center gap-3 border-r border-black px-5 sm:px-8 lg:max-w-[360px] lg:px-10"
+          aria-label="Back to top"
+        >
+          <span className="h-3 w-3 shrink-0 rounded-full bg-[#ff4d00]" />
+          <span className="truncate text-sm font-black uppercase tracking-[-0.02em]">{profile.name || "Portfolio"}</span>
         </a>
-        <div className="hidden items-center gap-2 text-sm font-semibold text-[#77737f] md:flex">
-          {links.map(([label, href], index) => (
+
+        <div className="hidden h-full items-center md:flex">
+          {links.map(([label, href]) => (
             <a
               key={href}
-              className={index === 0 ? "rounded-lg bg-white/[0.09] px-4 py-2 text-white" : "rounded-lg px-4 py-2 transition hover:text-white"}
               href={href}
+              className="flex h-full items-center border-r border-black px-5 font-mono text-[10px] font-bold uppercase tracking-[0.13em] transition hover:bg-[#1638ff] hover:text-white lg:px-7"
             >
               {label}
             </a>
           ))}
-          <a className="ml-3 rounded-lg bg-[#9b7cff] px-5 py-2 font-bold text-[#0b0912] shadow-[0_0_28px_rgba(155,124,255,0.38)] hover:bg-[#b5a1ff]" href="#contact">
-            Hire Me
-          </a>
         </div>
-        <button className="rounded-lg p-2 text-white md:hidden" aria-label="Open menu">
-          <Menu size={24} />
-        </button>
+
+        {profile.resume ? (
+          <a
+            href={profile.resume}
+            className="hidden h-full items-center gap-2 border-r border-black px-5 font-mono text-[10px] font-bold uppercase tracking-[0.13em] transition hover:bg-black hover:text-white sm:flex"
+          >
+            <Download size={15} /> CV
+          </a>
+        ) : null}
+
+        <a
+          href="#contact"
+          className="flex h-full items-center gap-2 bg-[#1638ff] px-5 text-xs font-black uppercase text-white transition hover:bg-[#ff4d00] hover:text-black sm:px-7"
+        >
+          Let&apos;s talk <ArrowUpRight size={16} />
+        </a>
       </nav>
     </header>
   );
