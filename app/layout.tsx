@@ -4,24 +4,38 @@ import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
-const siteUrl = "https://vikas-soni-commerce-portfolio.vikassoni2018.chatgpt.site";
-const title = "Vikas Soni | Shopify App & PHP Symfony Developer";
+const siteUrl = "https://portfolio-gamma-nine-k29hphsgok.vercel.app";
+const title = "Vikas Soni | Shopify & Full Stack Developer";
 const description =
-  "Vikas Soni is a Shopify app and full-stack PHP/Symfony developer in India building SaaS, subscription, payment, GraphQL, and eCommerce solutions.";
+  "Vikas Soni is a Shopify expert and full-stack web developer in India specializing in Shopify apps and themes, Laravel, PHP, Symfony, SaaS, and eCommerce.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
+  applicationName: "Vikas Soni Portfolio",
   title: {
     default: title,
     template: "%s | Vikas Soni"
   },
   description,
+  keywords: [
+    "Vikas Soni",
+    "Shopify expert",
+    "Shopify app developer",
+    "Shopify theme developer",
+    "Laravel developer",
+    "PHP developer",
+    "Symfony developer",
+    "full stack developer",
+    "web developer",
+    "eCommerce developer",
+    "India"
+  ],
   authors: [{ name: "Vikas Soni", url: siteUrl }],
   creator: "Vikas Soni",
   publisher: "Vikas Soni",
   category: "Technology",
   alternates: {
-    canonical: "/"
+    canonical: siteUrl
   },
   robots: {
     index: true,

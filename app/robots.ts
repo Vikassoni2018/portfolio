@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-const siteUrl = "https://portfolio-gamma-nine-k29hphsgok.vercel.app/";
+const siteUrl = "https://portfolio-gamma-nine-k29hphsgok.vercel.app";
 
 export default function robots(): MetadataRoute.Robots {
   return {
