@@ -467,7 +467,7 @@ export function PortfolioPage({ data }: { data: PortfolioData }) {
           rel="noreferrer"
           aria-label={`Contact ${profile.name} on WhatsApp`}
           title="Chat on WhatsApp"
-          className="fixed bottom-5 right-5 z-[60] inline-flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_12px_30px_rgba(37,211,102,0.38)] ring-4 ring-white transition hover:-translate-y-1 hover:bg-[#20bd5a] hover:shadow-[0_16px_36px_rgba(37,211,102,0.48)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#25D366] sm:bottom-7 sm:right-7 sm:h-16 sm:w-16"
+          className="fixed bottom-5 right-5 z-[60] inline-flex h-14 w-14 items-center justify-center rounded-full bg-blue-600 text-white shadow-[0_12px_30px_rgba(37,99,235,0.38)] ring-4 ring-white transition hover:-translate-y-1 hover:bg-blue-700 hover:shadow-[0_16px_36px_rgba(37,99,235,0.48)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-600 sm:bottom-7 sm:right-7 sm:h-16 sm:w-16"
         >
           <MessageCircle size={30} strokeWidth={2.4} aria-hidden="true" />
         </a>
