@@ -16,6 +16,7 @@ import {
   ShoppingBag
 } from "lucide-react";
 import { EmptyState } from "@/components/EmptyState";
+import { ExperienceMotionBackground } from "@/components/ExperienceMotionBackground";
 import { HeroMotionBackground } from "@/components/HeroMotionBackground";
 import { InteractiveCommerce3D } from "@/components/InteractiveCommerce3D";
 import { InteractiveProjectCard } from "@/components/InteractiveProjectCard";
@@ -257,8 +258,10 @@ export function PortfolioPage({ data }: { data: PortfolioData }) {
         )}
       </Section>
 
-      <section id="experience" className="bg-slate-950 text-white">
-        <div className="mx-auto max-w-[1240px] px-5 py-14 sm:px-8 sm:py-16 lg:px-10 lg:py-20">
+      <section id="experience" className="experience-motion-section relative overflow-hidden bg-slate-950 text-white">
+        <ExperienceMotionBackground />
+
+        <div className="relative z-10 mx-auto max-w-[1240px] px-5 py-14 sm:px-8 sm:py-16 lg:px-10 lg:py-20">
           <div className="grid gap-8 lg:grid-cols-[0.75fr_1.25fr] lg:gap-12">
             <div>
               <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-blue-400">Experience</p>
@@ -283,7 +286,7 @@ export function PortfolioPage({ data }: { data: PortfolioData }) {
                 {experience.map((item, index) => (
                   <article
                     key={item.id}
-                    className="relative rounded-2xl border border-white/10 bg-white/[0.045] p-5 pl-16 transition hover:border-blue-500/40 hover:bg-white/[0.065]"
+                    className="experience-timeline-card relative rounded-2xl border border-white/10 bg-slate-950/55 p-5 pl-16 backdrop-blur-sm transition hover:border-blue-500/40 hover:bg-slate-900/75"
                   >
                     <span className="absolute left-4 top-6 z-10 flex h-4 w-4 items-center justify-center rounded-full border-4 border-slate-950 bg-blue-500 ring-4 ring-blue-500/15" />
                     <div className="flex flex-wrap items-start justify-between gap-4">
