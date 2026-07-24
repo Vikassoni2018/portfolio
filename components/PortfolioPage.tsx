@@ -16,9 +16,12 @@ import {
   ShoppingBag
 } from "lucide-react";
 import { EmptyState } from "@/components/EmptyState";
+import { HeroMotionBackground } from "@/components/HeroMotionBackground";
+import { InteractiveCommerce3D } from "@/components/InteractiveCommerce3D";
+import { InteractiveProjectCard } from "@/components/InteractiveProjectCard";
 import { PublicNavbar } from "@/components/PublicNavbar";
 import { Section } from "@/components/Section";
-import type { PortfolioData, Project } from "@/lib/types";
+import type { PortfolioData } from "@/lib/types";
 
 const projectTags = [
   ["Shopify", "Subscriptions", "Payments"],
@@ -34,26 +37,6 @@ const stackLayers = [
   { icon: Code2, label: "Backend", value: "PHP, Symfony & Node.js" },
   { icon: Layers3, label: "Integrations", value: "GraphQL, REST & payments" }
 ];
-
-function ProjectImage({ project }: { project: Project }) {
-  if (project.image) {
-    return (
-      // Admin-managed images can be either local uploads or external URLs.
-      // eslint-disable-next-line @next/next/no-img-element
-      <img
-        src={project.image}
-        alt=""
-        className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
-      />
-    );
-  }
-
-  return (
-    <div className="flex h-full items-center justify-center bg-gradient-to-br from-blue-600 to-indigo-700 text-5xl font-black text-white">
-      {project.name.slice(0, 1)}
-    </div>
-  );
-}
 
 function SocialLink({
   href,
@@ -90,13 +73,14 @@ export function PortfolioPage({ data }: { data: PortfolioData }) {
     <main className="overflow-x-clip bg-white text-slate-950">
       <PublicNavbar profile={profile} />
 
-      <section id="top" className="relative border-b border-slate-200 bg-gradient-to-b from-blue-50/80 via-white to-white">
-        <div className="hero-grid pointer-events-none absolute inset-0 opacity-60" />
-        <div className="pointer-events-none absolute -right-32 top-12 h-96 w-96 rounded-full bg-blue-200/40 blur-3xl" />
-        <div className="pointer-events-none absolute -left-32 bottom-0 h-72 w-72 rounded-full bg-indigo-100/60 blur-3xl" />
+      <section
+        id="top"
+        className="hero-motion-section relative border-b border-slate-200 bg-gradient-to-b from-blue-50/80 via-white to-white"
+      >
+        <HeroMotionBackground />
 
-        <div className="relative mx-auto grid max-w-[1240px] gap-10 px-5 pb-14 pt-14 sm:px-8 sm:pb-20 sm:pt-20 lg:grid-cols-[1.08fr_0.92fr] lg:items-center lg:px-10">
-          <div>
+        <div className="relative mx-auto grid min-w-0 max-w-[1240px] gap-10 px-5 pb-14 pt-14 sm:px-8 sm:pb-20 sm:pt-20 lg:grid-cols-[1.08fr_0.92fr] lg:items-center lg:px-10">
+          <div className="hero-motion-copy">
             <div className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-white px-3.5 py-2 text-xs font-bold text-blue-700 shadow-sm">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-70" />
@@ -148,7 +132,7 @@ export function PortfolioPage({ data }: { data: PortfolioData }) {
             </div>
           </div>
 
-          <div className="relative mx-auto w-full max-w-[540px]">
+          <div className="hero-stack-model relative mx-auto w-full max-w-[540px]">
             <div className="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-blue-200/60 to-indigo-200/30 blur-2xl" />
             <div className="relative overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white p-5 shadow-[0_30px_80px_rgba(30,64,175,0.14)] sm:p-7">
               <div className="flex items-center justify-between border-b border-slate-100 pb-5">
@@ -217,6 +201,8 @@ export function PortfolioPage({ data }: { data: PortfolioData }) {
         </div>
       </section>
 
+      <InteractiveCommerce3D />
+
       <Section
         id="projects"
         eyebrow="Selected work"
@@ -226,52 +212,12 @@ export function PortfolioPage({ data }: { data: PortfolioData }) {
         {projects.length ? (
           <div className="grid gap-5 lg:grid-cols-2">
             {projects.map((project, index) => (
-              <article
+              <InteractiveProjectCard
                 key={project.id}
-                className="group overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-[0_12px_35px_rgba(15,23,42,0.06)] transition duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-[0_22px_50px_rgba(30,64,175,0.12)]"
-              >
-                <a
-                  href={project.link || "#projects"}
-                  target={project.link ? "_blank" : undefined}
-                  rel={project.link ? "noreferrer" : undefined}
-                  aria-label={project.link ? `Open ${project.name}` : undefined}
-                  className="relative block aspect-[16/9] overflow-hidden border-b border-slate-100 bg-slate-50"
-                >
-                  <ProjectImage project={project} />
-                  <span className="absolute left-4 top-4 rounded-full border border-white/80 bg-white/90 px-3 py-1.5 text-[10px] font-extrabold uppercase tracking-[0.12em] text-slate-700 shadow-sm backdrop-blur">
-                    Project {String(index + 1).padStart(2, "0")}
-                  </span>
-                </a>
-                <div className="p-6 sm:p-7">
-                  <div className="flex items-start justify-between gap-5">
-                    <div>
-                      <h3 className="text-2xl font-extrabold tracking-[-0.025em] text-slate-950">{project.name}</h3>
-                      <div className="mt-3 flex flex-wrap gap-2">
-                        {(projectTags[index] || ["Product", "Engineering"]).map((tag) => (
-                          <span
-                            key={tag}
-                            className="rounded-full bg-blue-50 px-2.5 py-1 text-[10px] font-bold text-blue-700"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                    {project.link ? (
-                      <a
-                        href={project.link}
-                        target="_blank"
-                        rel="noreferrer"
-                        aria-label={`Open ${project.name}`}
-                        className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-slate-200 text-slate-500 transition hover:border-blue-600 hover:bg-blue-600 hover:text-white"
-                      >
-                        <ArrowUpRight size={19} />
-                      </a>
-                    ) : null}
-                  </div>
-                  <p className="mt-5 text-sm font-medium leading-6 text-slate-600">{project.description}</p>
-                </div>
-              </article>
+                project={project}
+                index={index}
+                tags={projectTags[index] || ["Product", "Engineering"]}
+              />
             ))}
           </div>
         ) : (
