@@ -28,7 +28,7 @@ export function PublicNavbar({ profile }: { profile: Profile }) {
           </span>
         </a>
 
-        <div className="hidden items-center gap-1 rounded-xl border border-slate-200 bg-slate-50/80 p-1 md:flex">
+        <div className="hidden items-center gap-1 rounded-xl  p-1 md:flex">
           {links.map(([label, href]) => (
             <a
               key={href}
