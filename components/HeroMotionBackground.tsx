@@ -13,6 +13,23 @@ const particles = [
   { left: "94%", top: "58%", size: 4, delay: "-3.2s", duration: "6.9s" }
 ];
 
+const codeLines = [
+  { number: "01", indent: 0, content: <><span className="hero-code-purple">import</span> <span className="hero-code-blue">{"{ shopify }"}</span> <span className="hero-code-purple">from</span> <span className="hero-code-green">&quot;@commerce/core&quot;</span>;</> },
+  { number: "02", indent: 0, content: <>&nbsp;</> },
+  { number: "03", indent: 0, content: <><span className="hero-code-purple">export async function</span> <span className="hero-code-blue">scaleStore</span><span className="hero-code-slate">(order) {"{"}</span></> },
+  { number: "04", indent: 1, content: <><span className="hero-code-purple">const</span> payment <span className="hero-code-purple">= await</span></> },
+  { number: "05", indent: 2, content: <><span className="hero-code-blue">shopify.checkout</span><span className="hero-code-slate">.capture(order);</span></> },
+  { number: "06", indent: 1, content: <><span className="hero-code-purple">return</span> <span className="hero-code-blue">deploy</span><span className="hero-code-slate">({"{"} storefront, payment {"}"});</span></> },
+  { number: "07", indent: 0, content: <><span className="hero-code-slate">{"}"}</span><span className="hero-code-caret" /></> }
+];
+
+const syntaxTokens = [
+  { label: "</>", className: "hero-code-token-one" },
+  { label: "{ }", className: "hero-code-token-two" },
+  { label: "=>", className: "hero-code-token-three" },
+  { label: "API", className: "hero-code-token-four" }
+];
+
 const clamp = (value: number, min: number, max: number) => Math.min(Math.max(value, min), max);
 
 export function HeroMotionBackground() {
@@ -107,24 +124,64 @@ export function HeroMotionBackground() {
       <div className="hero-motion-beam hero-motion-beam-one absolute" />
       <div className="hero-motion-beam hero-motion-beam-two absolute" />
 
-      <div className="hero-motion-ring-system absolute right-[8%] top-[8%] h-56 w-56 sm:h-72 sm:w-72">
-        <span className="hero-motion-ring hero-motion-ring-one absolute inset-0 rounded-full" />
-        <span className="hero-motion-ring hero-motion-ring-two absolute inset-[14%] rounded-full" />
-        <span className="hero-motion-ring hero-motion-ring-three absolute inset-[29%] rounded-full" />
-      </div>
+      <div className="hero-code-scene absolute inset-0">
+        <div className="hero-code-orbit absolute right-[5%] top-[7%] h-64 w-64 rounded-full sm:h-80 sm:w-80">
+          <span className="absolute inset-[13%] rounded-full border border-dashed border-blue-400/25" />
+          <span className="absolute inset-[34%] rounded-full border border-indigo-400/25" />
+          <span className="hero-code-orbit-dot absolute h-2.5 w-2.5 rounded-full bg-blue-500" />
+        </div>
 
-      <div className="hero-motion-cube absolute right-[3%] top-[53%] h-16 w-16 sm:right-[5%] sm:h-20 sm:w-20">
-        <span className="hero-motion-cube-face hero-motion-cube-front" />
-        <span className="hero-motion-cube-face hero-motion-cube-back" />
-        <span className="hero-motion-cube-face hero-motion-cube-right" />
-        <span className="hero-motion-cube-face hero-motion-cube-left" />
-        <span className="hero-motion-cube-face hero-motion-cube-top" />
-        <span className="hero-motion-cube-face hero-motion-cube-bottom" />
-      </div>
+        <div className="hero-code-window absolute right-[7%] top-[10%] w-[42rem] max-w-[48vw] overflow-hidden rounded-2xl">
+          <div className="hero-code-window-bar flex h-10 items-center gap-2 border-b border-blue-200/50 px-4">
+            <span className="h-2.5 w-2.5 rounded-full bg-rose-400/80" />
+            <span className="h-2.5 w-2.5 rounded-full bg-amber-400/80" />
+            <span className="h-2.5 w-2.5 rounded-full bg-emerald-400/80" />
+            <span className="ml-3 font-mono text-[9px] font-bold uppercase tracking-[0.14em] text-blue-500/70">
+              commerce-engine.ts
+            </span>
+          </div>
+          <div className="hero-code-editor relative py-4">
+            <div className="hero-code-scan absolute inset-x-0 h-16" />
+            {codeLines.map((line, index) => (
+              <div
+                key={line.number}
+                className="hero-code-line flex min-w-max font-mono text-[11px] leading-6"
+                style={{ animationDelay: `${index * 0.18}s` }}
+              >
+                <span className="w-11 shrink-0 pr-3 text-right text-slate-400/55">{line.number}</span>
+                <span className="border-l border-blue-100/80 pl-4 text-slate-600" style={{ paddingLeft: `${16 + line.indent * 16}px` }}>
+                  {line.content}
+                </span>
+              </div>
+            ))}
+          </div>
+          <div className="hero-code-status flex items-center justify-between border-t border-blue-200/50 px-4 py-2 font-mono text-[8px] font-bold uppercase tracking-[0.12em] text-blue-500/65">
+            <span>main*</span>
+            <span>TypeScript · UTF-8</span>
+          </div>
+        </div>
 
-      <div className="hero-motion-prism absolute left-[3%] top-[55%] h-20 w-20 sm:left-[5%] sm:h-28 sm:w-28">
-        <span className="absolute inset-0 rounded-[28%] border border-blue-400/20 bg-blue-400/[0.04]" />
-        <span className="absolute inset-[18%] rounded-[28%] border border-indigo-400/25 bg-indigo-400/[0.05]" />
+        <div className="hero-terminal-window absolute bottom-[11%] left-[8%] w-[21rem] overflow-hidden rounded-xl">
+          <div className="flex items-center justify-between border-b border-blue-200/45 px-3.5 py-2">
+            <span className="font-mono text-[8px] font-bold uppercase tracking-[0.16em] text-blue-500/70">terminal</span>
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.75)]" />
+          </div>
+          <div className="space-y-1.5 p-3.5 font-mono text-[9px] font-semibold">
+            <p><span className="text-blue-500">$</span> <span className="text-slate-500">shopify app deploy</span></p>
+            <p className="hero-terminal-line hero-terminal-line-one text-emerald-600">✓ Extensions bundled</p>
+            <p className="hero-terminal-line hero-terminal-line-two text-emerald-600">✓ GraphQL schema synced</p>
+            <p className="hero-terminal-line hero-terminal-line-three text-blue-600">● Production healthy</p>
+          </div>
+        </div>
+
+        {syntaxTokens.map((token) => (
+          <span
+            key={token.label}
+            className={`hero-code-token ${token.className} absolute flex items-center justify-center rounded-xl border border-blue-300/45 bg-white/55 font-mono font-black text-blue-600 shadow-lg shadow-blue-500/10 backdrop-blur-sm`}
+          >
+            {token.label}
+          </span>
+        ))}
       </div>
 
       {particles.map((particle, index) => (
