@@ -40,5 +40,26 @@
     "link": "https://apps.shopify.com/amp-by-webkul",
     "image": "/uploads/images/project-shopify-amp-app.png",
     "description": "Shopify AMP solution for fast-loading, mobile-optimized storefront templates with responsive AMP-compatible layouts, SEO compliance, and improved page speed."
+  },
+  {
+    "id": "white-rabbit-rice-store",
+    "name": "White Rabbit Rice",
+    "link": "https://whiterabbit-9679.myshopify.com/",
+    "image": "/uploads/images/project-white-rabbit-rice.png",
+    "description": "Shopify storefront for White Rabbit's premium rice range, pairing product discovery and brand storytelling with a polished online shopping experience."
+  },
+  {
+    "id": "cozy-lifestyle-store",
+    "name": "Cozy Lifestyle",
+    "link": "https://cozylifestyle.sg/",
+    "image": "/uploads/images/project-cozy-lifestyle.webp",
+    "description": "Singapore eCommerce store for mattresses, bedsheets, pillowcases, duvets, and other sleep essentials, with streamlined product discovery and purchasing."
+  },
+  {
+    "id": "sg-magnetics-store",
+    "name": "SG Magnetics",
+    "link": "https://www.sgmagnetics.com/",
+    "image": "/uploads/images/project-sg-magnetics-wordmark.png",
+    "description": "Shopify storefront for standard and custom magnet solutions, covering industrial, commercial, and everyday applications across Singapore and worldwide."
   }
 ]

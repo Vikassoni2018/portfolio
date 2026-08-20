@@ -30,7 +30,10 @@ const projectTags = [
   ["Booking", "Operations", "Fintech"],
   ["Identity", "Platform", "Customer UX"],
   ["Shopify", "Reviews", "SaaS"],
-  ["AMP", "Performance", "SEO"]
+  ["AMP", "Performance", "SEO"],
+  ["Shopify", "eCommerce", "Food & Beverage"],
+  ["Shopify", "eCommerce", "Home & Living"],
+  ["Shopify", "eCommerce", "B2B & Retail"]
 ];
 
 const stackLayers = [
