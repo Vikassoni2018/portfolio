@@ -8,6 +8,24 @@ const floatingLabels = [
   { name: "GQL", detail: "synced", className: "theme-scroll-card-three" }
 ];
 
+const rainColumns = [
+  {
+    className: "theme-scroll-rain-one",
+    duration: "22s",
+    tokens: ["const", "await", "=> {", "0x1F", "async", "</>", "git", "push", "200 OK", "npm", "{ }", "hmac"]
+  },
+  {
+    className: "theme-scroll-rain-two",
+    duration: "27s",
+    tokens: ["POST", "webhook", "retry", "idempotent", "queue", "GraphQL", "mutation", ":=", "200", "sync", "<Bulk>", "ack"]
+  },
+  {
+    className: "theme-scroll-rain-three",
+    duration: "19s",
+    tokens: ["php", "symfony", "laravel", "->", "SELECT", "JOIN", "cache", "redis", "job", "worker", "::", "run()"]
+  }
+];
+
 const particles = [
   { left: "7%", top: "22%", delay: "-1s", duration: "7s" },
   { left: "24%", top: "69%", delay: "-4s", duration: "8.6s" },
@@ -155,6 +173,19 @@ export function GlobalScroll3DBackground() {
         <span className="theme-scroll-glyph theme-scroll-glyph-two absolute font-mono font-black text-indigo-600/15">
           {"</>"}
         </span>
+
+        {rainColumns.map((column) => (
+          <div key={column.className} className={`theme-scroll-rain ${column.className} absolute`}>
+            {/* Tokens are duplicated so the vertical scroll loops seamlessly. */}
+            <div className="theme-scroll-rain-track" style={{ animationDuration: column.duration }}>
+              {[...column.tokens, ...column.tokens].map((token, tokenIndex) => (
+                <span key={`${token}-${tokenIndex}`} className="theme-scroll-rain-token">
+                  {token}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
 
         {particles.map((particle) => (
           <span

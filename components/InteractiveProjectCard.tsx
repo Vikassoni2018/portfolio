@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef } from "react";
 import { ArrowUpRight, Hand, MousePointer2, Rotate3D } from "lucide-react";
 import type { Project } from "@/lib/types";
+import Link from "next/link";
 
 type InteractiveProjectCardProps = {
   project: Project;
@@ -255,6 +256,12 @@ export function InteractiveProjectCard({ project, index, tags }: InteractiveProj
           ) : null}
         </div>
         <p className="mt-5 text-sm font-medium leading-6 text-slate-600">{project.description}</p>
+        <Link
+          href={`/projects/${project.id}`}
+          className="mt-5 inline-flex items-center gap-1.5 text-xs font-extrabold text-blue-600 transition hover:gap-2.5 hover:text-blue-700"
+        >
+          Read the case study <ArrowUpRight size={14} />
+        </Link>
       </div>
     </article>
   );

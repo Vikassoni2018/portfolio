@@ -1,11 +1,13 @@
 import { ArrowUpRight, Download } from "lucide-react";
+import Link from "next/link";
 import type { Profile } from "@/lib/types";
 
 const links = [
-  ["Projects", "#projects"],
-  ["Skills", "#skills"],
-  ["Experience", "#experience"],
-  ["Education", "#education"]
+  ["Projects", "/#projects"],
+  ["Services", "/services"],
+  ["Blog", "/blog"],
+  ["Skills", "/#skills"],
+  ["Experience", "/#experience"]
 ];
 
 export function PublicNavbar({ profile }: { profile: Profile }) {
@@ -18,7 +20,7 @@ export function PublicNavbar({ profile }: { profile: Profile }) {
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/90 backdrop-blur-xl">
       <nav className="mx-auto flex h-[72px] max-w-[1240px] items-center justify-between gap-5 px-5 sm:px-8 lg:px-10">
-        <a href="#top" className="flex min-w-0 items-center gap-3" aria-label="Back to top">
+        <Link href="/" className="flex min-w-0 items-center gap-3" aria-label="Vikas Soni home">
           <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-600 text-sm font-black text-white shadow-md shadow-blue-600/20">
             {initials}
           </span>
@@ -26,17 +28,17 @@ export function PublicNavbar({ profile }: { profile: Profile }) {
             <span className="block text-sm font-extrabold leading-none text-slate-900">{profile.name || "Portfolio"}</span>
             <span className="mt-1 block text-[10px] font-bold text-slate-400">Sr. Shopify Developer</span>
           </span>
-        </a>
+        </Link>
 
         <div className="hidden items-center gap-1 rounded-xl  p-1 md:flex">
           {links.map(([label, href]) => (
-            <a
+            <Link
               key={href}
               href={href}
               className="rounded-lg px-3.5 py-2 text-xs font-bold text-slate-600 transition hover:bg-white hover:text-blue-700 hover:shadow-sm"
             >
               {label}
-            </a>
+            </Link>
           ))}
         </div>
 
@@ -49,12 +51,12 @@ export function PublicNavbar({ profile }: { profile: Profile }) {
               <Download size={15} /> Resume
             </a>
           ) : null}
-          <a
-            href="#contact"
+          <Link
+            href="/#contact"
             className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-4 py-2.5 text-xs font-extrabold text-white shadow-md shadow-blue-600/20 transition hover:bg-blue-700"
           >
             Let&apos;s talk <ArrowUpRight size={15} />
-          </a>
+          </Link>
         </div>
       </nav>
     </header>

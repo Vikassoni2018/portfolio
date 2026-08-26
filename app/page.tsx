@@ -1,9 +1,17 @@
+import { JsonLd } from "@/components/JsonLd";
 import { PortfolioPage } from "@/components/PortfolioPage";
 import education from "@/data/education.json";
 import experience from "@/data/experience.json";
 import profile from "@/data/profile.json";
 import projects from "@/data/projects.json";
 import skills from "@/data/skills.json";
+import {
+  jsonLdGraph,
+  personSchema,
+  profilePageSchema,
+  projectListSchema,
+  websiteSchema
+} from "@/lib/seo";
 import type { PortfolioData } from "@/lib/types";
 
 export default function Home() {
@@ -15,5 +23,17 @@ export default function Home() {
     education
   };
 
-  return <PortfolioPage data={data} />;
+  const schema = jsonLdGraph([
+    personSchema(),
+    websiteSchema(),
+    profilePageSchema(),
+    projectListSchema()
+  ]);
+
+  return (
+    <>
+      <JsonLd data={schema} />
+      <PortfolioPage data={data} />
+    </>
+  );
 }

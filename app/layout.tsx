@@ -1,22 +1,33 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
+import { Analytics } from "@/components/Analytics";
+import { GlobalScroll3DBackground } from "@/components/GlobalScroll3DBackground";
+import {
+  bingSiteVerification,
+  googleSiteVerification,
+  siteDescription,
+  siteName,
+  siteTitle,
+  siteUrl
+} from "@/lib/site";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
 
-const siteUrl = "https://portfolio-gamma-nine-k29hphsgok.vercel.app";
-const title = "Vikas Soni | Shopify & Full Stack Developer";
-const description =
-  "Vikas Soni is a Shopify expert and full-stack web developer in India specializing in Shopify apps and themes, Laravel, PHP, Symfony, SaaS, and eCommerce.";
+export const viewport: Viewport = {
+  themeColor: "#2563eb",
+  width: "device-width",
+  initialScale: 1
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   applicationName: "Vikas Soni Portfolio",
   title: {
-    default: title,
-    template: "%s | Vikas Soni"
+    default: siteTitle,
+    template: `%s | ${siteName}`
   },
-  description,
+  description: siteDescription,
   keywords: [
     "Vikas Soni",
     "Shopify expert",
@@ -30,12 +41,17 @@ export const metadata: Metadata = {
     "eCommerce developer",
     "India"
   ],
-  authors: [{ name: "Vikas Soni", url: siteUrl }],
-  creator: "Vikas Soni",
-  publisher: "Vikas Soni",
+  authors: [{ name: siteName, url: siteUrl }],
+  creator: siteName,
+  publisher: siteName,
   category: "Technology",
+  manifest: "/manifest.webmanifest",
   alternates: {
     canonical: siteUrl
+  },
+  verification: {
+    ...(googleSiteVerification ? { google: googleSiteVerification } : {}),
+    ...(bingSiteVerification ? { other: { "msvalidate.01": bingSiteVerification } } : {})
   },
   robots: {
     index: true,
@@ -49,26 +65,31 @@ export const metadata: Metadata = {
     }
   },
   openGraph: {
-    title,
-    description,
+    title: siteTitle,
+    description: siteDescription,
     url: siteUrl,
-    siteName: "Vikas Soni",
+    siteName,
     locale: "en_IN",
     type: "website",
-    images: [{ url: `${siteUrl}/og-clean.png`, width: 1200, height: 630, alt: "Vikas Soni portfolio" }]
+    images: [{ url: "/og-clean.png", width: 1200, height: 630, alt: "Vikas Soni portfolio" }]
   },
   twitter: {
     card: "summary_large_image",
-    title,
-    description,
-    images: [`${siteUrl}/og-clean.png`]
+    title: siteTitle,
+    description: siteDescription,
+    images: ["/og-clean.png"]
   }
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        {/* Scroll-driven 3D scene, fixed behind every page in the site. */}
+        <GlobalScroll3DBackground />
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }

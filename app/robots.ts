@@ -1,15 +1,14 @@
 import type { MetadataRoute } from "next";
-
-const siteUrl = "https://portfolio-gamma-nine-k29hphsgok.vercel.app";
+import { absoluteUrl, siteUrl } from "@/lib/site";
 
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: "/api/"
+      disallow: ["/api/", "/admin", "/admin/"]
     },
-    sitemap: `${siteUrl}/sitemap.xml`,
+    sitemap: absoluteUrl("/sitemap.xml"),
     host: siteUrl
   };
 }

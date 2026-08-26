@@ -1321,3 +1321,355 @@ section[id] {
     transition-duration: 220ms;
   }
 }
+
+/* ==========================================================================
+   Global scroll-driven 3D background
+   --------------------------------------------------------------------------
+   GlobalScroll3DBackground mounts once in the root layout and writes these
+   custom properties from a single rAF loop. Nothing here reads layout, so the
+   whole scene animates on the compositor.
+   ========================================================================== */
+
+.theme-scroll-root {
+  --theme-pointer-x: 0px;
+  --theme-pointer-y: 0px;
+  --theme-tilt-x: 0deg;
+  --theme-tilt-y: 0deg;
+  --theme-scroll-up: 0px;
+  --theme-scroll-down: 0px;
+  --theme-scroll-rotate: 0deg;
+  --theme-scroll-rotate-reverse: 0deg;
+  --theme-scroll-progress: 0;
+  --theme-progress-width: 28%;
+  perspective: 1200px;
+  perspective-origin: 50% 45%;
+  contain: strict;
+}
+
+.theme-scroll-base {
+  background:
+    radial-gradient(circle at 18% 12%, rgba(37, 99, 235, 0.07), transparent 42%),
+    radial-gradient(circle at 84% 78%, rgba(99, 102, 241, 0.07), transparent 46%),
+    linear-gradient(to bottom, rgba(239, 246, 255, 0.5), rgba(255, 255, 255, 0) 55%);
+}
+
+/* Receding floor grid. Travels upward as the page scrolls. */
+.theme-scroll-grid {
+  background-image:
+    linear-gradient(rgba(37, 99, 235, 0.13) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(37, 99, 235, 0.13) 1px, transparent 1px);
+  background-size: 46px 46px;
+  mask-image: linear-gradient(to top, black, transparent 88%);
+  -webkit-mask-image: linear-gradient(to top, black, transparent 88%);
+  transform:
+    perspective(680px)
+    rotateX(66deg)
+    translateY(var(--theme-scroll-down))
+    translateZ(-60px);
+  transform-origin: center bottom;
+  animation: theme-scroll-grid-travel 14s linear infinite;
+  will-change: transform, background-position;
+}
+
+.theme-scroll-scene {
+  transform-style: preserve-3d;
+  transform:
+    rotateX(var(--theme-tilt-x))
+    rotateY(var(--theme-tilt-y))
+    translate3d(var(--theme-pointer-x), var(--theme-pointer-y), 0);
+  transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+/* --- Receding ring tunnel ------------------------------------------------ */
+
+.theme-scroll-tunnel {
+  transform-style: preserve-3d;
+  transform: rotate(var(--theme-scroll-rotate-reverse));
+  will-change: transform;
+}
+
+.theme-scroll-tunnel-ring {
+  inset: 0;
+  border: 1px solid rgba(59, 130, 246, 0.22);
+  animation: theme-scroll-tunnel-pulse 9s ease-in-out infinite;
+}
+
+.theme-scroll-tunnel-ring-1 { inset: 0; animation-delay: 0s; opacity: 0.5; }
+.theme-scroll-tunnel-ring-2 { inset: 14%; animation-delay: -2.2s; opacity: 0.62; }
+.theme-scroll-tunnel-ring-3 { inset: 28%; animation-delay: -4.4s; opacity: 0.74; }
+.theme-scroll-tunnel-ring-4 { inset: 42%; animation-delay: -6.6s; opacity: 0.86; }
+
+/* --- Wireframe cube: rotates purely from scroll -------------------------- */
+
+.theme-scroll-cube {
+  transform-style: preserve-3d;
+  transform:
+    rotateX(calc(var(--theme-scroll-rotate) * 0.6))
+    rotateY(var(--theme-scroll-rotate));
+  will-change: transform;
+}
+
+.theme-scroll-cube-face {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(37, 99, 235, 0.4);
+  background: rgba(59, 130, 246, 0.05);
+  box-shadow: inset 0 0 18px rgba(37, 99, 235, 0.09);
+}
+
+.theme-scroll-cube-front  { transform: translateZ(2.5rem); }
+.theme-scroll-cube-back   { transform: rotateY(180deg) translateZ(2.5rem); }
+.theme-scroll-cube-right  { transform: rotateY(90deg) translateZ(2.5rem); }
+.theme-scroll-cube-left   { transform: rotateY(-90deg) translateZ(2.5rem); }
+.theme-scroll-cube-top    { transform: rotateX(90deg) translateZ(2.5rem); }
+.theme-scroll-cube-bottom { transform: rotateX(-90deg) translateZ(2.5rem); }
+
+/* --- Orbit: parent spins slowly, dot advances with scroll ---------------- */
+
+.theme-scroll-orbit {
+  animation: theme-scroll-spin 30s linear infinite;
+  opacity: 0.85;
+}
+
+.theme-scroll-orbit-dot {
+  top: 50%;
+  left: 50%;
+  margin: -5px 0 0 -5px;
+  box-shadow: 0 0 12px rgba(37, 99, 235, 0.5);
+  transform: rotate(var(--theme-scroll-rotate)) translateX(6.5rem);
+  will-change: transform;
+}
+
+/* --- Floating glass status cards ---------------------------------------- */
+
+.theme-scroll-card {
+  width: 8.5rem;
+  opacity: 0.72;
+  will-change: transform;
+}
+
+.theme-scroll-card-one {
+  left: 11%;
+  top: 62%;
+  transform: translateY(var(--theme-scroll-up)) rotate(-4deg);
+  animation: theme-scroll-float 11s ease-in-out infinite;
+}
+
+.theme-scroll-card-two {
+  right: 9%;
+  top: 44%;
+  transform: translateY(var(--theme-scroll-down)) rotate(3deg);
+  animation: theme-scroll-float 13s ease-in-out -4s infinite;
+}
+
+.theme-scroll-card-three {
+  left: 46%;
+  bottom: 9%;
+  transform: translateY(calc(var(--theme-scroll-up) * 0.55)) rotate(2deg);
+  animation: theme-scroll-float 9.5s ease-in-out -2s infinite;
+}
+
+.theme-scroll-card-progress {
+  width: var(--theme-progress-width);
+  transition: width 260ms ease-out;
+}
+
+/* --- Code glyphs --------------------------------------------------------- */
+
+.theme-scroll-glyph {
+  font-size: clamp(3.5rem, 9vw, 7.5rem);
+  line-height: 1;
+  user-select: none;
+  will-change: transform;
+}
+
+.theme-scroll-glyph-one {
+  left: 6%;
+  bottom: 30%;
+  transform: translateY(var(--theme-scroll-up)) rotate(-8deg);
+}
+
+.theme-scroll-glyph-two {
+  right: 8%;
+  top: 26%;
+  transform: translateY(var(--theme-scroll-down)) rotate(7deg);
+}
+
+/* --- Rising particles ---------------------------------------------------- */
+
+.theme-scroll-particle {
+  opacity: 0.3;
+  box-shadow: 0 0 8px rgba(37, 99, 235, 0.45);
+  animation-name: theme-scroll-particle-rise;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  will-change: transform, opacity;
+}
+
+/* --- Keyframes ----------------------------------------------------------- */
+
+@keyframes theme-scroll-grid-travel {
+  from { background-position: 0 0, 0 0; }
+  to   { background-position: 0 46px, 46px 0; }
+}
+
+@keyframes theme-scroll-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes theme-scroll-tunnel-pulse {
+  0%, 100% { opacity: 0.28; }
+  50%      { opacity: 0.72; }
+}
+
+@keyframes theme-scroll-float {
+  0%, 100% { margin-top: 0; }
+  50%      { margin-top: -14px; }
+}
+
+@keyframes theme-scroll-particle-rise {
+  0%   { transform: translateY(14px) scale(0.7); opacity: 0; }
+  22%  { opacity: 0.45; }
+  78%  { opacity: 0.35; }
+  100% { transform: translateY(-42px) scale(1.05); opacity: 0; }
+}
+
+/* ==========================================================================
+   Surface translucency
+   --------------------------------------------------------------------------
+   The scene is position:fixed behind the page, so section-level surfaces are
+   made translucent to let it read through. Element-qualified selectors keep
+   cards, badges and buttons that also use bg-white fully opaque, which is what
+   keeps body copy legible.
+   ========================================================================== */
+
+body {
+  background-color: transparent;
+}
+
+main.bg-white,
+.theme-scroll-page {
+  background-color: transparent;
+}
+
+section.bg-white,
+footer.bg-white {
+  background-color: rgba(255, 255, 255, 0.78);
+}
+
+section.bg-slate-50 {
+  background-color: rgba(248, 250, 252, 0.8);
+}
+
+/* The scene sits behind all body content but above the html background, so no
+   content element needs its own stacking context to stay on top. */
+.theme-scroll-root {
+  z-index: -1;
+}
+
+/* ==========================================================================
+   Motion and cost controls
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-scroll-grid,
+  .theme-scroll-scene,
+  .theme-scroll-tunnel,
+  .theme-scroll-cube,
+  .theme-scroll-orbit-dot,
+  .theme-scroll-card,
+  .theme-scroll-glyph {
+    transform: none !important;
+  }
+
+  .theme-scroll-particle {
+    display: none;
+  }
+}
+
+/* Touch devices: no pointer parallax to react to, and the scene is the first
+   thing worth cutting on a weaker GPU. Keep the grid and glyphs, drop the rest. */
+@media (pointer: coarse) {
+  .theme-scroll-tunnel,
+  .theme-scroll-orbit,
+  .theme-scroll-particle {
+    display: none;
+  }
+
+  .theme-scroll-card {
+    opacity: 0.55;
+  }
+
+  .theme-scroll-scene {
+    transition: none;
+  }
+}
+
+/* --- Code rain ------------------------------------------------------------
+   Vertical token columns in the page gutters. Purely decorative and aria-hidden
+   via the scene root, so the strings never reach the accessibility tree. */
+
+.theme-scroll-rain {
+  top: 0;
+  height: 100%;
+  width: 5.5rem;
+  overflow: hidden;
+  mask-image: linear-gradient(to bottom, transparent, black 18%, black 82%, transparent);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 18%, black 82%, transparent);
+}
+
+.theme-scroll-rain-track {
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+  align-items: center;
+  /* The token list is rendered twice, so a -50% shift loops seamlessly. */
+  animation-name: theme-scroll-rain-fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform;
+}
+
+.theme-scroll-rain-token {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  color: rgba(37, 99, 235, 0.3);
+}
+
+.theme-scroll-rain-one   { left: 1.5%;  }
+.theme-scroll-rain-two   { right: 1.5%; }
+.theme-scroll-rain-three { left: 26%; opacity: 0.55; }
+
+.theme-scroll-rain-two .theme-scroll-rain-token {
+  color: rgba(79, 70, 229, 0.28);
+}
+
+@keyframes theme-scroll-rain-fall {
+  from { transform: translateY(-50%); }
+  to   { transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-scroll-rain {
+    display: none;
+  }
+}
+
+/* The middle column sits under the content container on narrow viewports,
+   where it only muddies the text behind the frosted surface. */
+@media (max-width: 1280px) {
+  .theme-scroll-rain-three {
+    display: none;
+  }
+}
+
+@media (pointer: coarse) {
+  .theme-scroll-rain {
+    display: none;
+  }
+}
