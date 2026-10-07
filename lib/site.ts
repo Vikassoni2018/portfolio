@@ -9,9 +9,9 @@ export const siteUrl = (
 ).replace(/\/+$/, "");
 
 export const siteName = "Vikas Soni";
-export const siteTitle = "Vikas Soni | Shopify & Full Stack Developer";
+export const siteTitle = "Shopify App Developer in India | Vikas Soni";
 export const siteDescription =
-  "Vikas Soni is a Shopify expert and full-stack web developer in India specializing in Shopify apps and themes, Laravel, PHP, Symfony, SaaS, and eCommerce.";
+  "Vikas Soni builds custom Shopify apps, themes and PHP/Symfony backends. Explore subscription, payment integration and eCommerce projects. Based in India.";
 
 export const linkedinUrl = "https://www.linkedin.com/in/vikas-soni-95a815212/";
 export const githubUrl = "";

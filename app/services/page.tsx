@@ -7,15 +7,16 @@ import { breadcrumbSchema, jsonLdGraph, personId } from "@/lib/seo";
 import { absoluteUrl } from "@/lib/site";
 import Link from "next/link";
 
-const title = "Services";
+const title = "Shopify & Backend Development Services";
 const description =
-  "Shopify app and theme development, subscription and recurring billing systems, payment gateway integration, Laravel and Symfony backends — built by Vikas Soni.";
+  "Explore Shopify app and theme development, subscription billing, payment integration, and PHP backend services for eCommerce and SaaS businesses.";
 
 export const metadata: Metadata = {
   title,
   description,
   alternates: { canonical: absoluteUrl("/services") },
-  openGraph: { title, description, url: absoluteUrl("/services"), type: "website" }
+  openGraph: { title, description, url: absoluteUrl("/services"), type: "website" },
+  twitter: { card: "summary_large_image", title, description }
 };
 
 export default function ServicesIndexPage() {
@@ -57,7 +58,7 @@ export default function ServicesIndexPage() {
         <div className="mx-auto max-w-[1240px] px-5 py-14 sm:px-8 sm:py-16 lg:px-10 lg:py-20">
           <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-blue-600">Services</p>
           <h1 className="mt-4 max-w-3xl text-4xl font-black leading-[1.05] tracking-[-0.04em] text-slate-950 sm:text-5xl lg:text-6xl">
-            What I build, and what you get
+            Shopify & backend development services
           </h1>
           <p className="mt-5 max-w-xl text-base font-medium leading-7 text-slate-600">{description}</p>
 
@@ -74,7 +75,7 @@ export default function ServicesIndexPage() {
                 <p className="mt-2 text-sm font-bold leading-6 text-blue-600">{service.heading}</p>
                 <p className="mt-3 flex-1 text-sm font-medium leading-6 text-slate-600">{service.intro}</p>
                 <span className="mt-5 inline-flex items-center gap-1.5 text-xs font-extrabold text-blue-600">
-                  Read more <ArrowUpRight size={14} />
+                  Explore {service.name.toLowerCase()} <ArrowUpRight size={14} />
                 </span>
               </Link>
             ))}

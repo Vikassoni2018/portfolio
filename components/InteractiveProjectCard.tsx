@@ -260,7 +260,7 @@ export function InteractiveProjectCard({ project, index, tags }: InteractiveProj
           href={`/projects/${project.id}`}
           className="mt-5 inline-flex items-center gap-1.5 text-xs font-extrabold text-blue-600 transition hover:gap-2.5 hover:text-blue-700"
         >
-          Read the case study <ArrowUpRight size={14} />
+          Explore {project.name} <ArrowUpRight size={14} />
         </Link>
       </div>
     </article>

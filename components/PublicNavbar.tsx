@@ -1,4 +1,4 @@
-import { ArrowUpRight, Download } from "lucide-react";
+import { ArrowUpRight, Download, Sparkles } from "lucide-react";
 import Link from "next/link";
 import type { Profile } from "@/lib/types";
 
@@ -19,6 +19,16 @@ export function PublicNavbar({ profile }: { profile: Profile }) {
 
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/90 backdrop-blur-xl">
+      {profile.offerLabel ? (
+        <a
+          href="/#contact"
+          className="flex min-h-9 items-center justify-center gap-2 border-b border-blue-100 bg-blue-50 px-4 py-2 text-center text-[11px] font-bold leading-4 text-blue-700 transition hover:bg-blue-100 sm:text-xs"
+        >
+          <Sparkles size={14} className="shrink-0" aria-hidden="true" />
+          <span>{profile.offerLabel}</span>
+          <ArrowUpRight size={14} className="hidden shrink-0 sm:block" aria-hidden="true" />
+        </a>
+      ) : null}
       <nav className="mx-auto flex h-[72px] max-w-[1240px] items-center justify-between gap-5 px-5 sm:px-8 lg:px-10">
         <Link href="/" className="flex min-w-0 items-center gap-3" aria-label="Vikas Soni home">
           <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-600 text-sm font-black text-white shadow-md shadow-blue-600/20">

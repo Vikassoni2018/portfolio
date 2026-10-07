@@ -20,11 +20,11 @@ export const services: Service[] = [
     name: "Shopify App Development",
     metaTitle: "Shopify App Development Services",
     metaDescription:
-      "Custom Shopify app development for public and private apps: embedded Polaris admin UIs, OAuth, Billing API, webhooks, and GraphQL Admin API integrations built to pass Shopify app review.",
+      "Custom Shopify app development for merchant workflows, subscriptions, and integrations. Explore embedded admin interfaces, APIs, webhooks, and project examples.",
     eyebrow: "Service",
-    heading: "Shopify app development that ships past app review",
+    heading: "Custom Shopify apps for your business workflows",
     intro:
-      "I build public and custom Shopify apps end to end: OAuth and session token auth, embedded admin UIs, the Billing API for recurring charges, webhook pipelines that stay consistent under retries, and GraphQL Admin API integrations tuned to stay inside Shopify rate limits. Two of the apps I have worked on are live on the Shopify App Store today.",
+      "I develop Shopify apps that help merchants manage subscriptions, customer reviews, and store operations. My work covers embedded admin interfaces, authentication, billing, webhooks, and GraphQL integrations. Explore examples including the Product Subscription App, ReviewHub, and Shopify AMP App to see the types of products I have worked on.",
     keywords: [
       "shopify app development",
       "shopify app developer",
@@ -79,11 +79,11 @@ export const services: Service[] = [
     name: "Shopify Subscription Apps",
     metaTitle: "Shopify Subscription App Development & Recurring Billing",
     metaDescription:
-      "Shopify subscription and recurring billing app development covering selling plans, subscription contracts, pause, skip, swap and cancel flows, dunning, and wallet or card payment handling.",
+      "Shopify subscription app development for recurring billing, delivery schedules, customer self-service, and payment workflows. Explore the Product Subscription App.",
     eyebrow: "Service",
-    heading: "Subscription and recurring billing on Shopify",
+    heading: "Shopify subscription apps & recurring billing",
     intro:
-      "Subscriptions are the hardest thing to get right on Shopify because the failure modes are financial. I build on the native selling plan and subscription contract model, with customer-facing pause, skip, swap and cancel controls, retry and dunning logic for failed charges, and payment handling across cards and wallets.",
+      "Make recurring purchases easier to manage for your customers and team. My subscription app work includes recurring billing, flexible delivery cycles, wallet and card payments, and controls to pause, skip, cancel, and renew subscriptions. I focus on clear customer actions and dependable billing workflows.",
     keywords: [
       "shopify subscription app",
       "shopify recurring billing",
@@ -100,7 +100,7 @@ export const services: Service[] = [
       {
         title: "Customer self-service portal",
         description:
-          "Pause, skip, swap, reschedule and cancel without a support ticket, which is the single biggest lever on subscription churn."
+          "Customer controls for managing subscriptions, with supported actions defined around your product and billing requirements."
       },
       {
         title: "Dunning and failed payments",
@@ -122,7 +122,7 @@ export const services: Service[] = [
       {
         question: "Can customers change their subscription themselves?",
         answer:
-          "That is the default I build toward. Self-service pause, skip and swap consistently reduce cancellations more than any retention email sequence."
+          "Yes. The Product Subscription App includes customer controls to pause, skip, cancel, and renew. The available actions for a new project depend on its billing model and business requirements."
       },
       {
         question: "How are failed renewal payments handled?",
@@ -137,11 +137,11 @@ export const services: Service[] = [
     name: "Shopify Theme Development",
     metaTitle: "Shopify Theme Development & Liquid Customization",
     metaDescription:
-      "Shopify theme development and Liquid customization: Online Store 2.0 sections, metafields, fast storefronts, Core Web Vitals tuning, and conversion-focused product page work.",
+      "Shopify theme development and Liquid customization for responsive storefronts, editable sections, product pages, and performance improvements.",
     eyebrow: "Service",
-    heading: "Shopify themes built for speed and conversion",
+    heading: "Shopify theme development & Liquid customization",
     intro:
-      "Theme work is where storefront revenue is won or lost. I build Online Store 2.0 sections and blocks that merchants can actually rearrange themselves, wire up metafields for structured content, and treat Core Web Vitals as a requirement rather than a cleanup task, including AMP-grade mobile performance work.",
+      "Create a storefront that reflects your brand and makes your products easier to browse. I work on Shopify Liquid themes, editable sections, theme settings, responsive layouts, and storefront performance. My portfolio includes White Rabbit Rice, Cozy Lifestyle, and SG Magnetics, alongside mobile storefront work on the Shopify AMP App.",
     keywords: [
       "shopify theme development",
       "shopify liquid developer",
@@ -185,7 +185,7 @@ export const services: Service[] = [
       {
         question: "Will theme updates overwrite the customizations?",
         answer:
-          "Not if the work is structured properly. Customizations go into sections, snippets and settings that survive updates, rather than edits scattered through core theme files."
+          "Theme updates can affect custom code. I organize changes into sections, snippets, and settings where possible, document them, and review the updated theme before applying an upgrade."
       }
     ],
     relatedProjectIds: [
@@ -200,11 +200,11 @@ export const services: Service[] = [
     name: "Payment Gateway Integration",
     metaTitle: "Payment Gateway Integration: Stripe, PayPal, Razorpay",
     metaDescription:
-      "Payment gateway integration for Stripe, PayPal and Razorpay: checkout flows, webhook reconciliation, refunds, idempotent transaction handling, and PCI-conscious architecture.",
+      "Stripe, PayPal, and Razorpay integration for payment flows, webhooks, refunds, and transaction tracking. Explore Vikas Soni's unified Payment Service API.",
     eyebrow: "Service",
-    heading: "Payment integrations that reconcile correctly",
+    heading: "Stripe, PayPal & Razorpay payment integrations",
     intro:
-      "I have built a unified payment service spanning PayPal, Stripe and Razorpay, with webhook-driven state, refunds, and transaction status handling exposed as reusable APIs. The hard part of payments is never the happy path, it is idempotency, webhook ordering, partial refunds and reconciliation, and that is what I design for first.",
+      "Connect your application to the payment providers your business uses. My Payment Service API brings PayPal, Stripe, and Razorpay integrations together with webhooks, refunds, transaction status handling, and reusable endpoints. I plan payment workflows around successful payments, failures, retries, and the information your team needs to track each transaction.",
     keywords: [
       "payment gateway integration",
       "stripe integration developer",
@@ -260,9 +260,9 @@ export const services: Service[] = [
     metaDescription:
       "Laravel development for SaaS platforms and APIs: REST and GraphQL endpoints, queues, multi-tenancy, authentication, background jobs, and integrations with Shopify and payment providers.",
     eyebrow: "Service",
-    heading: "Laravel backends for SaaS and eCommerce",
+    heading: "Laravel development for APIs & SaaS platforms",
     intro:
-      "Laravel is where most of my SaaS and API work lives: clean REST and GraphQL surfaces, queued background processing for anything slow or rate-limited, multi-tenant data separation, and integrations out to Shopify and payment providers that fail gracefully instead of silently.",
+      "Build or extend a Laravel application with clear APIs, authentication, background jobs, and third-party integrations. I work across PHP backends and full-stack applications, bringing experience with eCommerce workflows, payment services, and external APIs to new features and existing codebases.",
     keywords: [
       "laravel development",
       "laravel developer india",
@@ -318,9 +318,9 @@ export const services: Service[] = [
     metaDescription:
       "PHP and Symfony development for scalable backends: service architecture, Doctrine data modelling, message queues, API platforms, and secure transaction flows for eCommerce and SaaS.",
     eyebrow: "Service",
-    heading: "PHP and Symfony for systems that have to hold up",
+    heading: "PHP & Symfony development for eCommerce backends",
     intro:
-      "Several years of my production work is Symfony: service-oriented architecture, Doctrine modelling that does not collapse as the domain grows, Messenger-based async processing, and secure transaction flows. It is the stack I reach for when the domain is complex and correctness matters more than shipping a prototype this week.",
+      "Turn complex business workflows into maintainable PHP and Symfony applications. My experience at Webkul includes Shopify subscription products, payment integration services, and API development. I help structure backend services, connect external systems, and improve existing applications with clear validation, testing, and code reviews.",
     keywords: [
       "symfony development",
       "php developer",

@@ -10,7 +10,8 @@ export const defaultProfile: Profile = {
   github: "",
   linkedin: "",
   location: "",
-  title: "Full Stack Developer"
+  title: "Full Stack Developer",
+  offerLabel: "Launch offer: Your first 15 development hours are free. Standard charges apply after that."
 };
 
 export const defaultCollections = {

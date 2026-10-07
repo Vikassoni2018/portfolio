@@ -23,23 +23,24 @@ import { InteractiveProjectCard } from "@/components/InteractiveProjectCard";
 import { PublicNavbar } from "@/components/PublicNavbar";
 import { Section } from "@/components/Section";
 import type { PortfolioData } from "@/lib/types";
+import Link from "next/link";
 
-const projectTags = [
-  ["Shopify", "Subscriptions", "Payments"],
-  ["Symfony", "Payment APIs", "Webhooks"],
-  ["Booking", "Operations", "Fintech"],
-  ["Identity", "Platform", "Customer UX"],
-  ["Shopify", "Reviews", "SaaS"],
-  ["AMP", "Performance", "SEO"],
-  ["Shopify", "eCommerce", "Food & Beverage"],
-  ["Shopify", "eCommerce", "Home & Living"],
-  ["Shopify", "eCommerce", "B2B & Retail"]
-];
+const projectTags: Record<string, string[]> = {
+  "white-rabbit-rice-store": ["Shopify", "Storefront", "Food & Beverage"],
+  "cozy-lifestyle-store": ["eCommerce", "Storefront", "Home & Living"],
+  "sg-magnetics-store": ["Shopify", "Storefront", "B2B & Retail"],
+  "product-subscription-app": ["Shopify", "Subscriptions", "Recurring Billing"],
+  "reviewhub-stellen-infotech": ["Shopify", "Product Reviews", "SaaS"],
+  "shopify-amp-app": ["Shopify", "AMP", "Mobile Performance"],
+  "fizazzle-booking-platform": ["Bookings", "Scheduling", "Payments"],
+  "user-central-webkul": ["User Management", "Account Access", "Platform"],
+  "payment-service-api-docs": ["Payment APIs", "Webhooks", "Integrations"]
+};
 
 const stackLayers = [
-  { icon: ShoppingBag, label: "Commerce", value: "Shopify apps & themes" },
-  { icon: Code2, label: "Backend", value: "PHP, Symfony & Node.js" },
-  { icon: Layers3, label: "Integrations", value: "GraphQL, REST & payments" }
+  { icon: ShoppingBag, label: "Commerce", value: "Shopify app development", href: "/services/shopify-app-development" },
+  { icon: Code2, label: "Backend", value: "PHP & Symfony development", href: "/services/php-symfony-development" },
+  { icon: Layers3, label: "Integrations", value: "Payment gateway integration", href: "/services/payment-gateway-integration" }
 ];
 
 function SocialLink({
@@ -93,14 +94,13 @@ export function PortfolioPage({ data }: { data: PortfolioData }) {
               Available for select projects
             </div>
 
-            <p className="mt-6 text-sm font-bold uppercase tracking-[0.18em] text-blue-600">Sr. Shopify Developer</p>
+            <p className="mt-6 text-sm font-bold uppercase tracking-[0.18em] text-blue-600">{profile.title}</p>
             <h1 className="mt-4 max-w-3xl text-5xl font-black leading-[1.03] tracking-[-0.045em] text-slate-950 sm:text-6xl lg:text-[4.65rem]">
-              Engineering commerce that{" "}
-              <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">scales.</span>
+              Shopify apps &amp; eCommerce built to{" "}
+              <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">scale.</span>
             </h1>
             <p className="mt-5 max-w-2xl text-lg font-medium leading-8 text-slate-600">
-              I&apos;m {profile.name}, a Shopify specialist and full-stack developer building reliable SaaS products,
-              payment systems, and high-performing eCommerce experiences.
+              {profile.bio}
             </p>
 
             <div className="mt-7 flex flex-wrap gap-3">
@@ -108,13 +108,13 @@ export function PortfolioPage({ data }: { data: PortfolioData }) {
                 href="#projects"
                 className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-blue-600/20 transition hover:-translate-y-0.5 hover:bg-blue-700"
               >
-                View selected work <ArrowRight size={17} />
+                Explore Shopify projects <ArrowRight size={17} />
               </a>
               <a
                 href="#contact"
                 className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-6 py-3.5 text-sm font-bold text-slate-700 shadow-sm transition hover:-translate-y-0.5 hover:border-blue-300 hover:text-blue-700"
               >
-                Let&apos;s work together <ArrowUpRight size={17} />
+                Discuss your project <ArrowUpRight size={17} />
               </a>
             </div>
 
@@ -150,7 +150,7 @@ export function PortfolioPage({ data }: { data: PortfolioData }) {
               </div>
 
               <div className="mt-3 space-y-2">
-                {stackLayers.map(({ icon: Icon, label, value }, index) => (
+                {stackLayers.map(({ icon: Icon, label, value, href }, index) => (
                   <div
                     key={label}
                     className="group flex items-center gap-4 rounded-2xl border border-transparent p-3 transition hover:border-blue-100 hover:bg-blue-50/70"
@@ -160,7 +160,7 @@ export function PortfolioPage({ data }: { data: PortfolioData }) {
                     </div>
                     <div className="min-w-0 flex-1">
                       <p className="text-xs font-bold uppercase tracking-[0.12em] text-slate-400">{label}</p>
-                      <p className="mt-0.5 truncate text-sm font-bold text-slate-800">{value}</p>
+                      <Link href={href} className="mt-0.5 block truncate text-sm font-bold text-slate-800 transition hover:text-blue-700 hover:underline">{value}</Link>
                     </div>
                     <span className="text-xs font-bold text-slate-300">0{index + 1}</span>
                   </div>
@@ -209,9 +209,9 @@ export function PortfolioPage({ data }: { data: PortfolioData }) {
 
       <Section
         id="projects"
-        eyebrow="Selected work"
-        title="Products designed around real business outcomes."
-        description="A selection of commerce, payment, subscription, and platform products engineered for reliability, usability, and growth."
+        eyebrow="Selected projects"
+        title="Shopify apps, storefronts & payment integrations."
+        description="Explore work on subscription billing, customer reviews, online stores, booking platforms, and payment APIs. Each project includes a summary and a link to the live product."
       >
         {projects.length ? (
           <div className="grid gap-5 lg:grid-cols-2">
@@ -220,7 +220,7 @@ export function PortfolioPage({ data }: { data: PortfolioData }) {
                 key={project.id}
                 project={project}
                 index={index}
-                tags={projectTags[index] || ["Product", "Engineering"]}
+                tags={projectTags[project.id] || ["Product", "Engineering"]}
               />
             ))}
           </div>
@@ -231,9 +231,9 @@ export function PortfolioPage({ data }: { data: PortfolioData }) {
 
       <Section
         id="skills"
-        eyebrow="Core capabilities"
-        title="Specialized where it matters. Versatile everywhere else."
-        description="A practical toolkit for building end-to-end commerce products—from storefront experience to backend architecture and secure integrations."
+        eyebrow="Development expertise"
+        title="Shopify, PHP & full-stack development expertise."
+        description="From Liquid storefronts to Symfony backends, I connect the customer experience with APIs, databases, and payment services. Explore the technologies behind my eCommerce and SaaS work."
         tone="soft"
       >
         {skills.length ? (
@@ -269,11 +269,11 @@ export function PortfolioPage({ data }: { data: PortfolioData }) {
             <div>
               <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-blue-400">Experience</p>
               <h2 className="mt-4 text-4xl font-black leading-tight tracking-[-0.04em] sm:text-5xl">
-                From hands-on delivery to technical leadership.
+                Software development experience, from testing to team leadership.
               </h2>
               <p className="mt-4 max-w-lg text-base font-medium leading-7 text-slate-400">
-                Four-plus years shipping commerce products, reviewing architecture, mentoring developers, and keeping
-                delivery aligned with business goals.
+                My experience spans application testing, full-stack development at Webkul, and senior PHP development
+                at Stellen Infotech, including Shopify apps, API integrations, code reviews, and mentoring developers.
               </p>
               <div className="mt-6 inline-flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
                 <BriefcaseBusiness className="text-blue-400" size={20} />
@@ -316,8 +316,8 @@ export function PortfolioPage({ data }: { data: PortfolioData }) {
       <Section
         id="education"
         eyebrow="Education"
-        title="A strong foundation for continuous learning."
-        description="Formal computer application and commerce education, strengthened by years of production experience."
+        title="Computer applications & commerce education."
+        description="An MCA and a commerce degree provide the technical and business foundation for my work on eCommerce applications, payments, and SaaS products."
       >
         {education.length ? (
           <div className="grid gap-5 md:grid-cols-2">
@@ -352,20 +352,20 @@ export function PortfolioPage({ data }: { data: PortfolioData }) {
           <div className="pointer-events-none absolute -bottom-28 -left-24 h-72 w-72 rounded-full bg-blue-400/20 blur-2xl" />
           <div className="relative grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
             <div>
-              <p className="text-xs font-extrabold uppercase tracking-[0.17em] text-blue-200">Have a project in mind?</p>
+              <p className="text-xs font-extrabold uppercase tracking-[0.17em] text-blue-200">Work with a Shopify developer</p>
               <h2 className="mt-4 max-w-3xl text-4xl font-black leading-tight tracking-[-0.04em] sm:text-5xl">
-                Let&apos;s build a commerce product that performs.
+                Need a Shopify app, theme, or payment integration?
               </h2>
               <p className="mt-4 max-w-2xl text-base font-medium leading-7 text-blue-100">
-                Tell me about your Shopify app, payment integration, or eCommerce platform. I&apos;ll help turn the
-                requirements into a dependable product.
+                Share your requirements, current challenges, and timeline. I can help you plan a custom app,
+                improve an existing storefront, or connect your platform to the services your business needs.
               </p>
             </div>
             <a
               href={profile.email ? `mailto:${profile.email}` : "#top"}
               className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-white px-6 py-4 text-sm font-extrabold text-blue-700 shadow-xl transition hover:-translate-y-0.5 hover:bg-blue-50"
             >
-              Start a conversation <ArrowUpRight size={18} />
+              Email your project brief <ArrowUpRight size={18} />
             </a>
           </div>
 

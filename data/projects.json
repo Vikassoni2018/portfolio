@@ -4,7 +4,7 @@
     "name": "White Rabbit Rice",
     "link": "https://whiterabbit-9679.myshopify.com/",
     "image": "/uploads/images/project-white-rabbit-rice.png",
-    "description": "Shopify storefront for White Rabbit's premium rice range, pairing product discovery and brand storytelling with a polished online shopping experience."
+    "description": "Shopify storefront for White Rabbit's premium rice range, combining product discovery, brand storytelling, and online purchasing in a branded shopping experience."
   },
   {
     "id": "cozy-lifestyle-store",
@@ -25,28 +25,28 @@
     "name": "Product Subscription App",
     "link": "https://apps.shopify.com/webkul-subscription-app",
     "image": "/uploads/images/project-product-subscription-app.png",
-    "description": "Shopify subscription application enabling recurring billing, flexible delivery cycles, wallet and card payments, and customer/admin controls for pause, skip, cancel, and renew actions."
+    "description": "Shopify subscription app for recurring billing and flexible delivery schedules. Customers and administrators can manage wallet and card payments and pause, skip, cancel, or renew subscriptions."
   },
   {
     "id": "reviewhub-stellen-infotech",
     "name": "ReviewHub",
     "link": "https://apps.shopify.com/reviewhub-2",
     "image": "/uploads/images/project-reviewhub-stellen-infotech.png",
-    "description": "Shopify customer review management app by Stellen Infotech for collecting, managing, and displaying product reviews, star ratings, testimonials, and review widgets on storefronts."
+    "description": "Shopify product review app by Stellen Infotech for collecting and managing customer feedback. Storefront widgets display product reviews, star ratings, and testimonials alongside the shopping experience."
   },
   {
     "id": "shopify-amp-app",
     "name": "Shopify AMP App",
     "link": "https://apps.shopify.com/amp-by-webkul",
     "image": "/uploads/images/project-shopify-amp-app.png",
-    "description": "Shopify AMP solution for fast-loading, mobile-optimized storefront templates with responsive AMP-compatible layouts, SEO compliance, and improved page speed."
+    "description": "Shopify AMP app for mobile storefront templates, with responsive AMP-compatible layouts and a focus on page speed and mobile product browsing."
   },
   {
     "id": "fizazzle-booking-platform",
     "name": "Fizazzle Booking Platform",
     "link": "https://fizazzle.sistagging.com/",
     "image": "/uploads/images/project-fizazzle-booking.svg",
-    "description": "Booking-focused service platform with customer scheduling, admin booking management, vendor assignment workflows, invoice handling, payment status tracking, and customer/vendor communication flows."
+    "description": "Service booking platform connecting customer scheduling with admin booking management, vendor assignments, invoices, payment tracking, and customer/vendor communication."
   },
   {
     "id": "user-central-webkul",
@@ -60,6 +60,6 @@
     "name": "Payment Service API",
     "link": "https://vikas-soni-sh1.vachak.com/payment-service/public/api/doc",
     "image": "/uploads/images/project-payment-service-api.svg",
-    "description": "Unified payment integration platform with PayPal, Stripe, Razorpay, webhooks, refunds, transaction status handling, and reusable APIs for external applications."
+    "description": "Unified Payment Service API for Stripe, PayPal, and Razorpay integrations. Reusable endpoints support payment webhooks, refunds, and transaction status tracking for external applications."
   }
 ]

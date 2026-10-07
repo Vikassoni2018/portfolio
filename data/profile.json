@@ -2,11 +2,12 @@
   "name": "Vikas Soni",
   "email": "vikassoni2018@gmail.com",
   "mobile": "+91 9996333824",
-  "bio": "Dynamic and results-driven Full Stack Developer with 4+ years of experience specializing in Shopify SaaS applications and eCommerce solutions. Proven expertise in Shopify app development, subscription systems, payment gateway integrations, custom checkout solutions, REST and GraphQL APIs, scalable backend architectures, and secure transaction flows.",
+  "bio": "I'm Vikas Soni, a senior Shopify and full-stack developer based in India with 4+ years of experience. I build custom Shopify apps, Liquid themes, and PHP/Symfony backends for eCommerce and SaaS businesses. My work includes subscription billing, payment gateway integrations, and REST and GraphQL APIs, with a focus on reliable workflows and maintainable code.",
   "profileImage": "",
   "resume": "/uploads/resume/vikas_cv_updated.pdf",
   "github": "",
   "linkedin": "https://www.linkedin.com/in/vikas-soni-95a815212/",
   "location": "India",
-  "title": "Shopify App Developer | PHP | Symfony | Shopify | SaaS E-commerce"
+  "title": "Senior Shopify & Full-Stack Developer",
+  "offerLabel": "Launch offer: Your first 15 development hours are free. Standard charges apply after that."
 }

@@ -7,15 +7,16 @@ import { breadcrumbSchema, jsonLdGraph, personId } from "@/lib/seo";
 import { absoluteUrl } from "@/lib/site";
 import Link from "next/link";
 
-const title = "Blog";
+const title = "Shopify Development & PHP Engineering Blog";
 const description =
-  "Notes on Shopify app architecture, subscription and payment systems, Core Web Vitals, and PHP backends — written from production work, not theory.";
+  "Practical articles by Vikas Soni on Shopify webhooks, subscription workflows, storefront performance, and PHP backend development.";
 
 export const metadata: Metadata = {
   title,
   description,
   alternates: { canonical: absoluteUrl("/blog") },
-  openGraph: { title, description, url: absoluteUrl("/blog"), type: "website" }
+  openGraph: { title, description, url: absoluteUrl("/blog"), type: "website" },
+  twitter: { card: "summary_large_image", title, description }
 };
 
 const formatDate = (iso: string) =>
@@ -64,7 +65,7 @@ export default function BlogIndexPage() {
         <div className="mx-auto max-w-[1240px] px-5 py-14 sm:px-8 sm:py-16 lg:px-10 lg:py-20">
           <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-blue-600">Writing</p>
           <h1 className="mt-4 max-w-3xl text-4xl font-black leading-[1.05] tracking-[-0.04em] text-slate-950 sm:text-5xl lg:text-6xl">
-            Notes from production
+            Practical Shopify & PHP development insights
           </h1>
           <p className="mt-5 max-w-xl text-base font-medium leading-7 text-slate-600">{description}</p>
 

@@ -3,7 +3,7 @@ import experience from "@/data/experience.json";
 import profile from "@/data/profile.json";
 import projects from "@/data/projects.json";
 import skills from "@/data/skills.json";
-import { absoluteUrl, siteDescription, siteName, siteUrl, socialProfiles } from "@/lib/site";
+import { absoluteUrl, siteDescription, siteName, siteTitle, siteUrl, socialProfiles } from "@/lib/site";
 
 /** Nodes are emitted inside one @graph so Google resolves the @id references. */
 export const personId = `${siteUrl}/#person`;
@@ -17,7 +17,7 @@ export function personSchema() {
     url: siteUrl,
     email: `mailto:${profile.email}`,
     telephone: profile.mobile,
-    jobTitle: "Shopify App Developer & Full Stack Developer",
+    jobTitle: profile.title,
     description: profile.bio,
     image: absoluteUrl("/og-clean.png"),
     sameAs: socialProfiles,
@@ -61,7 +61,7 @@ export function profilePageSchema() {
     "@type": "ProfilePage",
     "@id": `${siteUrl}/#profilepage`,
     url: siteUrl,
-    name: siteName,
+    name: siteTitle,
     isPartOf: { "@id": websiteId },
     about: { "@id": personId },
     mainEntity: { "@id": personId },

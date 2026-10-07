@@ -53,11 +53,11 @@ function ClosingCta() {
       <div className="mx-auto max-w-[1240px] px-5 py-16 sm:px-8 lg:px-10 lg:py-20">
         <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-blue-400">Next step</p>
         <h2 className="mt-4 max-w-3xl text-4xl font-black leading-tight tracking-[-0.04em] text-white sm:text-5xl">
-          Have a project that needs this?
+          Let&apos;s discuss your development project.
         </h2>
         <p className="mt-4 max-w-xl text-base font-medium leading-7 text-slate-400">
-          Tell me what you are building and where it is stuck. I will tell you honestly whether it is
-          something I can help with.
+          Share your goals, existing setup, and timeline. I can help you assess the next steps for your
+          Shopify app, storefront, PHP backend, or payment integration.
         </p>
         <div className="mt-8 flex flex-wrap gap-3">
           <a
@@ -70,7 +70,7 @@ function ClosingCta() {
             href="/#projects"
             className="inline-flex items-center gap-2 rounded-xl border border-slate-700 px-5 py-3 text-sm font-extrabold text-slate-200 transition hover:border-slate-500 hover:text-white"
           >
-            See all work <ArrowUpRight size={16} />
+            Explore development projects <ArrowUpRight size={16} />
           </Link>
         </div>
       </div>

@@ -9,6 +9,7 @@ export type Profile = {
   linkedin: string;
   location: string;
   title: string;
+  offerLabel: string;
 };
 
 export type Project = {

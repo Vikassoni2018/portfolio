@@ -23,7 +23,8 @@ export function validateProfile(input: unknown): Profile {
     github: asString(data.github),
     linkedin: asString(data.linkedin),
     location: asString(data.location),
-    title: required(asString(data.title), "Portfolio title")
+    title: required(asString(data.title), "Portfolio title"),
+    offerLabel: asString(data.offerLabel)
   };
 }
 

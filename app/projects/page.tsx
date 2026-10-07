@@ -8,9 +8,9 @@ import { absoluteUrl } from "@/lib/site";
 import Image from "next/image";
 import Link from "next/link";
 
-const title = "Projects & Case Studies";
+const title = "Shopify & eCommerce Development Projects";
 const description =
-  "Shopify apps, subscription and payment platforms, and eCommerce storefronts built by Vikas Soni, including live Shopify App Store listings and production payment integrations.";
+  "Explore Vikas Soni's Shopify apps, eCommerce storefronts, subscription systems, and payment API projects, with summaries and links to live products.";
 
 export const metadata: Metadata = {
   title,
@@ -21,7 +21,8 @@ export const metadata: Metadata = {
     description,
     url: absoluteUrl("/projects"),
     type: "website"
-  }
+  },
+  twitter: { card: "summary_large_image", title, description }
 };
 
 export default function ProjectsIndexPage() {
@@ -46,7 +47,7 @@ export default function ProjectsIndexPage() {
         <div className="mx-auto max-w-[1240px] px-5 py-14 sm:px-8 sm:py-16 lg:px-10 lg:py-20">
           <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-blue-600">Work</p>
           <h1 className="mt-4 max-w-3xl text-4xl font-black leading-[1.05] tracking-[-0.04em] text-slate-950 sm:text-5xl lg:text-6xl">
-            Projects and case studies
+            Shopify & eCommerce development projects
           </h1>
           <p className="mt-5 max-w-xl text-base font-medium leading-7 text-slate-600">{description}</p>
 

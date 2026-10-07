@@ -186,6 +186,18 @@ function ProfileEditor({ profile, setProfile, setStatus }: { profile: Profile; s
       <div className="grid gap-4 md:grid-cols-2">
         <Field label="Name">{textInput(draft.name, (value) => patch("name", value))}</Field>
         <Field label="Portfolio title">{textInput(draft.title, (value) => patch("title", value))}</Field>
+        <div className="md:col-span-2">
+          <Field label="Promotional offer label (leave empty to hide)">
+            {textArea(
+              draft.offerLabel,
+              (value) => patch("offerLabel", value),
+              "Launch offer: Your first 15 development hours are free. Standard charges apply after that."
+            )}
+          </Field>
+          <p className="mt-2 text-xs leading-5 text-slate-500">
+            This message appears prominently on the public portfolio. Edit the complete sentence here, or clear it to remove the offer.
+          </p>
+        </div>
         <Field label="Email">{textInput(draft.email, (value) => patch("email", value))}</Field>
         <Field label="Mobile">{textInput(draft.mobile, (value) => patch("mobile", value))}</Field>
         <Field label="Location">{textInput(draft.location, (value) => patch("location", value))}</Field>
