@@ -4,9 +4,10 @@ import { JsonLd } from "@/components/JsonLd";
 import { PageShell } from "@/components/PageShell";
 import projects from "@/data/projects.json";
 import { breadcrumbSchema, jsonLdGraph, projectListSchema } from "@/lib/seo";
-import { absoluteUrl } from "@/lib/site";
+import { absoluteUrl, socialImage } from "@/lib/site";
 import Image from "next/image";
 import Link from "next/link";
+import { orderProjects } from "@/data/case-studies";
 
 const title = "Shopify & eCommerce Development Projects";
 const description =
@@ -20,9 +21,10 @@ export const metadata: Metadata = {
     title,
     description,
     url: absoluteUrl("/projects"),
-    type: "website"
+    type: "website",
+    images: [socialImage]
   },
-  twitter: { card: "summary_large_image", title, description }
+  twitter: { card: "summary_large_image", title, description, images: [socialImage] }
 };
 
 export default function ProjectsIndexPage() {
@@ -52,10 +54,11 @@ export default function ProjectsIndexPage() {
           <p className="mt-5 max-w-xl text-base font-medium leading-7 text-slate-600">{description}</p>
 
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {projects.map((project) => (
+            {orderProjects(projects).map((project) => (
               <Link
                 key={project.id}
                 href={`/projects/${project.id}`}
+                data-conversion="portfolio_project_click" data-project={project.id}
                 className="group flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition hover:-translate-y-0.5 hover:border-blue-300 hover:shadow-md"
               >
                 <div className="aspect-[16/10] overflow-hidden bg-slate-50">

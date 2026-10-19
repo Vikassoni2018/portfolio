@@ -69,6 +69,7 @@ export function InteractiveCommerce3D() {
 
       const rect = section.getBoundingClientRect();
       const viewportHeight = window.innerHeight;
+      if (reducedMotion.current || rect.bottom < 0 || rect.top > viewportHeight) return;
       scrollProgress.current = clamp((viewportHeight - rect.top) / (viewportHeight + rect.height), 0, 1);
       schedulePaint();
     };
@@ -88,6 +89,7 @@ export function InteractiveCommerce3D() {
   }, [schedulePaint]);
 
   const handlePointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (reducedMotion.current && !dragState.current.active) return;
     if (dragState.current.active && event.pointerId === dragState.current.pointerId) {
       const deltaX = event.clientX - dragState.current.lastX;
       const deltaY = event.clientY - dragState.current.lastY;
@@ -171,6 +173,7 @@ export function InteractiveCommerce3D() {
             Explore a connected storefront, checkout, and analytics system designed as one scalable product
             experience.
           </p>
+          <p className="mt-5 rounded-xl border border-amber-300/30 bg-amber-300/10 p-4 text-sm font-semibold leading-6 text-amber-100"><strong>Demo Data · Illustrative Metrics</strong><br />Revenue, orders, conversion and growth figures are fictional UI examples. This demo is not a record of client results.</p>
 
           <div className="mt-7 grid max-w-xl gap-3 sm:grid-cols-3">
             {[
@@ -202,7 +205,7 @@ export function InteractiveCommerce3D() {
           onPointerCancel={handlePointerUp}
           onPointerLeave={handlePointerLeave}
           onKeyDown={handleKeyDown}
-          className="commerce-3d-stage relative min-h-[430px] cursor-grab touch-none select-none outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-4 focus-visible:ring-offset-slate-950 sm:min-h-[520px] active:cursor-grabbing"
+          className="commerce-3d-stage relative min-h-[430px] cursor-grab touch-pan-y select-none outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-4 focus-visible:ring-offset-slate-950 sm:min-h-[520px] active:cursor-grabbing"
         >
           <div className="pointer-events-none absolute left-1/2 top-1/2 h-52 w-52 -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500/25 blur-[70px]" />
           <div className="commerce-3d-orbit commerce-3d-orbit-one pointer-events-none absolute left-1/2 top-1/2 h-[330px] w-[330px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-blue-400/20 sm:h-[430px] sm:w-[430px]" />
@@ -236,7 +239,7 @@ export function InteractiveCommerce3D() {
                   </div>
 
                   <div className="mt-4 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-700 p-4 text-white shadow-lg shadow-blue-600/20">
-                    <p className="text-[9px] font-bold uppercase tracking-[0.12em] text-blue-200">Revenue today</p>
+                    <p className="text-[9px] font-bold uppercase tracking-[0.12em] text-blue-200">Demo revenue today</p>
                     <p className="mt-1 text-2xl font-black tracking-[-0.04em]">$24.8k</p>
                     <div className="mt-3 flex h-10 items-end gap-1">
                       {[42, 68, 52, 88, 64, 94, 76].map((height, index) => (
@@ -294,7 +297,7 @@ export function InteractiveCommerce3D() {
                     <CreditCard size={18} />
                   </span>
                   <span className="rounded-full bg-emerald-500/15 px-2 py-1 text-[8px] font-black uppercase tracking-[0.1em] text-emerald-300">
-                    Live
+                    Demo
                   </span>
                 </div>
                 <p className="mt-4 text-[9px] font-bold uppercase tracking-[0.14em] text-slate-500">Payments</p>

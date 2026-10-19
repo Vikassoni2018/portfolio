@@ -49,7 +49,33 @@ img {
 }
 
 section[id] {
-  scroll-margin-top: 112px;
+  scroll-margin-top: 156px;
+}
+
+.skip-link {
+  position: fixed;
+  left: 1rem;
+  top: -10rem;
+  z-index: 100;
+  padding: 0.85rem 1rem;
+  border-radius: 0.75rem;
+  background: #ffffff;
+  color: #1d4ed8;
+  font-weight: 700;
+}
+.skip-link:focus { top: 1rem; }
+main { min-width: 0; }
+input, select, textarea { max-width: 100%; }
+select { text-overflow: ellipsis; }
+.enquiry-honeypot { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+.commerce-demo-slot { position: relative; min-height: 1120px; scroll-margin-top: 156px; background: #020617; }
+.commerce-demo-slot > section { min-height: inherit; }
+.commerce-demo-slot > [role="status"] { position: absolute; inset: 0; min-height: 0; }
+@media (min-width: 640px) { .commerce-demo-slot { min-height: 980px; } }
+@media (min-width: 1024px) { .commerce-demo-slot { min-height: 680px; } }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
 }
 
 .hero-motion-section {
@@ -517,6 +543,7 @@ section[id] {
 
 .commerce-3d-model {
   transform:
+    translate(-50%, -50%)
     translateZ(calc(12px + var(--scroll-progress) * 42px))
     translateY(calc((0.5 - var(--scroll-progress)) * 30px));
 }
@@ -584,7 +611,7 @@ section[id] {
 }
 
 .interactive-project-card {
-  opacity: calc(0.35 + var(--project-reveal) * 0.65);
+  opacity: 1;
   transform:
     translateY(calc((1 - var(--project-reveal)) * 46px))
     scale(calc(0.96 + var(--project-reveal) * 0.04));

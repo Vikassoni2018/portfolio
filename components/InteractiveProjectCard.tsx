@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef } from "react";
 import { ArrowUpRight, Hand, MousePointer2, Rotate3D } from "lucide-react";
 import type { Project } from "@/lib/types";
 import Link from "next/link";
+import Image from "next/image";
 
 type InteractiveProjectCardProps = {
   project: Project;
@@ -87,6 +88,7 @@ export function InteractiveProjectCard({ project, index, tags }: InteractiveProj
   }, [schedulePaint]);
 
   const handlePointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (reducedMotion.current && !dragState.current.active) return;
     if (dragState.current.active && event.pointerId === dragState.current.pointerId) {
       const deltaX = event.clientX - dragState.current.lastX;
       const deltaY = event.clientY - dragState.current.lastY;
@@ -151,7 +153,7 @@ export function InteractiveProjectCard({ project, index, tags }: InteractiveProj
     <article
       ref={articleRef}
       className="interactive-project-card group overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-[0_12px_35px_rgba(15,23,42,0.06)] transition duration-300 hover:border-blue-200 hover:shadow-[0_22px_50px_rgba(30,64,175,0.12)]"
-      style={{ "--project-reveal": "0" } as React.CSSProperties}
+      style={{ "--project-reveal": "1" } as React.CSSProperties}
     >
       <div
         role="application"
@@ -163,7 +165,7 @@ export function InteractiveProjectCard({ project, index, tags }: InteractiveProj
         onPointerCancel={handlePointerUp}
         onPointerLeave={handlePointerLeave}
         onKeyDown={handleKeyDown}
-        className="interactive-project-stage relative aspect-[16/10] cursor-grab touch-none select-none overflow-hidden border-b border-slate-200 bg-slate-950 outline-none active:cursor-grabbing focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500"
+        className="interactive-project-stage relative aspect-[16/10] cursor-grab touch-pan-y select-none overflow-hidden border-b border-slate-200 bg-slate-950 outline-none active:cursor-grabbing focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500"
         style={
           {
             "--project-glow-x": "50%",
@@ -204,11 +206,12 @@ export function InteractiveProjectCard({ project, index, tags }: InteractiveProj
             </div>
             <div className="relative h-[calc(100%-2rem)] overflow-hidden bg-gradient-to-br from-slate-50 to-blue-50">
               {project.image ? (
-                // Admin-managed images can be either local uploads or external URLs.
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
+                <Image
                   src={project.image}
                   alt={`${project.name} project preview`}
+                  fill
+                  sizes="(max-width: 1024px) 80vw, 40vw"
+                  unoptimized={!project.image.startsWith("/")}
                   className="h-full w-full object-contain p-3 transition duration-500 group-hover:scale-[1.025] sm:p-4"
                 />
               ) : (
@@ -246,6 +249,7 @@ export function InteractiveProjectCard({ project, index, tags }: InteractiveProj
           {project.link ? (
             <a
               href={project.link}
+              data-conversion="portfolio_project_click" data-project={project.id}
               target="_blank"
               rel="noreferrer"
               aria-label={`Open ${project.name}`}
@@ -258,6 +262,7 @@ export function InteractiveProjectCard({ project, index, tags }: InteractiveProj
         <p className="mt-5 text-sm font-medium leading-6 text-slate-600">{project.description}</p>
         <Link
           href={`/projects/${project.id}`}
+          data-conversion="portfolio_project_click" data-project={project.id}
           className="mt-5 inline-flex items-center gap-1.5 text-xs font-extrabold text-blue-600 transition hover:gap-2.5 hover:text-blue-700"
         >
           Explore {project.name} <ArrowUpRight size={14} />

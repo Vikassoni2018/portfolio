@@ -40,7 +40,7 @@ export function PageShell({ crumbs, children }: { crumbs: Crumb[]; children: Rea
         </nav>
       </div>
 
-      <main>{children}</main>
+      <main id="main-content">{children}</main>
 
       <ClosingCta />
     </div>
@@ -60,12 +60,13 @@ function ClosingCta() {
           Shopify app, storefront, PHP backend, or payment integration.
         </p>
         <div className="mt-8 flex flex-wrap gap-3">
-          <a
-            href={`mailto:${profile.email}`}
+          <Link
+            href="/#contact"
+            data-conversion="primary_cta_click" data-location="closing"
             className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-5 py-3 text-sm font-extrabold text-white shadow-md shadow-blue-600/20 transition hover:bg-blue-700"
           >
-            <Mail size={16} /> {profile.email}
-          </a>
+            <Mail size={16} /> Discuss Your Project
+          </Link>
           <Link
             href="/#projects"
             className="inline-flex items-center gap-2 rounded-xl border border-slate-700 px-5 py-3 text-sm font-extrabold text-slate-200 transition hover:border-slate-500 hover:text-white"

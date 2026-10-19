@@ -4,7 +4,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { PageShell } from "@/components/PageShell";
 import { services } from "@/data/services";
 import { breadcrumbSchema, jsonLdGraph, personId } from "@/lib/seo";
-import { absoluteUrl } from "@/lib/site";
+import { absoluteUrl, socialImage } from "@/lib/site";
 import Link from "next/link";
 
 const title = "Shopify & Backend Development Services";
@@ -15,8 +15,8 @@ export const metadata: Metadata = {
   title,
   description,
   alternates: { canonical: absoluteUrl("/services") },
-  openGraph: { title, description, url: absoluteUrl("/services"), type: "website" },
-  twitter: { card: "summary_large_image", title, description }
+  openGraph: { title, description, url: absoluteUrl("/services"), type: "website", images: [socialImage] },
+  twitter: { card: "summary_large_image", title, description, images: [socialImage] }
 };
 
 export default function ServicesIndexPage() {

@@ -85,6 +85,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en">
       <body className={inter.className}>
+        <a href="#main-content" className="skip-link">Skip to main content</a>
         {/* Scroll-driven 3D scene, fixed behind every page in the site. */}
         <GlobalScroll3DBackground />
         {children}

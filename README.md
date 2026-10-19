@@ -1,5 +1,7 @@
 # Next.js Portfolio Platform
 
+Portfolio conversion, enquiry setup, analytics events, editorial TODOs and validation are documented in [docs/portfolio-conversion.md](docs/portfolio-conversion.md).
+
 A complete personal portfolio platform built with the Next.js App Router, TypeScript, Tailwind CSS, local JSON file storage, protected admin pages, and server-side API routes.
 
 ## Features

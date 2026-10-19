@@ -5,7 +5,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { PageShell } from "@/components/PageShell";
 import { getPost, posts, sortedPosts, type PostBlock } from "@/data/posts";
 import { breadcrumbSchema, jsonLdGraph, personId } from "@/lib/seo";
-import { absoluteUrl, siteName } from "@/lib/site";
+import { absoluteUrl, siteName, socialImage } from "@/lib/site";
 import Link from "next/link";
 
 type Params = { params: Promise<{ slug: string }> };
@@ -34,12 +34,14 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
       publishedTime: post.date,
       modifiedTime: post.updated ?? post.date,
       authors: [siteName],
-      tags: post.tags
+      tags: post.tags,
+      images: [socialImage]
     },
     twitter: {
       card: "summary_large_image",
       title: post.metaTitle,
-      description: post.metaDescription
+      description: post.metaDescription,
+      images: [socialImage]
     }
   };
 }

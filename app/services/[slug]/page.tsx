@@ -6,7 +6,7 @@ import { PageShell } from "@/components/PageShell";
 import projects from "@/data/projects.json";
 import { getService, services } from "@/data/services";
 import { breadcrumbSchema, jsonLdGraph, personId } from "@/lib/seo";
-import { absoluteUrl } from "@/lib/site";
+import { absoluteUrl, socialImage } from "@/lib/site";
 import Link from "next/link";
 
 type Params = { params: Promise<{ slug: string }> };
@@ -31,12 +31,14 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
       title: service.metaTitle,
       description: service.metaDescription,
       url: absoluteUrl(path),
-      type: "website"
+      type: "website",
+      images: [socialImage]
     },
     twitter: {
       card: "summary_large_image",
       title: service.metaTitle,
-      description: service.metaDescription
+      description: service.metaDescription,
+      images: [socialImage]
     }
   };
 }
@@ -105,6 +107,7 @@ export default async function ServicePage({ params }: Params) {
             {service.heading}
           </h1>
           <p className="mt-6 max-w-2xl text-lg font-medium leading-8 text-slate-600">{service.intro}</p>
+          <Link href="/#contact" data-conversion="primary_cta_click" data-location="service" className="mt-7 inline-flex min-h-12 items-center gap-2 rounded-xl bg-blue-600 px-6 py-3 text-sm font-bold text-white hover:bg-blue-700">Discuss Your Project <ArrowUpRight size={16} /></Link>
         </div>
       </section>
 
@@ -134,7 +137,7 @@ export default async function ServicePage({ params }: Params) {
           <div className="mx-auto max-w-[1240px] px-5 py-14 sm:px-8 sm:py-16 lg:px-10">
             <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-blue-600">Proof</p>
             <h2 className="mt-3 max-w-3xl text-3xl font-black leading-tight tracking-[-0.035em] text-slate-950 sm:text-4xl">
-              Shipped work using this
+              Related portfolio evidence
             </h2>
             <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {proof.map((project) => (

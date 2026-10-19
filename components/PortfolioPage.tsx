@@ -18,12 +18,16 @@ import {
 import { EmptyState } from "@/components/EmptyState";
 import { ExperienceMotionBackground } from "@/components/ExperienceMotionBackground";
 import { HeroMotionBackground } from "@/components/HeroMotionBackground";
-import { InteractiveCommerce3D } from "@/components/InteractiveCommerce3D";
+import { DeferredCommerceDemo } from "@/components/DeferredCommerceDemo";
+import { EnquiryForm } from "@/components/EnquiryForm";
 import { InteractiveProjectCard } from "@/components/InteractiveProjectCard";
 import { PublicNavbar } from "@/components/PublicNavbar";
 import { Section } from "@/components/Section";
 import type { PortfolioData } from "@/lib/types";
 import Link from "next/link";
+import Image from "next/image";
+import { primaryServices } from "@/data/services";
+import { featuredProjectIds, orderProjects } from "@/data/case-studies";
 
 const projectTags: Record<string, string[]> = {
   "white-rabbit-rice-store": ["Shopify", "Storefront", "Food & Beverage"],
@@ -69,15 +73,16 @@ function SocialLink({
 
 export function PortfolioPage({ data }: { data: PortfolioData }) {
   const { profile, projects, skills, experience, education } = data;
+  const featuredProjects = orderProjects(projects).filter((project) => featuredProjectIds.includes(project.id));
   const whatsappNumber = profile.mobile.replace(/\D/g, "");
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
     "Hi Vikas, I would like to discuss a project with you."
   )}`;
 
   return (
-    <main className="overflow-x-clip bg-white text-slate-950">
+    <div className="overflow-x-clip bg-white text-slate-950">
       <PublicNavbar profile={profile} />
-
+      <main id="main-content">
       <section
         id="top"
         className="hero-motion-section relative border-b border-slate-200 bg-gradient-to-b from-blue-50/80 via-white to-white"
@@ -95,26 +100,27 @@ export function PortfolioPage({ data }: { data: PortfolioData }) {
             </div>
 
             <p className="mt-6 text-sm font-bold uppercase tracking-[0.18em] text-blue-600">{profile.title}</p>
-            <h1 className="mt-4 max-w-3xl text-5xl font-black leading-[1.03] tracking-[-0.045em] text-slate-950 sm:text-6xl lg:text-[4.65rem]">
-              Shopify apps &amp; eCommerce built to{" "}
-              <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">scale.</span>
+            <h1 className="mt-4 max-w-3xl text-4xl font-black leading-[1.08] tracking-[-0.04em] text-slate-950 sm:text-5xl lg:text-[3.6rem]">
+              Custom Shopify Apps &amp; Backend Integrations That{" "}
+              <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">Solve Real Business Problems</span>
             </h1>
             <p className="mt-5 max-w-2xl text-lg font-medium leading-8 text-slate-600">
-              {profile.bio}
+              I help Shopify merchants, agencies, and SaaS founders build custom Shopify apps, automate business workflows, and integrate payment systems using Shopify GraphQL APIs, PHP, Symfony, and modern backend technologies.
             </p>
 
-            <div className="mt-7 flex flex-wrap gap-3">
-              <a
-                href="#projects"
-                className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-blue-600/20 transition hover:-translate-y-0.5 hover:bg-blue-700"
-              >
-                Explore Shopify projects <ArrowRight size={17} />
-              </a>
+            <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <a
                 href="#contact"
+                data-conversion="primary_cta_click" data-location="hero"
+                className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-blue-600/20 transition hover:-translate-y-0.5 hover:bg-blue-700"
+              >
+                Discuss Your Project <ArrowRight size={17} />
+              </a>
+              <a
+                href="#projects"
                 className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-6 py-3.5 text-sm font-bold text-slate-700 shadow-sm transition hover:-translate-y-0.5 hover:border-blue-300 hover:text-blue-700"
               >
-                Discuss your project <ArrowUpRight size={17} />
+                View Shopify Projects <ArrowUpRight size={17} />
               </a>
             </div>
 
@@ -159,18 +165,18 @@ export function PortfolioPage({ data }: { data: PortfolioData }) {
                       <Icon size={19} />
                     </div>
                     <div className="min-w-0 flex-1">
-                      <p className="text-xs font-bold uppercase tracking-[0.12em] text-slate-400">{label}</p>
+                      <p className="text-xs font-bold uppercase tracking-[0.12em] text-slate-600">{label}</p>
                       <Link href={href} className="mt-0.5 block truncate text-sm font-bold text-slate-800 transition hover:text-blue-700 hover:underline">{value}</Link>
                     </div>
-                    <span className="text-xs font-bold text-slate-300">0{index + 1}</span>
+                    <span className="text-xs font-bold text-slate-600">0{index + 1}</span>
                   </div>
                 ))}
               </div>
 
               <div className="mt-5 grid grid-cols-3 gap-2 rounded-2xl bg-slate-950 p-4 text-white">
                 {[
-                  ["4+", "Years"],
-                  ["12+", "Apps"],
+                  ["PHP", "Backend"],
+                  ["GraphQL", "APIs"],
                   [`${projects.length}`, "Projects"]
                 ].map(([value, label]) => (
                   <div key={label} className="text-center">
@@ -194,7 +200,7 @@ export function PortfolioPage({ data }: { data: PortfolioData }) {
         </div>
 
         <div className="relative border-t border-slate-200 bg-white/80">
-          <div className="mx-auto flex max-w-[1240px] flex-wrap items-center justify-center gap-x-9 gap-y-3 px-5 py-4 text-xs font-bold text-slate-400 sm:px-8 lg:px-10">
+          <div className="mx-auto flex max-w-[1240px] flex-wrap items-center justify-center gap-x-9 gap-y-3 px-5 py-4 text-xs font-bold text-slate-600 sm:px-8 lg:px-10">
             {["Shopify Apps", "PHP & Symfony", "GraphQL", "Stripe", "Liquid", "React"].map((item) => (
               <span key={item} className="inline-flex items-center gap-2">
                 <span className="h-1.5 w-1.5 rounded-full bg-blue-500" />
@@ -205,17 +211,27 @@ export function PortfolioPage({ data }: { data: PortfolioData }) {
         </div>
       </section>
 
-      <InteractiveCommerce3D />
+      <Section id="services" eyebrow="How I can help" title="Shopify development for the problems slowing your business down." description="For merchants improving store operations, agencies extending delivery capacity, and SaaS founders connecting their products to Shopify." tone="soft">
+        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {primaryServices.map((service, index) => <article key={service.slug} className="flex flex-col rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+            <span className="text-xs font-bold text-blue-600">0{index + 1}</span>
+            <h3 className="mt-3 text-xl font-extrabold tracking-tight text-slate-950"><Link href={`/services/${service.slug}`} className="hover:text-blue-700">{service.name}</Link></h3>
+            <p className="mt-3 text-sm leading-6 text-slate-600">{service.heading}.</p>
+            <p className="mt-4 flex-1 text-sm leading-6 text-slate-600"><span className="font-bold text-slate-800">What you receive:</span> {service.deliverables[1].description}</p>
+            <Link href={`/services/${service.slug}`} className="mt-5 inline-flex min-h-11 items-center gap-2 text-sm font-bold text-blue-700">Scope &amp; related work <ArrowUpRight size={15} /></Link>
+          </article>)}
+        </div>
+      </Section>
 
       <Section
         id="projects"
         eyebrow="Selected projects"
         title="Shopify apps, storefronts & payment integrations."
-        description="Explore work on subscription billing, customer reviews, online stores, booking platforms, and payment APIs. Each project includes a summary and a link to the live product."
+        description="Start with subscription billing, payment APIs, customer reviews and a branded Shopify storefront. Case studies separate documented product scope from my individual contributions."
       >
         {projects.length ? (
           <div className="grid gap-5 lg:grid-cols-2">
-            {projects.map((project, index) => (
+            {featuredProjects.map((project, index) => (
               <InteractiveProjectCard
                 key={project.id}
                 project={project}
@@ -227,6 +243,7 @@ export function PortfolioPage({ data }: { data: PortfolioData }) {
         ) : (
           <EmptyState label="Selected projects are being prepared." />
         )}
+        <Link href="/projects" className="mt-8 inline-flex min-h-12 items-center gap-2 rounded-xl border border-blue-200 px-5 py-3 text-sm font-bold text-blue-700">View all {projects.length} projects <ArrowRight size={16} /></Link>
       </Section>
 
       <Section
@@ -245,8 +262,7 @@ export function PortfolioPage({ data }: { data: PortfolioData }) {
               >
                 <div className="inline-flex h-16 w-16 items-center justify-center rounded-2xl border border-slate-200 bg-slate-50 p-3">
                   {skill.image ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img src={skill.image} alt="" className="h-10 w-10 object-contain" />
+                    <Image src={skill.image} alt="" width={40} height={40} unoptimized={!skill.image.startsWith("/")} className="h-10 w-10 object-contain" />
                   ) : (
                     <Code2 className="text-blue-600" size={34} />
                   )}
@@ -271,10 +287,7 @@ export function PortfolioPage({ data }: { data: PortfolioData }) {
               <h2 className="mt-4 text-4xl font-black leading-tight tracking-[-0.04em] sm:text-5xl">
                 Software development experience, from testing to team leadership.
               </h2>
-              <p className="mt-4 max-w-lg text-base font-medium leading-7 text-slate-400">
-                My experience spans application testing, full-stack development at Webkul, and senior PHP development
-                at Stellen Infotech, including Shopify apps, API integrations, code reviews, and mentoring developers.
-              </p>
+              <p className="mt-4 max-w-lg text-base font-medium leading-7 text-slate-300">{profile.bio}</p>
               <div className="mt-6 inline-flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
                 <BriefcaseBusiness className="text-blue-400" size={20} />
                 <div>
@@ -302,7 +315,7 @@ export function PortfolioPage({ data }: { data: PortfolioData }) {
                       </span>
                     </div>
                     <p className="mt-3 text-sm font-medium leading-6 text-slate-400">{item.description}</p>
-                    <p className="mt-3 text-[10px] font-bold text-white/20">0{index + 1}</p>
+                    <p aria-hidden="true" className="mt-3 text-[10px] font-bold text-slate-400">0{index + 1}</p>
                   </article>
                 ))}
               </div>
@@ -333,7 +346,7 @@ export function PortfolioPage({ data }: { data: PortfolioData }) {
                   </div>
                   <p className="mt-5 text-xs font-bold uppercase tracking-[0.13em] text-blue-600">{item.institution}</p>
                   <h3 className="mt-2 text-2xl font-extrabold tracking-[-0.025em] text-slate-950">{item.degree}</h3>
-                  <p className="mt-2 text-xs font-bold text-slate-400">
+                  <p className="mt-2 text-xs font-bold text-slate-600">
                     {item.startYear} — {item.endYear}
                   </p>
                   <p className="mt-4 text-sm font-medium leading-6 text-slate-600">{item.description}</p>
@@ -346,15 +359,17 @@ export function PortfolioPage({ data }: { data: PortfolioData }) {
         )}
       </Section>
 
-      <section id="contact" className="bg-white px-5 pb-8 sm:px-8 lg:px-10 lg:pb-10">
+      <DeferredCommerceDemo />
+
+      <section id="contact" className="bg-white px-5 py-10 sm:px-8 lg:px-10 lg:py-14" aria-labelledby="contact-title">
         <div className="relative mx-auto max-w-[1160px] overflow-hidden rounded-[2rem] bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800 px-6 py-10 text-white shadow-[0_30px_70px_rgba(30,64,175,0.24)] sm:px-10 sm:py-12 lg:px-14">
           <div className="pointer-events-none absolute -right-20 -top-32 h-96 w-96 rounded-full border-[70px] border-white/[0.06]" />
           <div className="pointer-events-none absolute -bottom-28 -left-24 h-72 w-72 rounded-full bg-blue-400/20 blur-2xl" />
           <div className="relative grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
             <div>
               <p className="text-xs font-extrabold uppercase tracking-[0.17em] text-blue-200">Work with a Shopify developer</p>
-              <h2 className="mt-4 max-w-3xl text-4xl font-black leading-tight tracking-[-0.04em] sm:text-5xl">
-                Need a Shopify app, theme, or payment integration?
+              <h2 id="contact-title" className="mt-4 max-w-3xl text-4xl font-black leading-tight tracking-[-0.04em] sm:text-5xl">
+                Discuss Your Project
               </h2>
               <p className="mt-4 max-w-2xl text-base font-medium leading-7 text-blue-100">
                 Share your requirements, current challenges, and timeline. I can help you plan a custom app,
@@ -368,6 +383,8 @@ export function PortfolioPage({ data }: { data: PortfolioData }) {
               Email your project brief <ArrowUpRight size={18} />
             </a>
           </div>
+
+          <EnquiryForm email={profile.email} />
 
           <div className="relative mt-8 flex flex-wrap gap-x-8 gap-y-3 border-t border-white/15 pt-5 text-sm font-semibold text-blue-100">
             {profile.email ? (
@@ -386,7 +403,7 @@ export function PortfolioPage({ data }: { data: PortfolioData }) {
           </div>
         </div>
       </section>
-
+      </main>
       <footer className="border-t border-slate-200 bg-white">
         <div className="mx-auto flex max-w-[1240px] flex-col gap-5 px-5 py-6 sm:px-8 md:flex-row md:items-center md:justify-between lg:px-10">
           <div>
@@ -424,6 +441,6 @@ export function PortfolioPage({ data }: { data: PortfolioData }) {
           <MessageCircle size={30} strokeWidth={2.4} aria-hidden="true" />
         </a>
       ) : null}
-    </main>
+    </div>
   );
 }

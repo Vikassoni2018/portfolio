@@ -3,10 +3,12 @@ import { ArrowUpRight, ExternalLink } from "lucide-react";
 import { notFound } from "next/navigation";
 import { JsonLd } from "@/components/JsonLd";
 import { PageShell } from "@/components/PageShell";
+import { CaseStudyDetails } from "@/components/CaseStudyDetails";
+import { caseStudies, getCaseStudy, orderProjects } from "@/data/case-studies";
 import projects from "@/data/projects.json";
 import { services } from "@/data/services";
 import { breadcrumbSchema, jsonLdGraph, personId } from "@/lib/seo";
-import { absoluteUrl } from "@/lib/site";
+import { absoluteUrl, socialImage } from "@/lib/site";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -27,19 +29,20 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   return {
     title,
     description: project.description,
+    robots: { index: Boolean(caseStudies[project.id]), follow: true },
     alternates: { canonical: absoluteUrl(path) },
     openGraph: {
       title,
       description: project.description,
       url: absoluteUrl(path),
       type: "article",
-      images: [{ url: absoluteUrl(project.image), alt: project.name }]
+      images: project.image.endsWith(".svg") ? [socialImage] : [{ url: absoluteUrl(project.image), alt: project.name }]
     },
     twitter: {
       card: "summary_large_image",
       title,
       description: project.description,
-      images: [absoluteUrl(project.image)]
+      images: project.image.endsWith(".svg") ? [socialImage] : [absoluteUrl(project.image)]
     }
   };
 }
@@ -51,19 +54,20 @@ export default async function ProjectPage({ params }: Params) {
 
   const path = `/projects/${project.id}`;
   const relatedServices = services.filter((service) => service.relatedProjectIds.includes(project.id));
-  const otherProjects = projects.filter((item) => item.id !== project.id).slice(0, 3);
+  const otherProjects = orderProjects(projects).filter((item) => item.id !== project.id).slice(0, 3);
+  const study = getCaseStudy(project.id);
 
   const schema = jsonLdGraph([
     {
-      "@type": "CreativeWork",
+      "@type": "Article",
       "@id": `${absoluteUrl(path)}#project`,
-      name: project.name,
+      headline: `${project.name} — Case Study`,
       description: project.description,
       url: absoluteUrl(path),
       image: absoluteUrl(project.image),
       sameAs: project.link || undefined,
-      author: { "@id": personId },
-      creator: { "@id": personId }
+      // Attribute the written case study, without implying sole product authorship.
+      author: { "@id": personId }
     },
     breadcrumbSchema([
       { name: "Home", path: "/" },
@@ -90,9 +94,11 @@ export default async function ProjectPage({ params }: Params) {
               <h1 className="mt-4 text-4xl font-black leading-[1.05] tracking-[-0.04em] text-slate-950 sm:text-5xl lg:text-6xl">
                 {project.name}
               </h1>
-              <p className="mt-5 max-w-xl text-base font-medium leading-7 text-slate-600">
+              <h2 className="mt-6 text-lg font-extrabold">Project Overview</h2>
+              <p className="mt-3 max-w-xl text-base font-medium leading-7 text-slate-600">
                 {project.description}
               </p>
+              <p className="mt-4 text-xs font-bold leading-6 text-slate-500">{study.attribution}</p>
 
               {project.link ? (
                 <a
@@ -104,9 +110,10 @@ export default async function ProjectPage({ params }: Params) {
                   Visit live project <ExternalLink size={15} />
                 </a>
               ) : null}
+              <Link href="/#contact" data-conversion="primary_cta_click" data-location="case_study" className="mt-4 inline-flex min-h-12 items-center gap-2 rounded-xl border border-blue-200 px-5 py-3 text-sm font-bold text-blue-700 lg:ml-3">Discuss Your Project <ArrowUpRight size={15} /></Link>
             </div>
 
-            <div className="overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 shadow-sm">
+            <figure className="overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 shadow-sm">
               {/* LCP element on this page: eager + high priority, never lazy. */}
               <Image
                 src={project.image}
@@ -115,21 +122,24 @@ export default async function ProjectPage({ params }: Params) {
                 height={750}
                 priority
                 sizes="(max-width: 1024px) 100vw, 50vw"
-                className="h-full w-full object-cover"
+                className="aspect-[16/10] w-full object-contain"
               />
-            </div>
+              <figcaption className="border-t border-slate-200 px-4 py-3 text-xs leading-5 text-slate-600"><h2 className="mb-2 text-sm font-bold text-slate-900">Existing Preview &amp; Demo</h2>Existing portfolio preview for {project.name}. Some previews are product artwork rather than application screenshots. Use the project link to explore the original product.</figcaption>
+            </figure>
           </div>
         </div>
       </section>
+
+      <CaseStudyDetails study={study} />
 
       {relatedServices.length ? (
         <section className="bg-slate-50">
           <div className="mx-auto max-w-[1240px] px-5 py-14 sm:px-8 sm:py-16 lg:px-10">
             <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-blue-600">
-              Capabilities used
+              Related services
             </p>
             <h2 className="mt-3 max-w-3xl text-3xl font-black leading-tight tracking-[-0.035em] text-slate-950 sm:text-4xl">
-              Services behind this build
+              Discuss a similar requirement
             </h2>
             <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {relatedServices.map((service) => (

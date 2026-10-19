@@ -1,6 +1,7 @@
 import { ArrowUpRight, Download, Sparkles } from "lucide-react";
 import Link from "next/link";
 import type { Profile } from "@/lib/types";
+import { MobileNavigation } from "@/components/MobileNavigation";
 
 const links = [
   ["Projects", "/#projects"],
@@ -20,23 +21,23 @@ export function PublicNavbar({ profile }: { profile: Profile }) {
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/90 backdrop-blur-xl">
       {profile.offerLabel ? (
-        <a
+        <Link
           href="/#contact"
           className="flex min-h-9 items-center justify-center gap-2 border-b border-blue-100 bg-blue-50 px-4 py-2 text-center text-[11px] font-bold leading-4 text-blue-700 transition hover:bg-blue-100 sm:text-xs"
         >
           <Sparkles size={14} className="shrink-0" aria-hidden="true" />
           <span>{profile.offerLabel}</span>
           <ArrowUpRight size={14} className="hidden shrink-0 sm:block" aria-hidden="true" />
-        </a>
+        </Link>
       ) : null}
-      <nav className="mx-auto flex h-[72px] max-w-[1240px] items-center justify-between gap-5 px-5 sm:px-8 lg:px-10">
+      <nav className="mx-auto flex h-[72px] max-w-[1240px] items-center justify-between gap-3 px-5 sm:px-8 lg:px-10" aria-label="Main navigation">
         <Link href="/" className="flex min-w-0 items-center gap-3" aria-label="Vikas Soni home">
           <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-600 text-sm font-black text-white shadow-md shadow-blue-600/20">
             {initials}
           </span>
           <span className="hidden sm:block">
             <span className="block text-sm font-extrabold leading-none text-slate-900">{profile.name || "Portfolio"}</span>
-            <span className="mt-1 block text-[10px] font-bold text-slate-400">Sr. Shopify Developer</span>
+            <span className="mt-1 block text-[10px] font-bold text-slate-600">Sr. Shopify Developer</span>
           </span>
         </Link>
 
@@ -63,10 +64,11 @@ export function PublicNavbar({ profile }: { profile: Profile }) {
           ) : null}
           <Link
             href="/#contact"
-            className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-4 py-2.5 text-xs font-extrabold text-white shadow-md shadow-blue-600/20 transition hover:bg-blue-700"
+            className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-blue-600 px-3 py-2.5 text-[11px] font-extrabold text-white shadow-md shadow-blue-600/20 transition hover:bg-blue-700 sm:px-4 sm:text-xs"
           >
-            Let&apos;s talk <ArrowUpRight size={15} />
+            Discuss Your Project <ArrowUpRight size={15} />
           </Link>
+          <MobileNavigation links={links} />
         </div>
       </nav>
     </header>

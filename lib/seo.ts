@@ -19,7 +19,7 @@ export function personSchema() {
     telephone: profile.mobile,
     jobTitle: profile.title,
     description: profile.bio,
-    image: absoluteUrl("/og-clean.png"),
+    ...(profile.profileImage ? { image: absoluteUrl(profile.profileImage) } : {}),
     sameAs: socialProfiles,
     address: {
       "@type": "PostalAddress",
@@ -81,7 +81,7 @@ export function breadcrumbSchema(trail: { name: string; path: string }[]) {
   };
 }
 
-/** The home page also advertises every project as an ItemList for rich results. */
+/** Describes project pages without promising a search result enhancement. */
 export function projectListSchema() {
   return {
     "@type": "ItemList",

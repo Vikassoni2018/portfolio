@@ -4,7 +4,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { PageShell } from "@/components/PageShell";
 import { sortedPosts } from "@/data/posts";
 import { breadcrumbSchema, jsonLdGraph, personId } from "@/lib/seo";
-import { absoluteUrl } from "@/lib/site";
+import { absoluteUrl, socialImage } from "@/lib/site";
 import Link from "next/link";
 
 const title = "Shopify Development & PHP Engineering Blog";
@@ -15,8 +15,8 @@ export const metadata: Metadata = {
   title,
   description,
   alternates: { canonical: absoluteUrl("/blog") },
-  openGraph: { title, description, url: absoluteUrl("/blog"), type: "website" },
-  twitter: { card: "summary_large_image", title, description }
+  openGraph: { title, description, url: absoluteUrl("/blog"), type: "website", images: [socialImage] },
+  twitter: { card: "summary_large_image", title, description, images: [socialImage] }
 };
 
 const formatDate = (iso: string) =>
