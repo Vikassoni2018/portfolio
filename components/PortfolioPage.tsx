@@ -30,13 +30,8 @@ import { primaryServices } from "@/data/services";
 import { featuredProjectIds, orderProjects } from "@/data/case-studies";
 
 const projectTags: Record<string, string[]> = {
-  "white-rabbit-rice-store": ["Shopify", "Storefront", "Food & Beverage"],
-  "cozy-lifestyle-store": ["eCommerce", "Storefront", "Home & Living"],
-  "sg-magnetics-store": ["Shopify", "Storefront", "B2B & Retail"],
   "product-subscription-app": ["Shopify", "Subscriptions", "Recurring Billing"],
-  "reviewhub-stellen-infotech": ["Shopify", "Product Reviews", "SaaS"],
   "shopify-amp-app": ["Shopify", "AMP", "Mobile Performance"],
-  "fizazzle-booking-platform": ["Bookings", "Scheduling", "Payments"],
   "user-central-webkul": ["User Management", "Account Access", "Platform"],
   "payment-service-api-docs": ["Payment APIs", "Webhooks", "Integrations"]
 };
@@ -226,8 +221,8 @@ export function PortfolioPage({ data }: { data: PortfolioData }) {
       <Section
         id="projects"
         eyebrow="Selected projects"
-        title="Shopify apps, storefronts & payment integrations."
-        description="Start with subscription billing, payment APIs, customer reviews and a branded Shopify storefront. Case studies separate documented product scope from my individual contributions."
+        title="Subscription, AMP, SaaS & payment projects."
+        description="Explore subscription billing, mobile storefront performance, SaaS account management and payment APIs. Case studies separate documented product scope from my individual contributions."
       >
         {projects.length ? (
           <div className="grid gap-5 lg:grid-cols-2">

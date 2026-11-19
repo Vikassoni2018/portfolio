@@ -11,7 +11,7 @@ import { orderProjects } from "@/data/case-studies";
 
 const title = "Shopify & eCommerce Development Projects";
 const description =
-  "Explore Vikas Soni's Shopify apps, eCommerce storefronts, subscription systems, and payment API projects, with summaries and links to live products.";
+  "Explore Vikas Soni's subscription, Shopify AMP, SaaS account management, and payment API projects, with summaries and links to live products.";
 
 export const metadata: Metadata = {
   title,

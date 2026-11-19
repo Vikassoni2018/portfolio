@@ -47,7 +47,7 @@ export const services: Service[] = [
     "shopify-app-development",
     "Custom Shopify App Development",
     "Shopify apps built around the way your business works",
-    "Build custom Shopify apps for merchant operations, customer experiences and SaaS integrations. I help merchants, agencies and SaaS founders scope app features, drawing on documented subscription, review and Shopify app work at Webkul and Stellen Infotech.",
+    "Build custom Shopify apps for merchant operations, customer experiences and SaaS integrations. I help merchants, agencies and SaaS founders scope app features, drawing on documented subscription and Shopify AMP app work at Webkul.",
     [
       [
         "Requirements and app scope",
@@ -68,13 +68,12 @@ export const services: Service[] = [
     ],
     [
       "product-subscription-app",
-      "reviewhub-stellen-infotech",
       "shopify-amp-app",
     ],
     [
       [
         "What relevant app experience can I review?",
-        "The Product Subscription App, ReviewHub and Shopify AMP App are in my existing portfolio. Their case studies distinguish documented product capabilities from my individual responsibilities.",
+        "The Product Subscription App and Shopify AMP App are in my existing portfolio. Their case studies distinguish documented product capabilities from my individual responsibilities.",
       ],
       [
         "How does a project start?",
@@ -105,7 +104,7 @@ export const services: Service[] = [
         "Deliver setup instructions and examples for the agreed data exchange.",
       ],
     ],
-    ["product-subscription-app", "reviewhub-stellen-infotech"],
+    ["product-subscription-app", "shopify-amp-app"],
     [
       [
         "Can you extend an existing integration?",
@@ -143,7 +142,6 @@ export const services: Service[] = [
     [
       "product-subscription-app",
       "payment-service-api-docs",
-      "fizazzle-booking-platform",
     ],
     [
       [
@@ -217,7 +215,6 @@ export const services: Service[] = [
     [
       "payment-service-api-docs",
       "product-subscription-app",
-      "fizazzle-booking-platform",
     ],
     [
       [
@@ -234,7 +231,7 @@ export const services: Service[] = [
     "shopify-theme-development",
     "Shopify Store Customization and Performance Optimization",
     "Make your storefront clearer, responsive and easier to maintain",
-    "Customize Shopify storefronts with Liquid sections, theme settings and responsive layouts. My Stellen Infotech experience records theme customization and performance-focused updates; existing storefront examples include White Rabbit Rice and SG Magnetics.",
+    "Customize Shopify storefronts with Liquid sections, theme settings and responsive layouts. My Stellen Infotech experience records theme customization and performance-focused updates; the Shopify AMP App in my portfolio focuses on mobile storefront performance.",
     [
       [
         "Storefront review",
@@ -253,7 +250,7 @@ export const services: Service[] = [
         "Check changed layouts on mobile and desktop and document theme edits.",
       ],
     ],
-    ["white-rabbit-rice-store", "sg-magnetics-store", "shopify-amp-app"],
+    ["shopify-amp-app"],
     [
       [
         "Can you customize an existing theme?",

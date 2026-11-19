@@ -14,9 +14,9 @@ export type CaseStudy = {
 // These describe products and employer context, not sole authorship or measured impact.
 export const featuredProjectIds = [
   "product-subscription-app",
+  "shopify-amp-app",
+  "user-central-webkul",
   "payment-service-api-docs",
-  "reviewhub-stellen-infotech",
-  "white-rabbit-rice-store",
 ];
 
 export const caseStudies: Record<string, CaseStudy> = {
@@ -73,58 +73,7 @@ export const caseStudies: Record<string, CaseStudy> = {
       "Confirm documentation availability and provide permission-cleared outcome evidence.",
     ],
   },
-  "reviewhub-stellen-infotech": {
-    problem:
-      "Merchants need a way to collect and manage customer feedback and display it alongside products on their storefront.",
-    attribution: "Stellen Infotech product · employer project context",
-    role: "ReviewHub is attributed to Stellen Infotech in the existing portfolio. My role there includes Shopify app development and maintenance using PHP and Shopify APIs. My precise ReviewHub contribution needs confirmation before attributing specific features to me.",
-    challenges:
-      "The product spans feedback collection, management and storefront display. Specific technical constraints and implementation decisions have not been recorded.",
-    solution:
-      "The app combines review collection and management with storefront widgets for product reviews, star ratings and testimonials. The portfolio does not yet document its internal architecture.",
-    technologies: [
-      "Shopify",
-      "Storefront widgets",
-      "Shopify APIs (employer experience)",
-    ],
-    features: [
-      "Customer feedback collection",
-      "Review management",
-      "Product review widgets",
-      "Star ratings and testimonial display",
-    ],
-    outcome:
-      "A Shopify App Store listing is available. These are product capabilities, not claims of review volume, improved conversion or individual ownership.",
-    todos: [
-      "Confirm my responsibilities and separate them from the team's work.",
-      "Document approved architecture, exact stack and a technical challenge I resolved.",
-      "Add approved screenshots and measured outcomes if available.",
-    ],
-  },
-  "white-rabbit-rice-store": {
-    problem:
-      "A premium rice storefront needs to bring product discovery, brand storytelling and online purchasing into a coherent shopping experience.",
-    attribution: "Portfolio storefront project · contribution details pending",
-    role: "This storefront appears in my existing project portfolio. The original record does not identify my specific sections, delivery arrangement or ownership, so those details remain to be confirmed.",
-    challenges:
-      "The documented scope combines brand content with product discovery and purchasing. No specific engineering constraint, before/after audit or implementation challenge has been supplied.",
-    solution:
-      "A branded Shopify storefront presents White Rabbit's premium rice range with product discovery, storytelling and online purchasing. The existing storefront link and preview are retained.",
-    technologies: ["Shopify", "Storefront"],
-    features: [
-      "Premium rice product discovery",
-      "Brand storytelling",
-      "Online purchasing",
-      "Branded shopping experience",
-    ],
-    outcome:
-      "The existing portfolio provides a storefront link and preview. Sales, page-speed and conversion measurements are not available.",
-    todos: [
-      "Confirm my role, client/employer attribution and delivered customizations.",
-      "Document the theme stack, technical decisions and an approved challenge/solution example.",
-      "Supply verified outcomes and confirm whether the demo requires a storefront password.",
-    ],
-  },
+
 };
 
 export function orderProjects<T extends { id: string }>(projects: T[]): T[] {
