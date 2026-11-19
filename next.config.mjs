@@ -11,6 +11,19 @@ const nextConfig = {
   trailingSlash: false,
   poweredByHeader: false,
   compress: true,
+  async redirects() {
+    return [
+      "reviewhub-stellen-infotech",
+      "white-rabbit-rice-store",
+      "sg-magnetics-store",
+      "cozy-lifestyle-store",
+      "fizazzle-booking-platform"
+    ].map((slug) => ({
+      source: `/projects/${slug}`,
+      destination: "/",
+      permanent: false
+    }));
+  },
   async headers() {
     return [
       {
