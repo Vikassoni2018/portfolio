@@ -4,6 +4,7 @@ import projects from "@/data/projects.json";
 import { caseStudies } from "@/data/case-studies";
 import { services } from "@/data/services";
 import { absoluteUrl } from "@/lib/site";
+import { showcasePath, themeRoute, themes } from "@/data/showcase";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
@@ -11,6 +12,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: absoluteUrl("/services"), changeFrequency: "monthly", priority: 0.9 },
     { url: absoluteUrl("/projects"), changeFrequency: "monthly", priority: 0.9 },
     { url: absoluteUrl("/blog"), changeFrequency: "weekly", priority: 0.8 },
+    { url: absoluteUrl(showcasePath), changeFrequency: "monthly", priority: 0.9 },
+    ...themes.map((theme) => ({
+      url: absoluteUrl(themeRoute(theme.slug)),
+      changeFrequency: "monthly" as const,
+      priority: 0.8
+    })),
 
     ...services.map((service) => ({
       url: absoluteUrl(`/services/${service.slug}`),

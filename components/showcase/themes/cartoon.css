@@ -1,0 +1,32 @@
+@font-face { font-family: Zingy Bricolage; src: url('/showcase/fonts/cartoon.woff2') format('woff2'); font-weight: 400 800; font-display: swap; }
+.concept--cartoon { --face: Zingy Bricolage; --paper: #fff3bb; --ink: #203727; --accent: #aa3b20; --button: #203727; --button-ink: #fff8d9; --surface: #ffb371; --focus: #592f95; --card-radius: 1.5rem; }
+.concept--cartoon .brand-nav { border-bottom: 2px dashed #20372773; }
+.concept--cartoon .brand-name { font-size: 1.55rem; }
+.concept--cartoon .concept-button { border-radius: 2rem; box-shadow: 4px 4px #f08343; }
+.cartoon-hero { display: grid; grid-template-columns: 1.03fr .97fr; align-items: center; min-height: 615px; padding-block: 3rem; gap: 1.5rem; }
+.cartoon-hero h1 { font-size: clamp(4rem,9vw,9rem); font-weight: 800; line-height: .92; }
+.mascot-wrap { background: #ffcf6e; border-radius: 48% 44% 43% 48%; border: 3px solid #203727; rotate: 5deg; color: #374c32; }
+.mascot-wrap svg { width: 100%; overflow: visible; }
+.mascot { transform-origin: center; }
+.cartoon-strip, .cartoon-serve { text-align: center; }
+.cartoon-strip { padding: .8rem var(--gutter); border-block: 3px solid #203727; background: #ff8d52; font-weight: 800; font-size: clamp(1rem,2.4vw,1.8rem); }
+.cartoon-strip span { margin-inline: .55rem; }
+.cartoon-flavors > div { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; margin-top: 2rem; }
+.cartoon-flavors article { position: relative; padding: 1.4rem; border: 3px solid #203727; border-radius: 1.5rem; background: #ffd074; box-shadow: 5px 5px #203727; }
+.cartoon-flavors article:nth-child(2) { background: #ffb3b7; }
+.cartoon-flavors article:nth-child(3) { background: #cde599; }
+.soda-can { width: 5rem; min-height: 7.2rem; margin: .6rem auto 1.65rem; border: 3px solid #203727; border-radius: 1rem; background: #f7944d; color: #203727; rotate: -9deg; display: grid; place-items: center; font-weight: 800; line-height: .9; text-align: center; box-shadow: inset -8px 0 #23372427, 5px 5px #203727; padding-block: .55rem; }
+.cartoon-flavors article:nth-child(2) .soda-can { background: #f87d91; rotate: 7deg; }
+.cartoon-flavors article:nth-child(3) .soda-can { background: #a2ca69; }
+.flavor-index { position: absolute; top: .75rem; right: .9rem; font-weight: 800; }
+.cartoon-story { display: grid; grid-template-columns: 1.1fr 1fr; align-items: center; gap: 2rem; }
+.cartoon-story .concept-photo { aspect-ratio: 1.35; border: 3px solid #203727; border-radius: 25% 6% 20% 8%; }
+.cartoon-serve { background: #ffd982; }
+.cartoon-serve p { margin-inline: auto; }
+@media(max-width:720px) {
+  .cartoon-hero, .cartoon-flavors > div, .cartoon-story { grid-template-columns: 1fr; }
+  .cartoon-hero { min-height: 0; gap: 2rem; }
+  .cartoon-hero h1 { font-size: clamp(3.5rem,13vw,6rem); }
+  .mascot-wrap { width: min(94%,455px); margin-inline: auto; }
+}
+

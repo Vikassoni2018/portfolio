@@ -2,11 +2,14 @@
 
 Portfolio conversion, enquiry setup, analytics events, editorial TODOs and validation are documented in [docs/portfolio-conversion.md](docs/portfolio-conversion.md).
 
+The [design showcase guide](docs/design-showcase.md) covers adding landing page themes, regenerating gallery screenshots, image credits, and browser QA.
+
 A complete personal portfolio platform built with the Next.js App Router, TypeScript, Tailwind CSS, local JSON file storage, protected admin pages, and server-side API routes.
 
 ## Features
 
 - Public portfolio homepage with hero, about, skills, projects, experience, education, and contact sections.
+- Design showcase with ten interactive landing pages, responsive preview controls, and theme-specific project enquiries.
 - Protected `/admin` dashboard for editing all portfolio data.
 - Username/password login at `/admin/login`.
 - HttpOnly cookie session authentication.

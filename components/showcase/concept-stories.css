@@ -1,0 +1,103 @@
+.concept-story {
+  display: grid;
+  grid-template: "copy photo" / minmax(0, .9fr) minmax(0, 1.1fr);
+  align-items: center;
+  gap: clamp(1.5rem, 5vw, 5rem);
+}
+.concept-story--photo-first {
+  grid-template: "photo copy" / minmax(0, 1.12fr) minmax(0, .88fr);
+}
+.concept-story-copy { grid-area: copy; min-width: 0; }
+.concept-story-copy h2 { max-inline-size: 19ch; }
+.concept-story-copy p:last-child { max-inline-size: 50ch; }
+.concept-story-photo {
+  grid-area: photo;
+  aspect-ratio: 1.35;
+  border-radius: var(--story-radius, var(--card-radius, 1rem));
+}
+.concept-story-photo img { object-position: var(--story-position, center); }
+.concept-story--wide {
+  grid-template: "copy" "photo" / minmax(0, 1fr);
+  gap: clamp(1.5rem, 3vw, 2.75rem);
+}
+.concept-story--wide .concept-story-copy {
+  display: grid;
+  grid-template-columns: minmax(0, 1.06fr) minmax(0, .75fr);
+  align-items: end;
+  gap: 0 clamp(1.5rem, 5vw, 4rem);
+}
+.concept-story--wide .concept-kicker { grid-column: 1 / -1; }
+.concept-story--wide .concept-story-photo { aspect-ratio: 2.65; }
+.concept-guide { padding-block-start: clamp(1.25rem, 4vw, 3.5rem); }
+.concept-guide h2 { max-inline-size: 24ch; }
+.concept-guide-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(.8rem, 2vw, 1.3rem);
+  margin-block-start: 1.5rem;
+}
+.concept-guide-grid article {
+  padding: clamp(1.15rem, 2.5vw, 2rem);
+  border-radius: var(--story-radius, var(--card-radius, 1rem));
+  background: var(--guide-surface, var(--surface));
+}
+.concept-guide-grid h3 { line-height: 1.18; }
+.concept-guide-grid p { margin-block-start: .7rem; }
+
+.concept--glass .concept-story-photo, .concept--glass .concept-guide-grid article {
+  border: 1px solid #b8a4ff56;
+  box-shadow: 0 15px 50px #06061274;
+}
+.concept--glass .concept-story-photo img { filter: saturate(.85); }
+.concept--clay .concept-story-photo {
+  border: .35rem solid #ebdbfa;
+  box-shadow: .55rem .7rem #e5d2fa;
+}
+.concept--clay .concept-guide-grid article:nth-child(2) { background: #faddce; }
+.concept--clay .concept-guide-grid article:nth-child(3) { background: #d4eddf; }
+.concept--cartoon .concept-story { --story-position: center 36%; }
+.concept--cartoon .concept-story-photo {
+  max-width: 34rem;
+  justify-self: center;
+  aspect-ratio: 1.08;
+  border-radius: 1.7rem 4.5rem 1.7rem 3rem;
+}
+.concept--cartoon .concept-story-photo, .concept--cartoon .concept-guide-grid article {
+  border: 3px solid currentColor;
+  box-shadow: 4px 4px;
+}
+.concept--cartoon .concept-guide-grid article:nth-child(2) { background: #ffb3b7; }
+.concept--cartoon .concept-guide-grid article:nth-child(3) { background: #cde599; }
+.concept--neu .concept-story-photo, .concept--neu .concept-guide-grid article { box-shadow: var(--raised); }
+.concept--brutal .concept-story-photo, .concept--brutal .concept-guide-grid article {
+  border: 3px solid currentColor;
+  box-shadow: 6px 6px;
+}
+.concept--brutal .concept-guide { --guide-surface: #a7f2c0; }
+.concept--brutal .concept-guide-grid article:nth-child(2) { background: #fffaf0; }
+.concept--luxury .concept-story { --story-position: center 56%; }
+.concept--luxury .concept-story-photo { aspect-ratio: 1.05; }
+.concept--luxury .concept-guide-grid article {
+  padding-inline: 0;
+  border-top: 1px solid #84705975;
+  background: transparent;
+}
+.concept--retro .concept-story-photo { border: .55rem double #843721; }
+.concept--retro .concept-guide-grid article { border-block-start: 4px double #843721; }
+.concept--cyber .concept-story { --story-position: center 60%; }
+.concept--cyber .concept-story-photo, .concept--cyber .concept-guide-grid article { border: 1px solid #9b4f9b; }
+.concept--cyber .concept-guide-grid article h3 { color: #8cf7e9; }
+.concept--bento .concept-guide-grid article:nth-child(2) { background: #f1ebf8; }
+.concept--bento .concept-guide-grid article:nth-child(3) { background: #edf4e1; }
+.concept--immersive .concept-story { --story-position: center 43%; }
+.concept--immersive .concept-guide-grid article { border-block-start: 2px solid #ffab82; }
+
+@media (max-width: 800px) {
+  .concept-story, .concept-story--photo-first { grid-template: "copy" "photo" / minmax(0, 1fr); }
+  .concept-story--wide .concept-story-copy { display: block; }
+  .concept-story--wide .concept-story-photo { aspect-ratio: 1.65; }
+}
+@media (max-width: 690px) {
+  .concept-guide-grid { grid-template-columns: minmax(0, 1fr); }
+}
+

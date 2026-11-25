@@ -1,0 +1,29 @@
+@font-face { font-family: After Hours Fraunces; src: url('/showcase/fonts/retro.woff2') format('woff2'); font-weight: 400 900; font-display: swap; }
+.concept--retro { --face: After Hours Fraunces; --fallback: Georgia; --paper: #f1d9a3; --ink: #293a33; --accent: #853621; --button: #843721; --button-ink: #fff3d2; --surface: #e4bd7f; --card-radius: 0; background-image: repeating-linear-gradient(0deg,#69351008 0 1px,transparent 1px 4px); }
+.concept--retro .brand-nav { border-bottom: 4px double; }
+.concept--retro .brand-name { font-size: 1.55rem; }
+.concept--retro h1 { font-weight: 900; }
+.concept--retro .concept-button { border-radius: .1rem; box-shadow: 4px 4px #27382f; }
+.retro-hero { display: grid; grid-template-columns: 1.08fr .92fr; gap: 2.6rem; align-items: center; min-height: 630px; padding-block: 3rem; }
+.retro-hero em { display: block; }
+.retro-poster { padding: .8rem; position: relative; background: #823623; border: 3px double #f1d9a3; outline: 2px solid #823623; transform: rotate(3deg); }
+.retro-poster .concept-photo { aspect-ratio: 1.18; }
+.retro-poster p { text-transform: uppercase; font-weight: 900; color: #fff0c4; text-align: center; font-size: clamp(.9rem,2.2vw,1.5rem); padding-top: .35rem; }
+.retro-stamp { position: absolute; bottom: 12%; left: -7%; background: #f1d9a3; border: 5px double #843721; width: clamp(6.5rem,10vw,9rem); aspect-ratio: 1; border-radius: 50%; text-align: center; display: grid; place-content: center; justify-items: center; font-size: .75rem; font-weight: 900; line-height: 1.15; rotate: -13deg; }
+.retro-ticker { background: #2a4037; color: #ffe7b3; border-block: 4px double; padding: .6rem 0; overflow: hidden; }
+.retro-ticker > div { width: max-content; white-space: nowrap; padding-inline: 1rem; font-size: clamp(1.05rem,2.7vw,2rem); font-weight: 800; }
+.retro-menu details { border-bottom: 2px dotted #843721; }
+.retro-menu summary { display: flex; justify-content: space-between; align-items: center; gap: .7rem; font-size: clamp(1rem,2.55vw,1.65rem); }
+.retro-menu summary::before { content: '+'; color: #843721; }
+.retro-menu details[open] summary::before { content: '−'; }
+.retro-menu summary strong { flex: 1; }
+.retro-menu summary span { font-size: clamp(.78rem,1.55vw,1rem); }
+.retro-brew { display: grid; grid-template-columns: 1fr minmax(4rem, 11rem); align-items: center; gap: 1rem; background: #d9b779; border-block: 4px double; }
+.retro-brew svg { width: 100%; height: auto; color: #843721; }
+.retro-story { text-align: center; }
+.retro-story p { margin-inline: auto; justify-content: center; }
+@media (max-width:720px) {
+  .retro-hero { grid-template-columns: 1fr; min-height: 0; }
+  .retro-poster { width: min(90%,450px); margin-inline: auto; }
+}
+

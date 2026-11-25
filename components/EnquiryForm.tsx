@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useSyncExternalStore } from "react";
 import { ArrowUpRight, LoaderCircle } from "lucide-react";
 import {
   enquiryBudgets,
@@ -9,8 +9,14 @@ import {
   type EnquiryErrors,
 } from "@/lib/enquiry";
 import { trackConversion } from "@/lib/analytics";
+import { findTheme } from "@/data/showcase";
+
+const subscribe = () => () => {};
+const selectedTheme = () => new URLSearchParams(window.location.search).get("theme") ?? "";
+const noSelectedTheme = () => "";
 
 export function EnquiryForm({ email }: { email: string }) {
+  const theme = findTheme(useSyncExternalStore(subscribe, selectedTheme, noSelectedTheme));
   const [errors, setErrors] = useState<EnquiryErrors>({});
   const [status, setStatus] = useState<
     "idle" | "loading" | "success" | "error"
@@ -100,6 +106,7 @@ export function EnquiryForm({ email }: { email: string }) {
   });
   return (
     <form
+      key={theme?.slug}
       onSubmit={submit}
       onFocus={start}
       onPointerDown={start}
@@ -115,6 +122,9 @@ export function EnquiryForm({ email }: { email: string }) {
         Share the problem, your current setup and your timeline. Fields marked *
         are required.
       </p>
+      {theme && <p className="mt-3 rounded-lg bg-blue-50 px-3 py-2 text-sm font-semibold text-blue-800">
+        Selected design style <strong>{theme.name}</strong>
+      </p>}
       <div className="mt-6 grid gap-5 sm:grid-cols-2">
         <div>
           <label htmlFor="enquiry-name" className="text-sm font-bold">
@@ -173,7 +183,7 @@ export function EnquiryForm({ email }: { email: string }) {
             id="enquiry-service"
             name="service"
             required
-            defaultValue=""
+            defaultValue={theme ? "Custom Landing Page Development" : ""}
             className={fieldClass}
             {...errorProps("service")}
           >
@@ -197,6 +207,7 @@ export function EnquiryForm({ email }: { email: string }) {
             minLength={30}
             maxLength={5000}
             rows={5}
+            defaultValue={theme ? `I'm interested in a custom landing page in the ${theme.name} design style.\n\n` : undefined}
             placeholder="What needs to change? Include your current setup and preferred timeline."
             className={fieldClass}
             {...errorProps("description")}

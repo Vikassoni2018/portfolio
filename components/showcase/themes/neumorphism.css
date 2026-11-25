@@ -1,0 +1,45 @@
+@font-face { font-family: Forma Manrope; src: url('/showcase/fonts/neu.woff2') format('woff2'); font-weight: 400 800; font-display: swap; }
+.concept--neu {
+  --face: Forma Manrope; --paper: #e7ebef; --ink: #24323d; --accent: #3d6861; --button: #354c51; --button-ink: #fff;
+  --surface: #dce4e8; --raised: 15px 15px 30px #c4cbd2,-15px -15px 30px #fff9; --recessed: inset 8px 8px 20px #bdc8d2,inset -8px -8px 20px #fff9;
+}
+.concept--neu .concept-button { border-radius: 3rem; box-shadow: 5px 5px 12px #aebac2, -5px -5px 13px #fff; }
+.neu-hero { display: grid; grid-template-columns: 1fr .85fr; align-items: center; min-height: 630px; gap: 2rem; padding-block: 3rem; }
+.neu-hero h1 { font-weight: 800; }
+.neu-hero em { display: block; }
+.neu-display { display: grid; place-items: center; border-radius: 44%; aspect-ratio: 1.1; box-shadow: var(--recessed); }
+.neu-device { display: grid; place-items: center; border-radius: 44%; width: 65%; aspect-ratio: 1.12; position: relative; background: linear-gradient(133deg,#f4f7f8,#ced7de); box-shadow: var(--raised); overflow: hidden; }
+.neu-grille { position: absolute; inset: 12%; border-radius: 42%; background: radial-gradient(circle,#6a788260 1px,transparent 1.4px) 0 0/6px 6px; }
+.neu-device svg { z-index: 1; box-sizing: content-box; padding: 1rem; border-radius: 50%; background: #e7ebef; box-shadow: var(--raised); }
+.neu-led { position: absolute; bottom: 12%; width: .6rem; aspect-ratio: 1; border-radius: 50%; background: #3b7263; box-shadow: 0 0 10px #50ad95; }
+.neu-intro { display: grid; grid-template-columns: 1fr .9fr; gap: clamp(1.5rem,6vw,6rem); align-items: center; }
+.neu-intro .concept-photo { aspect-ratio: 1.45; border-radius: 2rem; box-shadow: var(--raised); }
+.neu-modes { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; }
+.neu-control { padding: 1.15rem; min-width: 0; border: 0; border-radius: 1.6rem; box-shadow: var(--raised); }
+.neu-control legend { padding-inline: .55rem; font-weight: 800; }
+.neu-options { display: flex; flex-wrap: wrap; justify-content: center; gap: .5rem; }
+.neu-option input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.neu-option label { display: flex; align-items: center; min-height: 44px; gap: .4rem; padding: .55rem .8rem; border-radius: 2rem; cursor: pointer; box-shadow: 3px 3px 8px #c0cad4,-3px -3px 8px #ffffffac; font-weight: 800; font-size: .86rem; }
+.neu-option input:checked + label { background: #d2dfdd; box-shadow: inset 3px 3px 8px #b9ccc9, inset -3px -3px 9px #eff6f6; }
+.neu-dial { width: 86px; aspect-ratio: 1; margin: 1.25rem auto; border-radius: 50%; display: grid; place-items: center; box-shadow: var(--recessed); }
+.neu-readout { display: grid; max-width: 40ch; margin-inline: auto; text-align: center; }
+.neu-readout p { grid-area: 1 / 1; visibility: hidden; }
+.neu-control:has(#ambient-0:checked) #ambient-description-0,
+.neu-control:has(#ambient-1:checked) #ambient-description-1,
+.neu-control:has(#ambient-2:checked) #ambient-description-2 { visibility: visible; }
+.neu-dial i { width: 66%; aspect-ratio: 1; border-radius: 50%; box-shadow: 4px 4px 4px #acbbc1, -3px -3px 6px #fff; background: #e7ebef; }
+.neu-dial i::before { content: ''; display: block; margin: .45rem auto; width: 7px; height: 7px; border-radius: 50%; background: #376c63; }
+.neu-control:has(#ambient-1:checked) .neu-dial i { rotate: 45deg; }
+.neu-control:has(#ambient-2:checked) .neu-dial i { rotate: 90deg; }
+.neu-details > div { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.2rem; margin-top: 2rem; }
+.neu-details article { border-radius: 1.3rem; padding: 1.25rem; box-shadow: var(--raised); }
+.neu-details article svg { margin-bottom: 1rem; color: #3d6861; }
+.neu-benefit { background: #dce7e8; text-align: center; }
+.neu-benefit p { margin-inline: auto; }
+@media (max-width:720px) {
+  .neu-hero, .neu-intro, .neu-modes, .neu-details > div { grid-template-columns: 1fr; }
+  .neu-hero { min-height: 0; }
+  .neu-display { width: min(94%,450px); margin-inline: auto; }
+  .neu-intro .concept-photo { order: 2; }
+}
+

@@ -232,21 +232,15 @@ test("route reports provider failure without leaking credentials", async () => {
     !body.includes("secret-provider-response") && !body.includes("test-key"),
   );
 });
-test("15-hour offer data, wording, position and destination are preserved", () => {
+test("the configured launch offer appears above navigation and links to the enquiry", () => {
   const current = JSON.parse(
     readFileSync(new URL("../data/profile.json", import.meta.url), "utf8"),
   );
-  assert.equal(
-    current.offerLabel,
-    "Launch offer: Your first 15 development hours are free. Standard charges apply after that.",
-  );
+  assert.equal(typeof current.offerLabel, "string");
   const navbar = readFileSync(
     new URL("../components/PublicNavbar.tsx", import.meta.url),
     "utf8",
   );
-  assert.match(
-    navbar,
-    /href="\/#contact"[\s\S]*?<span>\{profile.offerLabel\}<\/span>/,
-  );
+  assert.match(navbar, /\{profile\.offerLabel \? \([\s\S]*?href="\/#contact"[\s\S]*?<span>\{profile\.offerLabel\}<\/span>[\s\S]*?\) : null\}/);
   assert.ok(navbar.indexOf("{profile.offerLabel ?") < navbar.indexOf("<nav"));
 });

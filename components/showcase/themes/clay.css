@@ -1,0 +1,37 @@
+@font-face { font-family: Pebble Nunito; src: url('/showcase/fonts/clay.woff2') format('woff2'); font-weight: 400 900; font-display: swap; }
+.concept--clay { --face: Pebble Nunito; --paper: #f7f2ff; --ink: #35264e; --accent: #6441a2; --button: #6540a1; --button-ink: white; --surface: #eadcfb; --card-radius: 2rem; }
+.concept--clay .brand-nav { color: #503582; }
+.concept--clay .concept-button { border-radius: 1.15rem; box-shadow: inset 0 -4px #4222757d, 0 6px 14px #63449b35; }
+.concept--clay h1, .concept--clay h2 { font-weight: 900; }
+.clay-hero { display: grid; grid-template-columns: 1fr 1fr; min-height: 630px; align-items: center; padding-block: 4rem; gap: 1.5rem; }
+.clay-hero em { display: block; }
+.clay-stage { position: relative; display: grid; place-items: center; isolation: isolate; min-height: 350px; aspect-ratio: 1.08; border-radius: 42% 39% 45% 36%; background: radial-gradient(ellipse,#e3d1ff,#f8eeff 72%,transparent 73%); }
+.clay-notebook, .clay-ball { display: grid; place-content: center; justify-items: center; box-shadow: inset -12px -15px 24px #5237803d, inset 10px 12px 18px #fff8, 15px 24px 34px #7652a648; }
+.clay-notebook { width: 52%; height: 68%; transform: rotate(-13deg); border-radius: 23%; background: #c4a9fa; color: #422771; gap: .5rem; }
+.clay-notebook strong { font-size: clamp(1.2rem,3vw,2.1rem); font-weight: 900; }
+.clay-notebook i { width: clamp(3rem,8vw,7rem); height: .45rem; background: #7954b1; border-radius: 2rem; opacity: .64; }
+.clay-ball { position: absolute; width: 24%; aspect-ratio: 1; border-radius: 38%; color: #493968; z-index: 1; }
+.clay-ball svg { width: clamp(1.5rem,4vw,3rem); height: auto; }
+.clay-peach { right: 10%; top: 4%; background: #ffbc99; rotate: 14deg; }
+.clay-mint { left: 9%; bottom: 10%; background: #a3dfcc; rotate: -12deg; }
+.clay-lilac { right: 4%; bottom: 14%; background: #f8aadc; rotate: 13deg; }
+.clay-routine { display: grid; grid-template-columns: .8fr 1.2fr; gap: 2rem; align-items: center; }
+.clay-routine .concept-photo { aspect-ratio: 1.55; border-radius: 2rem; }
+.clay-steps { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; }
+.clay-steps article, .clay-week details { padding: 1.25rem; border-radius: 1.6rem; background: #ecdefb; box-shadow: inset 0 -4px #9e76cf23, 0 10px 20px #6b3d9b12; }
+.clay-steps article:nth-child(2) { background: #faddce; }
+.clay-steps article:nth-child(3) { background: #d4eddf; }
+.clay-steps article span { display: block; font-size: 2rem; margin-bottom: .65rem; }
+.clay-steps article p { margin-top: .5rem; }
+.clay-week { display: grid; grid-template-columns: 1fr 1.2fr; gap: 2rem; }
+.clay-week details + details { margin-top: .7rem; }
+.clay-week summary { color: #553383; }
+.clay-week summary strong { margin-left: .5rem; }
+.clay-pace { text-align: center; background: #f3e6ff; }
+.clay-pace p { margin-inline: auto; }
+@media (max-width: 720px) {
+  .clay-hero, .clay-routine, .clay-steps, .clay-week { grid-template-columns: minmax(0,1fr); }
+  .clay-hero { min-height: 0; padding-block: 2.5rem 0; }
+  .clay-stage { min-height: 290px; min-width: 0; width: min(100%,480px); margin-inline: auto; }
+}
+

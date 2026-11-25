@@ -1,0 +1,32 @@
+@font-face { font-family: Alba Cormorant; src: url('/showcase/fonts/luxury.woff2') format('woff2'); font-weight: 400 700; font-display: swap; }
+.concept--luxury { --face: Alba Cormorant; --fallback: Georgia; --paper: #f8f3eb; --ink: #33291e; --accent: #71583c; --button: #372d22; --button-ink: #fbf4e8; --surface: #eee4d6; --card-radius: 0; }
+.concept--luxury :is(p, nav, summary, .concept-button, .concept-footer-bar) { font-family: system-ui, sans-serif; }
+.concept--luxury .brand-nav { border-bottom: 1px solid #84705961; }
+.concept--luxury .brand-name { letter-spacing: .05em; font-size: 1.65rem; }
+.concept--luxury h1, .concept--luxury h2 { font-weight: 500; letter-spacing: -.055em; }
+.concept--luxury h1 { font-size: clamp(4.8rem,10vw,10rem); line-height: .9; }
+.concept--luxury h1 em { font-style: italic; }
+.concept--luxury .concept-button { border-radius: 0; }
+.luxury-hero { min-height: 660px; display: grid; grid-template-columns: .88fr 1fr; align-items: center; gap: clamp(1rem,4.5vw,5rem); padding-block: 2rem; }
+.luxury-image { min-width: 0; }
+.luxury-image .concept-photo { aspect-ratio: 1.03; }
+.luxury-image img { object-position: center 40%; }
+.luxury-image > span { display: block; margin-top: .55rem; font: .72rem system-ui,sans-serif; letter-spacing: .09em; text-transform: uppercase; }
+.luxury-editorial { text-align: center; }
+.luxury-editorial p { margin-inline: auto; justify-content: center; }
+.luxury-pieces { display: grid; grid-template-columns: .9fr 1.15fr .9fr; gap: 1rem; }
+.luxury-pieces article { padding: 1.2rem; background: #eee5d8; }
+.luxury-pieces article:nth-child(2) { margin-top: -1.5rem; }
+.luxury-pieces h3 { margin-bottom: .5rem; font-size: 1.9rem; }
+.luxury-object { width: 36%; aspect-ratio: 1; margin: 2.4rem auto; border: 9px solid #9c7645; border-radius: 42% 57% 42% 55%; transform: rotate(20deg); box-shadow: inset 4px 4px 7px #e1b97d, 8px 12px 19px #4d3d2c31; }
+.luxury-object-1 { border-radius: 70% 60% 75% 57%; transform: rotate(-27deg) scaleY(.8); border-width: 13px; }
+.luxury-object-2 { width: 22%; aspect-ratio: .6; border-radius: 45%; transform: rotate(-22deg); border-width: 6px; }
+.luxury-atelier { display: grid; grid-template-columns: .5fr 1fr; gap: 1rem; border-bottom: 1px solid #84705961; }
+.luxury-care details { border-bottom: 1px solid #84705961; max-width: 52rem; }
+@media (max-width:720px) {
+  .luxury-hero, .luxury-atelier, .luxury-pieces { grid-template-columns: 1fr; }
+  .luxury-hero { min-height: 0; padding-block: 3rem 1rem; gap: 2rem; }
+  .concept--luxury h1 { font-size: clamp(4rem,15vw,7rem); }
+  .luxury-pieces article:nth-child(2) { margin-top: 0; }
+}
+

@@ -5,6 +5,7 @@ import { MobileNavigation } from "@/components/MobileNavigation";
 
 const links = [
   ["Projects", "/#projects"],
+  ["Design Showcase", "/landing-page-designs"],
   ["Services", "/services"],
   ["Blog", "/blog"],
   ["Skills", "/#skills"],
@@ -41,12 +42,12 @@ export function PublicNavbar({ profile }: { profile: Profile }) {
           </span>
         </Link>
 
-        <div className="hidden items-center gap-1 rounded-xl  p-1 md:flex">
+        <div className="hidden items-center gap-1 rounded-xl p-1 lg:flex">
           {links.map(([label, href]) => (
             <Link
               key={href}
               href={href}
-              className="rounded-lg px-3.5 py-2 text-xs font-bold text-slate-600 transition hover:bg-white hover:text-blue-700 hover:shadow-sm"
+              className="rounded-lg px-2.5 py-2 text-xs font-bold text-slate-600 transition hover:bg-white hover:text-blue-700 hover:shadow-sm xl:px-3.5"
             >
               {label}
             </Link>

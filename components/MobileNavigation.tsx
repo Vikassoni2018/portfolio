@@ -25,7 +25,7 @@ export function MobileNavigation({ links }: { links: string[][] }) {
     };
   }, []);
   return (
-    <details ref={menu} className="relative md:hidden">
+    <details ref={menu} className="relative lg:hidden">
       <summary
         className="flex h-11 w-11 cursor-pointer list-none items-center justify-center rounded-xl border border-slate-200 text-slate-700 [&::-webkit-details-marker]:hidden"
         aria-label="Open navigation"

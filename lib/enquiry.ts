@@ -1,4 +1,5 @@
 export const enquiryServices = [
+  "Custom Landing Page Development",
   "Custom Shopify App Development",
   "Shopify GraphQL API Integrations",
   "Shopify Backend Automation",

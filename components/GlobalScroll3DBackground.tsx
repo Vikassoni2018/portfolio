@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 
 const floatingLabels = [
   { name: "git", detail: "main", className: "theme-scroll-card-one" },
@@ -38,6 +39,11 @@ const particles = [
 const clamp = (value: number, min: number, max: number) => Math.min(Math.max(value, min), max);
 
 export function GlobalScroll3DBackground() {
+  const pathname = usePathname();
+  return pathname?.startsWith("/landing-page-designs") ? null : <ScrollBackground />;
+}
+
+function ScrollBackground() {
   const rootRef = useRef<HTMLDivElement>(null);
   const pointer = useRef({ x: 0.5, y: 0.5 });
   const scrollProgress = useRef(0);

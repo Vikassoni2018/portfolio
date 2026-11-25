@@ -1,0 +1,41 @@
+@font-face { font-family: Prism Space; src: url('/showcase/fonts/glass.woff2') format('woff2'); font-weight: 400 700; font-display: swap; }
+.concept--glass {
+  --face: Prism Space; --paper: #08091b; --ink: #f2f0ff; --accent: #cbb8ff;
+  --button: #d1c3ff; --button-ink: #18102b; --surface: #17142d; --focus: #85f9ec;
+  background: radial-gradient(ellipse at 74% 10%, #24164a, transparent 44%), var(--paper);
+}
+.concept--glass .brand-nav { border-bottom: 1px solid #ffffff23; }
+.concept--glass .brand-name { color: #d4c3ff; }
+.glass-hero { isolation: isolate; position: relative; display: grid; grid-template-columns: .96fr 1.04fr; gap: clamp(1rem,4vw,4rem); align-items: center; min-height: 665px; padding-block: 4rem; }
+.glass-halo { position: absolute; inset: 0 8%; z-index: -1; background: radial-gradient(ellipse at 70% 55%,#6a4cf446,transparent 62%); pointer-events: none; }
+.glass-hero h1 { font-size: clamp(3.8rem,7.3vw,7rem); }
+.glass-hero h1 em { display: block; }
+.glass-stage { position: relative; aspect-ratio: 1 / .96; }
+.glass-stage .concept-photo { position: absolute; inset: 5% 1% 5% 3%; width: auto; border-radius: 37% 58% 48% 53%; opacity: .88; box-shadow: 0 0 90px #9072ff36; }
+.glass-orbit { position: absolute; inset: 6%; border: 1px solid #b6abff91; border-radius: 47%; transform: rotate(-24deg) scaleX(1.12); }
+.glass-card { border: 1px solid #e8e1ff45; border-radius: 1.25rem; background: linear-gradient(134deg,#4f407ebb,#17162ce8); box-shadow: 0 12px 38px #09071969; backdrop-filter: blur(16px); padding: 1.45rem; }
+.glass-main { position: absolute; width: min(71%, 350px); top: 24%; left: 11%; }
+.glass-main > p, .glass-chip { display: flex; align-items: center; gap: .55rem; color: #e4d9ff; }
+.glass-main strong { display: block; margin: .65rem 0 1rem; font-size: clamp(1rem,2vw,1.43rem); line-height: 1.15; }
+.glass-main > div { font-size: .77rem; margin-top: .55rem; display: flex; gap: .45rem; align-items: center; }
+.glass-main > div span { width: .4rem; height: .4rem; flex: none; border-radius: 50%; background: #91ecea; }
+.glass-chip { position: absolute; bottom: 15%; right: 0; font-size: .78rem; padding: .7rem .9rem; }
+.glass-intro, .glass-source { text-align: center; }
+.glass-intro p, .glass-source p { margin-inline: auto; justify-content: center; }
+.glass-features { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; }
+.glass-features svg { margin-bottom: 1rem; color: #a6f6f2; }
+.glass-features p { margin-top: .8rem; color: #e2d9f6; }
+.glass-workflow { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem 5rem; }
+.glass-workflow details { border-bottom: 1px solid #e1d5ff40; }
+.glass-source { background: radial-gradient(ellipse at 50% 80%,#322253,transparent 70%); }
+@media (max-width: 720px) {
+  .glass-hero, .glass-workflow { grid-template-columns: minmax(0,1fr); min-height: 0; }
+  .glass-hero { padding-block: 2.5rem 1rem; }
+  .glass-hero h1 { font-size: clamp(2.9rem, 12.5vw, 5.5rem); }
+  .glass-stage { width: min(100%, 500px); margin-inline: auto; min-height: 315px; min-width: 0; overflow: clip; }
+  .glass-features { grid-template-columns: 1fr; }
+}
+@media (max-width: 500px) {
+  .glass-orbit { inset: 10% 12%; transform: rotate(-18deg); }
+}
+
