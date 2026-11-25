@@ -4,7 +4,7 @@ import projects from "@/data/projects.json";
 import { caseStudies } from "@/data/case-studies";
 import { services } from "@/data/services";
 import { absoluteUrl } from "@/lib/site";
-import { showcasePath, themeRoute, themes } from "@/data/showcase";
+import { showcasePath, themePhoto, themeRoute, themeStoryPhotoPath, themeThumbnail, themes } from "@/data/showcase";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
@@ -12,9 +12,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: absoluteUrl("/services"), changeFrequency: "monthly", priority: 0.9 },
     { url: absoluteUrl("/projects"), changeFrequency: "monthly", priority: 0.9 },
     { url: absoluteUrl("/blog"), changeFrequency: "weekly", priority: 0.8 },
-    { url: absoluteUrl(showcasePath), changeFrequency: "monthly", priority: 0.9 },
+    {
+      url: absoluteUrl(showcasePath), changeFrequency: "monthly", priority: 0.9,
+      images: themes.map((theme) => absoluteUrl(themeThumbnail(theme)))
+    },
     ...themes.map((theme) => ({
       url: absoluteUrl(themeRoute(theme.slug)),
+      images: [absoluteUrl(themePhoto(theme).src), absoluteUrl(themeStoryPhotoPath(theme))],
       changeFrequency: "monthly" as const,
       priority: 0.8
     })),

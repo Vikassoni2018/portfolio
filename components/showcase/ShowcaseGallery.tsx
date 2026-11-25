@@ -11,7 +11,7 @@ import "./gallery.css";
 const categories = ["All styles", ...new Set(themes.map((theme) => theme.category))] as const;
 const featured = [themes[0], themes[5], themes[4]];
 
-export function ShowcaseGallery() {
+export function ShowcaseGallery({ serviceHref }: { serviceHref: string }) {
   const [selected, setSelected] = useState<(typeof categories)[number]>("All styles");
   const scope = useRef<HTMLDivElement>(null);
   const grid = useRef<HTMLDivElement>(null);
@@ -65,6 +65,9 @@ export function ShowcaseGallery() {
       <div ref={grid} className="showcase-cards">
         {filtered.map((theme) => <ThemeCard key={theme.slug} theme={theme} />)}
       </div>
+      <p className="mt-8 text-sm leading-7">
+        Found a style that fits? Explore <a className="font-bold text-blue-800 underline underline-offset-4" href={serviceHref}>custom landing page development</a> for Shopify, SaaS, and campaigns.
+      </p>
     </section>
   </div>;
 }

@@ -4,7 +4,9 @@ import { notFound } from "next/navigation";
 import { JsonLd } from "@/components/JsonLd";
 import { PageShell } from "@/components/PageShell";
 import projects from "@/data/projects.json";
-import { getService, services } from "@/data/services";
+import { getService, landingPageServiceSlug, services } from "@/data/services";
+import { showcasePath, themeRoute, themes } from "@/data/showcase";
+import { storefrontExamples } from "@/data/showcase-search";
 import { breadcrumbSchema, jsonLdGraph, personId } from "@/lib/seo";
 import { absoluteUrl, socialImage } from "@/lib/site";
 import Link from "next/link";
@@ -49,6 +51,9 @@ export default async function ServicePage({ params }: Params) {
   if (!service) notFound();
 
   const path = `/services/${service.slug}`;
+  const examples = service.slug === landingPageServiceSlug ? themes
+    : service.slug === "shopify-theme-development" ? themes.filter((theme) => storefrontExamples.includes(theme.slug))
+    : [];
   const proof = service.relatedProjectIds
     .map((id) => projects.find((project) => project.id === id))
     .filter((project): project is (typeof projects)[number] => Boolean(project));
@@ -131,6 +136,32 @@ export default async function ServicePage({ params }: Params) {
           </div>
         </div>
       </section>
+
+      {examples.length > 0 && (
+        <section className="bg-white" aria-labelledby="landing-examples">
+          <div className="mx-auto max-w-[1240px] px-5 py-14 sm:px-8 lg:px-10">
+            <h2 id="landing-examples" className="text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">
+              Landing page design examples
+            </h2>
+            <p className="mt-3 max-w-2xl leading-7 text-slate-600">
+              Explore interactive portfolio concepts for fictional brands and compare how different designs present a product or service.
+            </p>
+            <ul className="mt-6 flex flex-wrap gap-3">
+              {examples.map((theme) => (
+                <li key={theme.slug}>
+                  <Link href={themeRoute(theme.slug)} prefetch={false}
+                    className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-slate-200 px-4 py-2 text-sm font-bold text-blue-800 hover:border-blue-300 hover:bg-blue-50">
+                    {theme.name} landing page <ArrowUpRight size={15} aria-hidden="true" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <Link href={showcasePath} className="mt-5 inline-flex min-h-11 items-center font-bold text-blue-800 underline underline-offset-4">
+              Compare styles in the Design Showcase
+            </Link>
+          </div>
+        </section>
+      )}
 
       {proof.length ? (
         <section className="bg-white">

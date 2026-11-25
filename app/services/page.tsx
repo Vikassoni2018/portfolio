@@ -7,9 +7,9 @@ import { breadcrumbSchema, jsonLdGraph, personId } from "@/lib/seo";
 import { absoluteUrl, socialImage } from "@/lib/site";
 import Link from "next/link";
 
-const title = "Shopify & Backend Development Services";
+const title = "Shopify, Landing Page & Backend Development Services";
 const description =
-  "Explore Shopify app and theme development, subscription billing, payment integration, and PHP backend services for eCommerce and SaaS businesses.";
+  "Explore custom landing page design, Shopify app and theme development, payment integration, and PHP backend services for eCommerce and SaaS businesses.";
 
 export const metadata: Metadata = {
   title,
@@ -58,7 +58,7 @@ export default function ServicesIndexPage() {
         <div className="mx-auto max-w-[1240px] px-5 py-14 sm:px-8 sm:py-16 lg:px-10 lg:py-20">
           <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-blue-600">Services</p>
           <h1 className="mt-4 max-w-3xl text-4xl font-black leading-[1.05] tracking-[-0.04em] text-slate-950 sm:text-5xl lg:text-6xl">
-            Shopify & backend development services
+            Shopify, landing page & backend development services
           </h1>
           <p className="mt-5 max-w-xl text-base font-medium leading-7 text-slate-600">{description}</p>
 

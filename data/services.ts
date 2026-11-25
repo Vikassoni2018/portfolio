@@ -42,6 +42,9 @@ function service(
   };
 }
 
+export const landingPageServiceSlug = "landing-page-development";
+export const landingPageServicePath = `/services/${landingPageServiceSlug}`;
+
 export const services: Service[] = [
   service(
     "shopify-app-development",
@@ -336,6 +339,27 @@ export const services: Service[] = [
       ],
     ],
   ),
+  {
+    ...service(
+      landingPageServiceSlug,
+      "Custom Landing Page Development",
+      "Landing page design and development for your next launch",
+      "Build a responsive landing page for a Shopify product, SaaS launch, or campaign. Choose a direction from the design showcase, then scope the content, interactions, and enquiry or storefront flow around your project.",
+      [
+        ["Page structure and responsive design", "Plan the page around the offer, the information visitors need, and the main action they should be able to take."],
+        ["Development and interaction", "Build the page in the existing stack, with animation or product previews where they help visitors understand the offer."],
+        ["Technical SEO and accessibility", "Set up page metadata, canonical URLs, social previews, and crawlable links. Check layout, keyboard navigation, and reduced-motion behavior."],
+        ["Launch checks and handover", "Verify the main visitor flow and document where to update the content, assets, and metadata."],
+      ],
+      [],
+      [
+        ["Can I start with one of the showcase styles?", "Yes. Pick a design concept and use its enquiry button to share that direction. The finished page can be adapted to your brand, audience, and content."],
+        ["Can this work with an existing Shopify store?", "Share the store and the campaign or product you want to launch. We can scope a page that fits the existing theme and the path to checkout."],
+      ]
+    ),
+    metaTitle: "Custom Landing Page Design & Development",
+    metaDescription: "Explore custom landing page design and development for Shopify, SaaS, and campaigns, with responsive layouts, GSAP motion, and technical SEO."
+  }
 ];
 
 export const primaryServices = services.slice(0, 6);

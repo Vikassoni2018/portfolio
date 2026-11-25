@@ -47,6 +47,19 @@
 :where(.concept) summary { cursor: pointer; padding: .4rem 0; font-weight: 700; }
 :where(.concept) details p { padding: .45rem 0; max-width: var(--reading); }
 .concept footer { padding-block: clamp(1.7rem, 5vw, 4rem) 1.4rem; }
+.concept-design-notes {
+  display: grid;
+  grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr);
+  gap: 1.5rem clamp(1.5rem, 5vw, 4rem);
+  padding-block-end: clamp(2rem, 5vw, 4rem);
+}
+.concept-design-notes h2 { font-size: clamp(1.6rem, 3.5vw, 3rem); }
+.concept-design-notes p { margin-block: .6rem .8rem; max-width: var(--reading); }
+.concept-design-notes nav { border-inline-start: 1px solid color-mix(in srgb, currentColor 27%, transparent); padding-inline-start: 1.25rem; }
+.concept-design-notes ul { margin-block-start: .65rem; }
+.concept-design-notes a { display: inline-flex; align-items: center; gap: .4rem; min-height: 44px; font-size: .9rem; font-weight: 700; text-decoration: underline; text-underline-offset: .2em; }
+.concept-design-notes a svg { flex: none; }
+.concept-service-links { display: flex; flex-wrap: wrap; column-gap: 1.15rem; }
 .concept-closing { display: flex; gap: 1.5rem; justify-content: space-between; align-items: end; padding: clamp(1.4rem, 5vw, 4rem); background: var(--surface); border-radius: var(--card-radius, 1rem); }
 .concept-closing > div { min-width: 0; }
 .concept-closing h2 { font-size: clamp(2rem, 4.65vw, 4.3rem); }
@@ -65,6 +78,8 @@
 }
 @media (max-width: 720px) {
   :where(.concept) h1 { font-size: clamp(2.9rem, 12.5vw, 5.5rem); }
+  .concept-design-notes { grid-template-columns: minmax(0, 1fr); }
+  .concept-design-notes nav { border-inline-start: 0; padding-inline-start: 0; }
 }
 @media (max-width: 500px) {
   .brand-nav { min-height: 0; padding-top: 1rem; align-items: start; flex-direction: column; gap: .15rem; }

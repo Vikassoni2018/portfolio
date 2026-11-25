@@ -2,13 +2,14 @@ import assert from "node:assert/strict";
 import { createRequire } from "node:module";
 import path from "node:path";
 import sharp from "sharp";
-import { themes } from "../data/showcase.ts";
+import { themePhoto, themeStoryPhotoPath, themeThumbnail, themes } from "../data/showcase.ts";
 
 const require = createRequire(import.meta.url);
 const { chromium } = require("playwright");
 const { default: AxeBuilder } = require("@axe-core/playwright");
 const base = process.env.SHOWCASE_URL ?? "http://localhost:3000";
 const prefix = "/landing-page-designs";
+const servicePath = "/services/landing-page-development";
 const assetDirectory = path.resolve("public/showcase");
 const captureDemos = process.argv.includes("--capture-demos");
 const captureGallery = process.argv.includes("--capture-gallery");
@@ -52,6 +53,7 @@ try {
     });
 
     const sitemap = await (await context.request.get(`${base}/sitemap.xml`)).text();
+    await checkSearchMarkup(sitemap);
     for (const width of [1440, 768, 390, 320]) {
       await page.setViewportSize({ width, height: 900 });
       for (const theme of themes) {
@@ -244,7 +246,7 @@ try {
     assert.deepEqual(runtimeErrors, []);
     assert.deepEqual(failedRequests, []);
     assert.deepEqual(accessibility, []);
-    console.log("Verified gallery filters, responsive iframe widths, toolbar, WebGL and fallback, enquiry submission contract, metadata, sitemap and Axe WCAG scans.");
+    console.log("Verified gallery filters, responsive iframe widths, toolbar, WebGL and fallback, enquiry submission contract, crawlable SEO, and Axe WCAG scans.");
   }
 } finally {
   await browser.close();
@@ -253,6 +255,79 @@ try {
 async function visit(page, route) {
   const response = await page.goto(`${base}${route}`, { waitUntil: "domcontentloaded" });
   assert.equal(response?.status(), 200, route);
+}
+
+async function checkSearchMarkup(sitemap) {
+  const crawler = await browser.newContext({ javaScriptEnabled: false });
+  try {
+    const page = await crawler.newPage();
+    const descriptions = new Set();
+    const titles = new Set();
+    await visit(page, prefix);
+    const galleryUrl = await page.locator('link[rel="canonical"]').getAttribute("href");
+    const origin = new URL(galleryUrl).origin;
+    assert.equal(galleryUrl, origin + prefix);
+    assert.equal(await page.locator(`main a[href="${servicePath}"]`).count(), 1);
+    assert.equal(await page.locator(".showcase-card").count(), themes.length);
+    const galleryGraph = await schemaNodes(page);
+    const collection = galleryGraph.find((node) => node["@type"] === "CollectionPage");
+    assert.equal(collection.mainEntity.itemListElement.length, themes.length);
+    assert.equal(collection.relatedLink, origin + servicePath);
+
+    for (const theme of themes) {
+      const route = `${prefix}/${theme.slug}`;
+      const canonical = origin + route;
+      const description = await page.goto(`${base}${route}`).then(async (response) => {
+        assert.equal(response?.status(), 200);
+        return page.locator('meta[name="description"]').getAttribute("content");
+      });
+      const title = await page.title();
+      assert.ok(description.includes(theme.brand) && !descriptions.has(description), theme.slug);
+      assert.ok(title.includes(theme.title) && !titles.has(title), theme.slug);
+      descriptions.add(description);
+      titles.add(title);
+      assert.equal(await page.locator('link[rel="canonical"]').getAttribute("href"), canonical);
+      assert.equal(await page.locator('meta[property="og:title"]').getAttribute("content"), title);
+      assert.equal(await page.locator('meta[name="twitter:description"]').getAttribute("content"), description);
+      assert.equal(await page.locator(`.concept-design-notes a[href="${servicePath}"]`).count(), 1);
+      assert.equal(await page.locator(".concept-design-notes nav a").count(), 2);
+      assert.ok(await page.locator('.concept-design-notes p').isVisible());
+
+      const graph = await schemaNodes(page);
+      const webPage = graph.find((node) => node["@type"] === "WebPage");
+      const work = graph.find((node) => node["@type"] === "CreativeWork");
+      const crumbs = graph.find((node) => node["@type"] === "BreadcrumbList");
+      assert.equal(webPage.url, canonical);
+      assert.equal(webPage.mainEntity["@id"], work["@id"]);
+      assert.equal(webPage.breadcrumb["@id"], crumbs["@id"]);
+      assert.equal(crumbs.itemListElement.at(-1).item, canonical);
+      const themeSitemap = sitemap.split("<url>").find((item) => item.includes(`<loc>${canonical}</loc>`));
+      for (const asset of [themePhoto(theme).src, themeStoryPhotoPath(theme)]) {
+        assert.ok(themeSitemap?.includes(`<image:loc>${origin}${asset}</image:loc>`));
+        assert.ok((await crawler.request.get(base + asset)).ok(), asset);
+      }
+      assert.ok(sitemap.includes(`<image:loc>${origin}${themeThumbnail(theme)}</image:loc>`));
+    }
+
+    await visit(page, servicePath);
+    assert.equal(await page.locator('link[rel="canonical"]').getAttribute("href"), origin + servicePath);
+    assert.ok(sitemap.includes(`<loc>${origin}${servicePath}</loc>`));
+    assert.equal(await page.locator(`section[aria-labelledby="landing-examples"] a[href^="${prefix}/"]`).count(), themes.length);
+    await visit(page, "/services/shopify-theme-development");
+    assert.equal(await page.locator(`section[aria-labelledby="landing-examples"] a[href^="${prefix}/"]`).count(), 4);
+    await visit(page, `${prefix}/glassmorphism?preview=1&motion=off`);
+    assert.equal(await page.locator('link[rel="canonical"]').getAttribute("href"), `${origin}${prefix}/glassmorphism`);
+    const robots = await (await crawler.request.get(`${base}/robots.txt`)).text();
+    assert.ok(robots.includes(`Sitemap: ${origin}/sitemap.xml`));
+    console.log("Verified server-rendered SEO and image sitemap entries for the showcase and all 10 concepts, with service links and canonical preview URLs.");
+  } finally {
+    await crawler.close();
+  }
+}
+
+async function schemaNodes(page) {
+  return (await page.locator('script[type="application/ld+json"]').allTextContents())
+    .flatMap((markup) => JSON.parse(markup)["@graph"] ?? []);
 }
 
 async function settledScreenshot(page, hideSelector) {

@@ -6,13 +6,13 @@ The gallery is at `/landing-page-designs`. Each of the ten concepts is a standal
 
 - `app/landing-page-designs/` contains the gallery and standalone concept route. `app/sitemap.ts` adds all eleven URLs.
 - `components/showcase/` contains the gallery, preview controls, GSAP setup, ten layouts, and the Three.js product viewer.
-- `data/showcase.ts` and `lib/showcase-seo.ts` provide the registry, canonical URLs, metadata, and structured data. `data/showcase-stories.ts` holds the photography chapter and quick guide for each concept.
+- `data/showcase.ts`, `data/showcase-search.ts`, and `lib/showcase-seo.ts` provide the registry, search descriptions, related themes, canonical URLs, and structured data. `data/showcase-stories.ts` holds the photography chapter and quick guide for each concept.
 - `components/PublicNavbar.tsx`, `components/MobileNavigation.tsx`, `components/EnquiryForm.tsx`, and `lib/enquiry.ts` integrate the gallery and theme enquiries with the portfolio.
 - `public/showcase/` contains the stock photos, fonts, previews, and social cards. `scripts/showcase-qa.mjs` tests the routes and regenerates the screenshots.
 
 ## Add a theme
 
-1. Add its slug, brand, category, palette, typeface, SEO title, description, image text and motion highlights to [the registry](../data/showcase.ts). Extend the category list through the new record if needed.
+1. Add its slug, brand, category, palette, typeface, SEO title, description, image text and motion highlights to [the registry](../data/showcase.ts). Add a search description, visible design note, and related theme links in [the search details](../data/showcase-search.ts).
 2. Add a server component and a scoped stylesheet in [the themes directory](../components/showcase/themes). Use a theme-specific layout, one `h1`, a `main` with `id="main-content"`, and persistent section IDs for the in-page navigation. Register a lazy import in [the component map](../components/showcase/themes/index.ts). The gallery, toolbar, static params, metadata, breadcrumbs and sitemap read from the registry.
 3. Add the relevant ScrollTrigger and micro-interaction logic to [the concept animation module](../components/showcase/motion.ts). Scope new animations to the demo root, keep content visible at rest, and clean up event listeners and tweens when the GSAP context reverts. Test with both the operating system preference and the toolbar toggle.
 4. Add the main photo as `public/showcase/<visual>.webp` and the chapter photo as `public/showcase/<visual>-story.webp`. Add the chapter and guide in `data/showcase-stories.ts` and record the photo sources below. Include the license for any local font. Generate the preview WebP and social PNG from the implemented page.
@@ -49,6 +49,14 @@ npm run test:showcase -- --capture-gallery
 ```
 
 The capture script uses a 1200 × 675 browser viewport with reduced motion, hides the portfolio toolbar, and exports real screenshots as 960 × 540 WebP previews and 1200 × 630 PNG share images.
+
+## Search and internal links
+
+The gallery and each concept ship page-specific titles, descriptions, social metadata, canonical URLs, and linked JSON-LD. Theme preview parameters resolve to the same canonical concept. The sitemap pairs each theme with its two stock photos and lists the rendered screenshots under the gallery.
+
+Each demo includes visible design notes and two related examples. The custom landing page development service links back to every theme, and the Shopify theme service links back to the storefront examples.
+
+The production origin comes from `NEXT_PUBLIC_SITE_URL`. The browser QA also runs with JavaScript disabled to verify search metadata, related links, and image sitemap entries in the production build.
 
 ## Stock imagery and font licenses
 
