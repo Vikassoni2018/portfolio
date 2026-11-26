@@ -1,34 +1,56 @@
 @font-face { font-family: Offbeat Archivo; src: url('/showcase/fonts/brutal.woff2') format('woff2'); font-weight: 700; font-display: swap; }
 .concept--brutal { --face: Offbeat Archivo; --paper: #ffe45a; --ink: #201d1b; --accent: #201d1b; --button: #a7f2c0; --button-ink: #201d1b; --surface: #ff83ba; --focus: #5932a5; --card-radius: 0; }
-.concept--brutal p, .concept--brutal nav, .concept--brutal details { font-family: system-ui, sans-serif; }
-.concept--brutal .brand-nav { border-bottom: 3px solid; }
+.concept--brutal p, .concept--brutal nav, .concept--brutal details, .brutal-badge { font-family: system-ui, sans-serif; }
+.concept--brutal .brand-nav { border-bottom: 3px solid #201d1b; }
 .concept--brutal .brand-name { text-transform: uppercase; }
-.concept--brutal .concept-button { border: 3px solid; border-radius: 0; box-shadow: 5px 5px #201d1b; }
+.concept--brutal .concept-button { border: 3px solid #201d1b; border-radius: 0; box-shadow: 5px 5px #201d1b; }
 .brutal-hero { min-height: 626px; display: grid; align-items: center; grid-template-columns: 1.43fr .7fr; gap: 1.7rem; padding-block: 3rem; }
 .brutal-hero h1 { text-transform: uppercase; font-size: clamp(3rem,7.65vw,8rem); line-height: .95; }
 .brutal-hero em { display: inline-block; background: #ff82b8; padding: .05em .13em; margin-top: .07em; transform: rotate(-3deg); }
 .brutal-photo { position: relative; width: 92%; justify-self: center; transform: rotate(5deg); }
-.brutal-photo .concept-photo { aspect-ratio: .9; border: 4px solid; box-shadow: 10px 10px #201d1b; }
-.brutal-photo span { display: inline-flex; align-items: center; gap: .25rem; padding: .38rem .7rem; position: absolute; z-index: 1; bottom: 8%; left: -5%; background: #a7f2c0; font-size: .8rem; border: 3px solid; transform: rotate(-10deg); }
-.brutal-ticker { overflow: hidden; padding: .6rem 0; border-block: 3px solid; background: #a7f2c0; }
+.brutal-photo .concept-photo { aspect-ratio: .9; border: 4px solid #201d1b; box-shadow: 10px 10px #201d1b; }
+.brutal-photo span { display: inline-flex; align-items: center; gap: .25rem; padding: .38rem .7rem; position: absolute; z-index: 1; bottom: 8%; left: -5%; background: #a7f2c0; font-size: .8rem; font-weight: 800; border: 3px solid #201d1b; transform: rotate(-10deg); }
+.brutal-ticker { overflow: hidden; padding: .6rem 0; border-block: 3px solid #201d1b; background: #a7f2c0; }
 .brutal-ticker > div { width: max-content; white-space: nowrap; padding-inline: 1rem; font-size: clamp(1.05rem,2.7vw,2rem); font-weight: 800; }
-.brutal-work > div { display: grid; grid-template-columns: 1.05fr .85fr; gap: 1.3rem; align-items: end; margin-top: 1.7rem; }
-.brutal-work article { padding: 1rem; border: 3px solid; box-shadow: 7px 7px; background: #fffaf0; }
-.brutal-work article p { margin-top: .4rem; }
-.brutal-poster { padding: 1.2rem; margin-bottom: 1rem; background: #f986bc; font-size: clamp(2.6rem,6vw,6.5rem); line-height: .82; position: relative; }
-.brutal-poster span { position: absolute; right: 1.15rem; top: .7rem; }
-.brutal-work article:nth-child(2) .brutal-poster { background: #b5a2ff; }
-.brutal-services { background: #a7f2c0; border-block: 3px solid; }
+
+.brutal-work-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.35rem; margin-top: 1.7rem; }
+.brutal-work article, .brutal-team-card {
+  display: flex; flex-direction: column; padding: .95rem; border: 3px solid #201d1b; box-shadow: 7px 7px #201d1b; background: #fffaf0;
+}
+.brutal-work-grid article:nth-child(2) { background: #ffb5d8; }
+.brutal-work-grid article:nth-child(3) { background: #a7f2c0; }
+.brutal-work-grid article:nth-child(4) { background: #c5b6ff; }
+.brutal-card-photo { aspect-ratio: 1.55; border: 3px solid #201d1b; }
+.brutal-card-body { padding: 1rem .15rem .15rem; display: flex; flex-direction: column; gap: .45rem; }
+.brutal-badge { display: inline-flex; width: fit-content; padding: .22rem .55rem; background: #201d1b; color: #ffe45a; font-size: .72rem; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; }
+
+.brutal-stats-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; margin-top: 1.65rem; }
+.brutal-stat-tile { padding: 1.35rem 1.1rem; border: 3px solid #201d1b; box-shadow: 6px 6px #201d1b; background: #fffaf0; }
+.brutal-stat-tile:nth-child(2) { background: #a7f2c0; }
+.brutal-stat-tile:nth-child(3) { background: #ff83ba; }
+.brutal-stat-tile:nth-child(4) { background: #c5b6ff; }
+.brutal-stat-tile strong { display: block; font-size: clamp(2.1rem, 4.5vw, 3.6rem); line-height: 1; }
+.brutal-stat-tile p { margin-top: .5rem; font-weight: 700; }
+
+.brutal-team-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.15rem; margin-top: 1.65rem; }
+.brutal-team-card:nth-child(2) { background: #a7f2c0; }
+.brutal-team-card:nth-child(3) { background: #ffb5d8; }
+
+.brutal-services { background: #a7f2c0; border-block: 3px solid #201d1b; }
 .brutal-services h2 { margin-bottom: 1.25rem; }
-.brutal-services h3 { display: flex; align-items: center; justify-content: space-between; padding: .85rem .15rem; border-bottom: 2px solid; }
-.brutal-process details { border-bottom: 2px solid; }
+.brutal-services h3 { display: flex; align-items: center; justify-content: space-between; padding: .9rem .15rem; border-bottom: 2px solid #201d1b; }
+.brutal-process details { border-bottom: 2px solid #201d1b; }
 .brutal-process h2 { margin-bottom: 1.2rem; }
-.concept--brutal .concept-closing { border: 3px solid; box-shadow: 6px 6px; }
-@media (max-width:720px) {
-  .brutal-hero, .brutal-work > div { grid-template-columns: 1fr; min-height: 0; }
+.concept--brutal .concept-closing { border: 3px solid #201d1b; box-shadow: 6px 6px #201d1b; }
+
+@media (max-width: 820px) {
+  .brutal-stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .brutal-team-grid { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 720px) {
+  .brutal-hero, .brutal-work-grid, .brutal-stats-grid { grid-template-columns: minmax(0,1fr); min-height: 0; }
   .brutal-hero { gap: 2.6rem; padding-bottom: 3.5rem; }
-  .brutal-hero h1 { font-size: clamp(2.6rem,12.3vw,6rem); }
+  .brutal-hero h1 { font-size: clamp(2.6rem,12.3vw,5.8rem); }
   .brutal-photo { width: min(85%,390px); }
   .brutal-photo .concept-photo { aspect-ratio: 1.2; }
 }
-

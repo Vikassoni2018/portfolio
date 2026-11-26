@@ -29,32 +29,48 @@
 .concept-story--wide .concept-kicker { grid-column: 1 / -1; }
 .concept-story--wide .concept-story-photo { aspect-ratio: 2.65; }
 .concept-guide { padding-block-start: clamp(1.25rem, 4vw, 3.5rem); }
-.concept-guide h2 { max-inline-size: 24ch; }
+.concept-guide-head h2 { max-inline-size: 24ch; }
 .concept-guide-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: clamp(.8rem, 2vw, 1.3rem);
   margin-block-start: 1.5rem;
 }
-.concept-guide-grid article {
-  padding: clamp(1.15rem, 2.5vw, 2rem);
+.concept-guide-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: clamp(.75rem, 1.5vw, 1rem);
   border-radius: var(--story-radius, var(--card-radius, 1rem));
   background: var(--guide-surface, var(--surface));
 }
+.concept-guide-photo {
+  aspect-ratio: 1.52;
+  border-radius: calc(var(--story-radius, var(--card-radius, 1rem)) * .65);
+}
+.concept-guide-body {
+  padding: clamp(.85rem, 1.8vw, 1.25rem) clamp(.25rem, .6vw, .5rem) clamp(.25rem, .6vw, .45rem);
+}
 .concept-guide-grid h3 { line-height: 1.18; }
-.concept-guide-grid p { margin-block-start: .7rem; }
+.concept-guide-grid p { margin-block-start: .6rem; }
 
-.concept--glass .concept-story-photo, .concept--glass .concept-guide-grid article {
+.concept--glass .concept-story-photo, .concept--glass .concept-guide-card {
   border: 1px solid #b8a4ff56;
   box-shadow: 0 15px 50px #06061274;
+  background: linear-gradient(145deg, #2d2351aa, #151228dd);
+  backdrop-filter: blur(14px);
 }
 .concept--glass .concept-story-photo img { filter: saturate(.85); }
 .concept--clay .concept-story-photo {
   border: .35rem solid #ebdbfa;
   box-shadow: .55rem .7rem #e5d2fa;
 }
-.concept--clay .concept-guide-grid article:nth-child(2) { background: #faddce; }
-.concept--clay .concept-guide-grid article:nth-child(3) { background: #d4eddf; }
+.concept--clay .concept-guide-card {
+  box-shadow: inset -6px -8px 14px #52378020, inset 6px 6px 12px #ffffffb0, 10px 14px 24px #7652a61c;
+}
+.concept--clay .concept-guide-card:nth-child(2) { background: #faddce; }
+.concept--clay .concept-guide-card:nth-child(3) { background: #d4eddf; }
+.concept--clay .concept-guide-photo { border-radius: 1.25rem; }
 .concept--cartoon .concept-story { --story-position: center 36%; }
 .concept--cartoon .concept-story-photo {
   max-width: 34rem;
@@ -62,35 +78,45 @@
   aspect-ratio: 1.08;
   border-radius: 1.7rem 4.5rem 1.7rem 3rem;
 }
-.concept--cartoon .concept-story-photo, .concept--cartoon .concept-guide-grid article {
+.concept--cartoon .concept-story-photo, .concept--cartoon .concept-guide-card {
   border: 3px solid currentColor;
   box-shadow: 4px 4px;
 }
-.concept--cartoon .concept-guide-grid article:nth-child(2) { background: #ffb3b7; }
-.concept--cartoon .concept-guide-grid article:nth-child(3) { background: #cde599; }
-.concept--neu .concept-story-photo, .concept--neu .concept-guide-grid article { box-shadow: var(--raised); }
-.concept--brutal .concept-story-photo, .concept--brutal .concept-guide-grid article {
+.concept--cartoon .concept-guide-photo { border: 2px solid #203727; border-radius: .95rem; }
+.concept--cartoon .concept-guide-card:nth-child(2) { background: #ffb3b7; }
+.concept--cartoon .concept-guide-card:nth-child(3) { background: #cde599; }
+.concept--neu .concept-story-photo, .concept--neu .concept-guide-card { box-shadow: var(--raised); }
+.concept--neu .concept-guide-photo { border-radius: 1.15rem; box-shadow: var(--recessed); }
+.concept--brutal .concept-story-photo, .concept--brutal .concept-guide-card {
   border: 3px solid currentColor;
   box-shadow: 6px 6px;
 }
 .concept--brutal .concept-guide { --guide-surface: #a7f2c0; }
-.concept--brutal .concept-guide-grid article:nth-child(2) { background: #fffaf0; }
+.concept--brutal .concept-guide-card:nth-child(2) { background: #fffaf0; }
+.concept--brutal .concept-guide-photo { border: 2px solid #201d1b; border-radius: 0; }
 .concept--luxury .concept-story { --story-position: center 56%; }
 .concept--luxury .concept-story-photo { aspect-ratio: 1.05; }
-.concept--luxury .concept-guide-grid article {
-  padding-inline: 0;
+.concept--luxury .concept-guide-card {
+  padding: 1rem 0 0;
   border-top: 1px solid #84705975;
   background: transparent;
 }
+.concept--luxury .concept-guide-photo { aspect-ratio: 1.32; border-radius: 0; }
+.concept--luxury .concept-guide-body { padding: 1rem 0 0; }
 .concept--retro .concept-story-photo { border: .55rem double #843721; }
-.concept--retro .concept-guide-grid article { border-block-start: 4px double #843721; }
+.concept--retro .concept-guide-card { border: 4px double #843721; }
+.concept--retro .concept-guide-photo { border: 2px solid #843721; border-radius: 0; }
 .concept--cyber .concept-story { --story-position: center 60%; }
-.concept--cyber .concept-story-photo, .concept--cyber .concept-guide-grid article { border: 1px solid #9b4f9b; }
-.concept--cyber .concept-guide-grid article h3 { color: #8cf7e9; }
-.concept--bento .concept-guide-grid article:nth-child(2) { background: #f1ebf8; }
-.concept--bento .concept-guide-grid article:nth-child(3) { background: #edf4e1; }
+.concept--cyber .concept-story-photo, .concept--cyber .concept-guide-card { border: 1px solid #9b4f9b; }
+.concept--cyber .concept-guide-photo { border-radius: 0; border-bottom: 1px solid #8cf7e966; }
+.concept--cyber .concept-guide-card h3 { color: #8cf7e9; }
+.concept--bento .concept-guide-card { border: 1px solid #264f3924; }
+.concept--bento .concept-guide-card:nth-child(2) { background: #f1ebf8; }
+.concept--bento .concept-guide-card:nth-child(3) { background: #edf4e1; }
+.concept--bento .concept-guide-photo { border-radius: 1.15rem; }
 .concept--immersive .concept-story { --story-position: center 43%; }
-.concept--immersive .concept-guide-grid article { border-block-start: 2px solid #ffab82; }
+.concept--immersive .concept-guide-card { border-block-start: 2px solid #ffab82; background: #1d1f28; }
+.concept--immersive .concept-guide-photo { border-radius: .2rem; }
 
 @media (max-width: 800px) {
   .concept-story, .concept-story--photo-first { grid-template: "copy" "photo" / minmax(0, 1fr); }

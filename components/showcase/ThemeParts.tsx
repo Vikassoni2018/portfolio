@@ -22,13 +22,13 @@ export function BrandNav({
 }
 
 export function Photo({
-  theme, priority = false, className = "", sizes = "(max-width: 700px) 100vw, (max-width: 1100px) 65vw, 700px",
+  theme, priority = false, loading, className = "", sizes = "(max-width: 700px) 100vw, (max-width: 1100px) 65vw, 700px",
   asset = themePhoto(theme)
-}: ThemeProps & { priority?: boolean; className?: string; sizes?: string; asset?: { src: string; alt: string } }) {
+}: ThemeProps & { priority?: boolean; loading?: "eager" | "lazy"; className?: string; sizes?: string; asset?: { src: string; alt: string } }) {
   return (
     <figure className={`concept-photo ${className}`}>
       <Image src={asset.src} alt={asset.alt} fill sizes={sizes}
-        loading={priority ? "eager" : "lazy"} fetchPriority={priority ? "high" : undefined} />
+        loading={priority ? "eager" : (loading ?? "lazy")} fetchPriority={priority ? "high" : undefined} />
     </figure>
   );
 }

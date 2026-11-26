@@ -60,7 +60,7 @@ The production origin comes from `NEXT_PUBLIC_SITE_URL`. The browser QA also run
 
 ## Stock imagery and font licenses
 
-The photographs and abstract render are hosted locally under the [Pexels License](https://www.pexels.com/license/). The CSS objects, citrus mascot and headphone model were created for the showcase. Self-hosted fonts include their SIL Open Font License files in [the font directory](../public/showcase/fonts).
+The photographs and abstract renders are hosted locally under the [Pexels License](https://www.pexels.com/license/), [Unsplash License](https://unsplash.com/license), and [Wikimedia Commons / Openverse Creative Commons licenses](https://commons.wikimedia.org/). Every card across the ten concepts—including feature cards, interactive selectors, lookbooks, galleries, and the three quick-guide cards—uses locally optimized WebP stock imagery (`public/showcase/<visual>-1.webp` .. `<visual>-7.webp`) alongside the hero and chapter photos (`<visual>.webp` and `<visual>-story.webp`). Self-hosted fonts include their SIL Open Font License files in [the font directory](../public/showcase/fonts).
 
 | Theme | Stock source |
 |---|---|

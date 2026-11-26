@@ -1,32 +1,57 @@
 @font-face { font-family: Zingy Bricolage; src: url('/showcase/fonts/cartoon.woff2') format('woff2'); font-weight: 400 800; font-display: swap; }
 .concept--cartoon { --face: Zingy Bricolage; --paper: #fff3bb; --ink: #203727; --accent: #aa3b20; --button: #203727; --button-ink: #fff8d9; --surface: #ffb371; --focus: #592f95; --card-radius: 1.5rem; }
-.concept--cartoon .brand-nav { border-bottom: 2px dashed #20372773; }
+.concept--cartoon .brand-nav { border-bottom: 3px dashed #20372780; }
 .concept--cartoon .brand-name { font-size: 1.55rem; }
-.concept--cartoon .concept-button { border-radius: 2rem; box-shadow: 4px 4px #f08343; }
+.concept--cartoon .concept-button { border-radius: 2rem; border: 3px solid #203727; box-shadow: 5px 5px #f08343; }
 .cartoon-hero { display: grid; grid-template-columns: 1.03fr .97fr; align-items: center; min-height: 615px; padding-block: 3rem; gap: 1.5rem; }
-.cartoon-hero h1 { font-size: clamp(4rem,9vw,9rem); font-weight: 800; line-height: .92; }
-.mascot-wrap { background: #ffcf6e; border-radius: 48% 44% 43% 48%; border: 3px solid #203727; rotate: 5deg; color: #374c32; }
+.cartoon-hero h1 { font-size: clamp(3.9rem,8.8vw,8.5rem); font-weight: 800; line-height: .92; }
+.mascot-wrap { position: relative; background: #ffcf6e; border-radius: 48% 44% 43% 48%; border: 3px solid #203727; box-shadow: 8px 8px #203727; rotate: 4deg; color: #374c32; }
 .mascot-wrap svg { width: 100%; overflow: visible; }
 .mascot { transform-origin: center; }
-.cartoon-strip, .cartoon-serve { text-align: center; }
-.cartoon-strip { padding: .8rem var(--gutter); border-block: 3px solid #203727; background: #ff8d52; font-weight: 800; font-size: clamp(1rem,2.4vw,1.8rem); }
-.cartoon-strip span { margin-inline: .55rem; }
-.cartoon-flavors > div { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; margin-top: 2rem; }
-.cartoon-flavors article { position: relative; padding: 1.4rem; border: 3px solid #203727; border-radius: 1.5rem; background: #ffd074; box-shadow: 5px 5px #203727; }
-.cartoon-flavors article:nth-child(2) { background: #ffb3b7; }
-.cartoon-flavors article:nth-child(3) { background: #cde599; }
-.soda-can { width: 5rem; min-height: 7.2rem; margin: .6rem auto 1.65rem; border: 3px solid #203727; border-radius: 1rem; background: #f7944d; color: #203727; rotate: -9deg; display: grid; place-items: center; font-weight: 800; line-height: .9; text-align: center; box-shadow: inset -8px 0 #23372427, 5px 5px #203727; padding-block: .55rem; }
+.cartoon-bubble {
+  position: absolute; top: -1rem; left: -1rem; padding: .5rem .85rem; background: #fff9de; color: #203727;
+  border: 3px solid #203727; border-radius: 1.2rem; box-shadow: 4px 4px #203727; font-weight: 900; font-size: .88rem; rotate: -8deg; z-index: 2;
+}
+.cartoon-strip { overflow: hidden; padding: .8rem 0; border-block: 3px solid #203727; background: #ff8d52; font-weight: 800; font-size: clamp(1rem,2.4vw,1.8rem); }
+.cartoon-strip > div { width: max-content; white-space: nowrap; padding-inline: 1rem; }
+
+.cartoon-flavors > div, .cartoon-packs-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.15rem; margin-top: 1.8rem; }
+.cartoon-grid-4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; margin-top: 1.8rem; }
+.cartoon-flavors article, .cartoon-comic-card {
+  position: relative; display: flex; flex-direction: column; padding: .85rem; border: 3px solid #203727;
+  border-radius: 1.5rem; background: #ffd074; box-shadow: 6px 6px #203727; overflow: hidden;
+}
+.cartoon-flavors article:nth-child(2), .cartoon-packs-grid .cartoon-comic-card:nth-child(2) { background: #ffb3b7; }
+.cartoon-flavors article:nth-child(3), .cartoon-packs-grid .cartoon-comic-card:nth-child(3) { background: #cde599; }
+.cartoon-grid-4 .cartoon-comic-card { background: #fff7db; }
+.cartoon-grid-4 .cartoon-comic-card:nth-child(2) { background: #ffd89b; }
+.cartoon-grid-4 .cartoon-comic-card:nth-child(3) { background: #d6efaa; }
+.cartoon-grid-4 .cartoon-comic-card:nth-child(4) { background: #ffc4c7; }
+.cartoon-card-photo { aspect-ratio: 1.38; border: 3px solid #203727; border-radius: 1rem; }
+.cartoon-flavor-body, .cartoon-comic-body { padding: .95rem .25rem .25rem; display: flex; flex-direction: column; gap: .55rem; }
+.cartoon-can-row { display: flex; align-items: center; gap: .8rem; }
+.soda-can { flex: none; width: 3.6rem; min-height: 4.9rem; border: 3px solid #203727; border-radius: .75rem; background: #f7944d; color: #203727; rotate: -8deg; display: grid; place-items: center; font-weight: 800; font-size: .68rem; line-height: .95; text-align: center; box-shadow: inset -6px 0 #23372427, 4px 4px #203727; padding-block: .35rem; }
 .cartoon-flavors article:nth-child(2) .soda-can { background: #f87d91; rotate: 7deg; }
 .cartoon-flavors article:nth-child(3) .soda-can { background: #a2ca69; }
-.flavor-index { position: absolute; top: .75rem; right: .9rem; font-weight: 800; }
-.cartoon-story { display: grid; grid-template-columns: 1.1fr 1fr; align-items: center; gap: 2rem; }
-.cartoon-story .concept-photo { aspect-ratio: 1.35; border: 3px solid #203727; border-radius: 25% 6% 20% 8%; }
-.cartoon-serve { background: #ffd982; }
-.cartoon-serve p { margin-inline: auto; }
-@media(max-width:720px) {
-  .cartoon-hero, .cartoon-flavors > div, .cartoon-story { grid-template-columns: 1fr; }
-  .cartoon-hero { min-height: 0; gap: 2rem; }
-  .cartoon-hero h1 { font-size: clamp(3.5rem,13vw,6rem); }
-  .mascot-wrap { width: min(94%,455px); margin-inline: auto; }
-}
+.cartoon-tag { display: block; font-size: .74rem; font-weight: 800; text-transform: uppercase; letter-spacing: .05em; color: #203727; }
+.flavor-index { position: absolute; top: 1.25rem; right: 1.25rem; padding: .2rem .5rem; border-radius: .6rem; background: #fff8dc; border: 2px solid #203727; font-weight: 900; font-size: .82rem; }
+.cartoon-pill { display: inline-flex; width: fit-content; padding: .24rem .62rem; border-radius: 99px; background: #203727; color: #fff8d9; font-size: .72rem; font-weight: 800; }
+.cartoon-pack-top { display: flex; align-items: center; justify-content: space-between; gap: .5rem; }
+.cartoon-pack-top strong { font-size: .95rem; font-weight: 900; }
 
+.cartoon-story { display: grid; grid-template-columns: 1.1fr 1fr; align-items: center; gap: 2rem; }
+.cartoon-story .concept-photo { aspect-ratio: 1.35; border: 3px solid #203727; border-radius: 25% 6% 20% 8%; box-shadow: 7px 7px #203727; }
+.cartoon-serve { background: #ffd982; border-block: 3px solid #203727; text-align: center; }
+.cartoon-serve > p { margin-inline: auto; }
+.cartoon-serve-details { max-width: 44rem; margin: 1.4rem auto 0; display: grid; gap: .75rem; text-align: left; }
+.cartoon-serve details { background: #fff8dc; border: 3px solid #203727; border-radius: 1.1rem; padding: .85rem 1.15rem; box-shadow: 4px 4px #203727; }
+
+@media (max-width: 960px) {
+  .cartoon-grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 720px) {
+  .cartoon-hero, .cartoon-flavors > div, .cartoon-packs-grid, .cartoon-grid-4, .cartoon-story { grid-template-columns: minmax(0,1fr); }
+  .cartoon-hero { min-height: 0; gap: 2rem; }
+  .cartoon-hero h1 { font-size: clamp(3.3rem,13vw,5.8rem); }
+  .mascot-wrap { width: min(92%,440px); margin-inline: auto; }
+}
