@@ -3,7 +3,7 @@
 .concept--cartoon .brand-nav { border-bottom: 3px dashed #20372780; }
 .concept--cartoon .brand-name { font-size: 1.55rem; }
 .concept--cartoon .concept-button { border-radius: 2rem; border: 3px solid #203727; box-shadow: 5px 5px #f08343; }
-.cartoon-hero { display: grid; grid-template-columns: 1.03fr .97fr; align-items: center; min-height: 615px; padding-block: 3rem; gap: 1.5rem; }
+.cartoon-hero { display: grid; grid-template-columns: 1.03fr .97fr; align-items: center; min-height: clamp(430px, 52vh, 500px); padding-block: 1.75rem; gap: 1.5rem; }
 .cartoon-hero h1 { font-size: clamp(3.9rem,8.8vw,8.5rem); font-weight: 800; line-height: .92; }
 .mascot-wrap { position: relative; background: #ffcf6e; border-radius: 48% 44% 43% 48%; border: 3px solid #203727; box-shadow: 8px 8px #203727; rotate: 4deg; color: #374c32; }
 .mascot-wrap svg { width: 100%; overflow: visible; }
@@ -15,8 +15,8 @@
 .cartoon-strip { overflow: hidden; padding: .8rem 0; border-block: 3px solid #203727; background: #ff8d52; font-weight: 800; font-size: clamp(1rem,2.4vw,1.8rem); }
 .cartoon-strip > div { width: max-content; white-space: nowrap; padding-inline: 1rem; }
 
-.cartoon-flavors > div, .cartoon-packs-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.15rem; margin-top: 1.8rem; }
-.cartoon-grid-4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; margin-top: 1.8rem; }
+.cartoon-flavors > div, .cartoon-packs-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin-top: 1.15rem; }
+.cartoon-grid-4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; margin-top: 1.15rem; }
 .cartoon-flavors article, .cartoon-comic-card {
   position: relative; display: flex; flex-direction: column; padding: .85rem; border: 3px solid #203727;
   border-radius: 1.5rem; background: #ffd074; box-shadow: 6px 6px #203727; overflow: hidden;

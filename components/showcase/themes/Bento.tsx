@@ -1,7 +1,7 @@
 import "./bento.css";
 import { ArrowRight, ArrowUpRight, CalendarDays, Check, Layers, LayoutGrid, ListChecks, MessageSquare, Plus, Sparkles, Waypoints } from "lucide-react";
 import { ConceptStories } from "../ConceptStories";
-import { BrandNav, Jump, Photo, type ThemeProps } from "../ThemeParts";
+import { BrandNav, ConceptObject, Jump, Photo, type ThemeProps } from "../ThemeParts";
 
 const cards = [
   [
@@ -97,7 +97,7 @@ export default function Bento({ theme }: ThemeProps) {
   return <>
     <BrandNav theme={theme} mark={<LayoutGrid size={23} />} links={[["Features", "features"], ["Ecosystem", "ecosystem"], ["Board preview", "board"], ["Workflows", "workflows"]]} />
     <main id="main-content">
-      <section className="concept-wrap bento-hero">
+      <section className="concept-wrap bento-hero" style={{ position: "relative" }}>
         <div className="hero-copy">
           <p className="concept-kicker"><Sparkles size={14} aria-hidden="true" /> A workspace for small teams</p>
           <h1>Make today <em>move.</em></h1>
@@ -118,6 +118,7 @@ export default function Bento({ theme }: ThemeProps) {
           </div>
           <Photo theme={theme} priority />
         </div>
+        <ConceptObject theme={theme} className="bento-obj-tablet" />
       </section>
 
       <section id="features" className="concept-section bento-features">

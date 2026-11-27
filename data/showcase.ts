@@ -9,14 +9,14 @@ export const themes = [
     industry: "AI & SaaS", description: "A luminous workspace concept for turning scattered research into decisions.",
     title: "Glassmorphism SaaS Landing Page Design", animations: ["Pointer parallax", "Orbiting glass", "Scroll depth"],
     palette: ["#08091b", "#bba1ff", "#7dedef"], typography: "Space Grotesk",
-    alt: "Folded blue and violet abstract waves"
+    alt: "Reflective architectural glass facade against clear daylight sky"
   },
   {
     slug: "claymorphism", visual: "clay", name: "Claymorphism", brand: "Pebble", category: "Software",
     industry: "Education & productivity", description: "A softly sculpted planner for creative minds and busy weeks.",
     title: "Claymorphism Productivity App Landing Page", animations: ["Elastic entrances", "Squash and stretch", "Floating clay"],
     palette: ["#f4edff", "#7650bd", "#ffbe9c"], typography: "Nunito",
-    alt: "Colorful reminder cards and stationery on a white desk"
+    alt: "Pastel lilac, blue, and yellow notebooks arranged with highlighters"
   },
   {
     slug: "cartoon", visual: "cartoon", name: "Cartoon", brand: "Zingy Pop", category: "Food & drink",
@@ -30,7 +30,7 @@ export const themes = [
     industry: "Smart home & hardware", description: "A tactile smart speaker concept with a working ambient-mode selector.",
     title: "Neumorphism Smart Speaker Landing Page", animations: ["Dial rotation", "Soft reveals", "Tactile feedback"],
     palette: ["#e7ebef", "#213141", "#416b68"], typography: "Manrope",
-    alt: "White smart speaker on a minimalist table"
+    alt: "Minimalist white and grey smart speaker setup resting on a studio desk"
   },
   {
     slug: "neo-brutalism", visual: "brutal", name: "Neo-Brutalism", brand: "Offbeat Studio", category: "Creative",
@@ -65,14 +65,14 @@ export const themes = [
     industry: "B2B SaaS & collaboration", description: "A modular workspace concept with expandable features and an animated project board.",
     title: "Bento Grid SaaS Landing Page Design", animations: ["Grid stagger", "Expandable cards", "Progress animation"],
     palette: ["#f6f7f2", "#16382f", "#cdef8f"], typography: "DM Sans",
-    alt: "Modern home-office desk with a laptop"
+    alt: "Collaborative studio workspace table with laptops and campaign charts"
   },
   {
     slug: "3d-immersive", visual: "immersive", name: "3D Immersive", brand: "Hush 01", category: "Physical products",
     industry: "Audio & premium electronics", description: "A cinematic headphone launch with a real-time model and three finish options.",
     title: "Interactive 3D Product Landing Page Design", animations: ["3D rotation", "Scroll-driven camera", "Pointer depth"],
     palette: ["#11131a", "#f2f0ec", "#ff9b64"], typography: "Barlow Condensed",
-    alt: "Close-up of black over-ear headphones"
+    alt: "Studio reference over-ear headphones beside a condenser microphone"
   }
 ] as const;
 
@@ -83,6 +83,7 @@ export const themeRoute = (slug: ThemeSlug) => `${showcasePath}/${slug}`;
 export const themeThumbnail = (theme: Theme) => `/showcase/${theme.visual}-preview.webp`;
 export const themeSocialImage = (theme: Theme) => `/showcase/${theme.visual}-social.png`;
 export const themePhoto = (theme: Theme) => ({ src: `/showcase/${theme.visual}.webp`, alt: theme.alt });
+export const themeObjectPath = (theme: Theme) => `/showcase/objects/${theme.visual}-obj.webp`;
 export const themeStoryPhotoPath = (theme: Theme) => `/showcase/${theme.visual}-story.webp`;
 export const themeInquiry = (slug: ThemeSlug) => `/?theme=${slug}#contact`;
 export const findTheme = (slug: string | string[] | undefined) => themes.find((theme) => theme.slug === slug);

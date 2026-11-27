@@ -1,7 +1,7 @@
 import "./glass.css";
 import { Aperture, AudioLines, CheckCircle2, Layers3, ScanLine, ShieldCheck, Sparkles, TrendingUp } from "lucide-react";
 import { ConceptStories } from "../ConceptStories";
-import { BrandNav, Jump, Photo, type ThemeProps } from "../ThemeParts";
+import { BrandNav, ConceptObject, Jump, Photo, type ThemeProps } from "../ThemeParts";
 
 const features = [
   [
@@ -127,6 +127,7 @@ export default function Glass({ theme }: ThemeProps) {
             <div><span /> Preparing an executive decision brief</div>
           </div>
           <div className="glass-card glass-chip" data-float><Sparkles size={18} /> 142 sources synced</div>
+          <ConceptObject theme={theme} className="glass-obj-prism" />
         </div>
       </section>
 

@@ -1,7 +1,7 @@
 import "./neumorphism.css";
 import { AudioLines, CircleDot, Lightbulb, Moon, Sliders, Sun, Volume2, Wind } from "lucide-react";
 import { ConceptStories } from "../ConceptStories";
-import { BrandNav, Jump, Photo, type ThemeProps } from "../ThemeParts";
+import { BrandNav, ConceptObject, Jump, Photo, type ThemeProps } from "../ThemeParts";
 
 const modes = [
   ["Focus", "A steady, unobtrusive tone with a balanced midrange for clear concentration.", Sun],
@@ -56,12 +56,13 @@ export default function Neumorphism({ theme }: ThemeProps) {
           <p>A tactile, softly sculpted speaker that shifts the atmosphere of a room with a single gentle turn.</p>
           <Jump to="modes">Try the controls</Jump>
         </div>
-        <div className="neu-display">
+        <div className="neu-display" style={{ position: "relative" }}>
           <div className="neu-device">
             <div className="neu-grille" aria-hidden="true" />
             <AudioLines size={26} aria-hidden="true" />
             <span className="neu-led" aria-hidden="true" />
           </div>
+          <ConceptObject theme={theme} className="neu-obj-speaker" />
         </div>
       </section>
 

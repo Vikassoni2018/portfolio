@@ -1,7 +1,7 @@
 import "./immersive.css";
 import { AirVent, AudioLines, Bluetooth, Cpu, Disc, Headphones, Waves } from "lucide-react";
 import { ConceptStories } from "../ConceptStories";
-import { BrandNav, Jump, Photo, type ThemeProps } from "../ThemeParts";
+import { BrandNav, ConceptObject, Jump, Photo, type ThemeProps } from "../ThemeParts";
 import { ProductStage } from "./ProductStage";
 
 const anatomy = [
@@ -53,6 +53,7 @@ export default function Immersive({ theme }: ThemeProps) {
           <Jump to="finishes">Explore the finishes</Jump>
         </div>
         <Photo theme={theme} priority />
+        <ConceptObject theme={theme} className="immersive-obj-cans" />
       </section>
 
       <section id="build" className="concept-section immersive-build">

@@ -1,7 +1,7 @@
 import "./clay.css";
 import { CalendarDays, Check, HeartHandshake, Shapes, Sparkles, StickyNote, Sun } from "lucide-react";
 import { ConceptStories } from "../ConceptStories";
-import { BrandNav, Jump, Photo, type ThemeProps } from "../ThemeParts";
+import { BrandNav, ConceptObject, Jump, Photo, type ThemeProps } from "../ThemeParts";
 
 const steps = [
   {
@@ -125,6 +125,7 @@ export default function Clay({ theme }: ThemeProps) {
           <div className="clay-hero-snapshot">
             <Photo theme={theme} priority asset={{ src: "/showcase/clay-1.webp", alt: "Pastel notebooks and stationery arranged on a bright desk" }} className="clay-hero-photo" sizes="(max-width: 720px) 60vw, 240px" />
           </div>
+          <ConceptObject theme={theme} className="clay-obj-vessel" />
         </div>
       </section>
 

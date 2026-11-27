@@ -4,7 +4,7 @@
 .concept--retro .brand-name { font-size: 1.55rem; }
 .concept--retro h1 { font-weight: 900; }
 .concept--retro .concept-button { border-radius: .1rem; border: 2px solid #293a33; box-shadow: 4px 4px #27382f; }
-.retro-hero { display: grid; grid-template-columns: 1.08fr .92fr; gap: 2.6rem; align-items: center; min-height: 630px; padding-block: 3rem; }
+.retro-hero { display: grid; grid-template-columns: 1.08fr .92fr; gap: 2rem; align-items: center; min-height: clamp(440px, 54vh, 515px); padding-block: 1.75rem; }
 .retro-hero em { display: block; }
 .retro-poster { padding: .8rem; position: relative; background: #823623; border: 3px double #f1d9a3; outline: 2px solid #823623; transform: rotate(3deg); }
 .retro-poster .concept-photo { aspect-ratio: 1.18; }
@@ -13,7 +13,7 @@
 .retro-ticker { background: #2a4037; color: #ffe7b3; border-block: 4px double #f1d9a3; padding: .6rem 0; overflow: hidden; }
 .retro-ticker > div { width: max-content; white-space: nowrap; padding-inline: 1rem; font-size: clamp(1.05rem,2.7vw,2rem); font-weight: 800; }
 
-.retro-roast-grid, .retro-apparatus-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.2rem; margin-top: 1.8rem; }
+.retro-roast-grid, .retro-apparatus-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.1rem; margin-top: 1.2rem; }
 .retro-card { display: flex; flex-direction: column; padding: .8rem; background: #f6e4ba; border: 4px double #843721; box-shadow: 5px 5px #293a33; }
 .retro-card-photo { aspect-ratio: 1.45; border: 2px solid #843721; }
 .retro-card-body { padding: .95rem .2rem .2rem; display: flex; flex-direction: column; gap: .4rem; }
@@ -21,7 +21,7 @@
 .retro-notes { font-size: .82rem; font-weight: 800; color: #293a33; }
 .retro-pill { display: inline-flex; width: fit-content; padding: .2rem .55rem; background: #293a33; color: #fff3d2; font-size: .72rem; font-weight: 800; text-transform: uppercase; letter-spacing: .04em; }
 
-.retro-menu-list { margin-top: 2.2rem; }
+.retro-menu-list { margin-top: 1.35rem; }
 .retro-menu details { border-bottom: 2px dotted #843721; }
 .retro-menu summary { display: flex; justify-content: space-between; align-items: center; gap: .7rem; font-size: clamp(1rem,2.3vw,1.5rem); }
 .retro-menu summary::before { content: '+'; color: #843721; }

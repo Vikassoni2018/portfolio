@@ -8,9 +8,23 @@ export function setupGallery(root: HTMLElement) {
   let animateFilter: ((grid: HTMLDivElement) => void) | undefined;
   let filterTween: gsap.core.Tween | undefined;
   media.add("(prefers-reduced-motion: no-preference)", () => {
-    const tiles = root.querySelectorAll(".showcase-collage-tile");
+    const tiles = root.querySelectorAll<HTMLElement>(".showcase-collage-tile");
     const cards = root.querySelector(".showcase-cards");
     gsap.from(tiles, { opacity: .5, y: 30, scale: .97, duration: 1, stagger: .1, ease: "power3.out" });
+    tiles.forEach((tile, index) => {
+      gsap.to(tile, {
+        yPercent: index % 2 === 0 ? -14 : 12,
+        xPercent: index === 1 ? 6 : -4,
+        rotation: index % 2 === 0 ? -3 : 4,
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".showcase-hero",
+          start: "top top",
+          end: "bottom top",
+          scrub: 0.65
+        }
+      });
+    });
     if (cards) gsap.from(cards, { y: 18, duration: .65,
       scrollTrigger: { trigger: cards, start: "top 93%", once: true } });
     animateFilter = (grid) => {

@@ -1,7 +1,7 @@
 import "./brutal.css";
 import { ArrowUpRight, Asterisk, CircleOff, Sparkles, Zap } from "lucide-react";
 import { ConceptStories } from "../ConceptStories";
-import { BrandNav, Jump, Photo, type ThemeProps } from "../ThemeParts";
+import { BrandNav, ConceptObject, Jump, Photo, type ThemeProps } from "../ThemeParts";
 
 const projects = [
   {
@@ -79,6 +79,7 @@ export default function Brutal({ theme }: ThemeProps) {
         <div className="brutal-photo">
           <Photo theme={theme} priority />
           <span data-spin><Asterisk aria-hidden="true" /> Color outside the lines</span>
+          <ConceptObject theme={theme} className="brutal-obj-cam" />
         </div>
       </section>
 

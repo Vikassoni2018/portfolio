@@ -1,7 +1,7 @@
 import "./cyberpunk.css";
 import { Cpu, Crosshair, Gamepad2, Gauge, RadioTower, ShieldAlert, Zap } from "lucide-react";
 import { ConceptStories } from "../ConceptStories";
-import { BrandNav, Jump, Photo, type ThemeProps } from "../ThemeParts";
+import { BrandNav, ConceptObject, Jump, Photo, type ThemeProps } from "../ThemeParts";
 
 const levels = [
   {
@@ -76,6 +76,7 @@ export default function Cyberpunk({ theme }: ThemeProps) {
           <Jump to="modes">Select your mode</Jump>
         </div>
         <div className="cyber-scan" aria-hidden="true" />
+        <ConceptObject theme={theme} className="cyber-obj-pad" />
         <span className="cyber-coordinate" aria-hidden="true">DISTRICT 07 / 00:<span data-count>14</span></span>
       </section>
 

@@ -3,9 +3,9 @@
 .concept--clay .brand-nav { color: #503582; }
 .concept--clay .concept-button { border-radius: 1.25rem; box-shadow: inset 0 -4px #4222757d, inset 0 4px #ffffff4f, 0 8px 18px #63449b38; }
 .concept--clay h1, .concept--clay h2 { font-weight: 900; }
-.clay-hero { display: grid; grid-template-columns: 1fr 1fr; min-height: 640px; align-items: center; padding-block: 3.5rem; gap: 2rem; }
+.clay-hero { display: grid; grid-template-columns: 1fr 1fr; min-height: clamp(440px, 54vh, 520px); align-items: center; padding-block: 2rem; gap: 1.75rem; }
 .clay-hero em { display: block; }
-.clay-stage { position: relative; display: grid; place-items: center; isolation: isolate; min-height: 360px; aspect-ratio: 1.08; border-radius: 42% 39% 45% 36%; background: radial-gradient(ellipse,#e3d1ff,#f8eeff 72%,transparent 73%); }
+.clay-stage { position: relative; display: grid; place-items: center; isolation: isolate; min-height: 310px; aspect-ratio: 1.12; border-radius: 42% 39% 45% 36%; background: radial-gradient(ellipse,#e3d1ff,#f8eeff 72%,transparent 73%); }
 .clay-notebook, .clay-ball { display: grid; place-content: center; justify-items: center; box-shadow: inset -12px -15px 24px #52378038, inset 10px 12px 18px #ffffffb8, 15px 24px 34px #7652a644; }
 .clay-hero-snapshot { display: block; box-shadow: inset -10px -12px 20px #52378030, inset 8px 8px 14px #ffffffb8, 15px 24px 34px #7652a644; }
 .clay-notebook { width: 52%; height: 68%; transform: rotate(-12deg); border-radius: 23%; background: #c4a9fa; color: #361d61; gap: .5rem; }
@@ -23,7 +23,7 @@
 .clay-routine .concept-photo { aspect-ratio: 1.5; border-radius: 2.1rem; border: .4rem solid #eadcfb; box-shadow: 0 18px 34px #7652a628; }
 .clay-routine .concept-photo img { object-position: center 88%; }
 
-.clay-steps, .clay-template-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.15rem; margin-top: 1.5rem; }
+.clay-steps, .clay-template-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin-top: 1.1rem; }
 .clay-card {
   display: flex; flex-direction: column; overflow: hidden; padding: .9rem; border-radius: 2rem;
   background: #ecdefb;
@@ -36,7 +36,7 @@
 .clay-badge { display: inline-grid; place-items: center; width: 2.3rem; height: 2.3rem; border-radius: .9rem; background: #ffffffba; font-size: 1.15rem; font-weight: 900; box-shadow: inset 0 -3px #6b3d9b26; }
 .clay-pill { display: inline-flex; width: fit-content; padding: .26rem .68rem; border-radius: 99px; background: #ffffffbf; color: #35264e; font-size: .74rem; font-weight: 800; box-shadow: inset 0 -2px #52378020; }
 
-.clay-moods-head { max-width: 44rem; margin-bottom: 1.6rem; }
+.clay-moods-head { max-width: 44rem; margin-bottom: 1.15rem; }
 .clay-mood-picker { position: relative; border: 0; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .75rem; }
 .clay-mood-option input { position: absolute; width: 1px; height: 1px; opacity: 0; }
 .clay-mood-option label {

@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowDownRight, ArrowUpRight } from "lucide-react";
 import type { Theme } from "@/data/showcase";
-import { showcasePath, themeInquiry, themePhoto, themeRoute } from "@/data/showcase";
+import { showcasePath, themeInquiry, themeObjectPath, themePhoto, themeRoute } from "@/data/showcase";
 import { relatedThemes, storefrontExamples, themeSearch } from "@/data/showcase-search";
 import { landingPageServicePath } from "@/data/services";
 
@@ -11,13 +11,35 @@ export type ThemeProps = { theme: Theme };
 export function BrandNav({
   theme, mark, links
 }: ThemeProps & { mark?: React.ReactNode; links: readonly (readonly [string, string])[] }) {
-  return (
+  return <>
+    <div className="concept-scroll-progress" aria-hidden="true" />
     <header className="brand-nav">
       <a className="brand-name" href="#main-content">{mark}<span>{theme.brand}</span></a>
       <nav aria-label={`${theme.brand} navigation`}>
         {links.map(([label, id]) => <a key={id} href={`#${id}`}>{label}</a>)}
       </nav>
     </header>
+  </>;
+}
+
+export function ConceptObject({
+  theme,
+  className = ""
+}: {
+  theme: Theme;
+  className?: string;
+}) {
+  return (
+    <div className={`concept-float-obj ${className}`} aria-hidden="true">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={themeObjectPath(theme)}
+        alt=""
+        width={480}
+        height={480}
+        loading="eager"
+      />
+    </div>
   );
 }
 
@@ -67,9 +89,23 @@ export function ConceptFooter({ theme }: ThemeProps) {
           <p className="concept-kicker">A portfolio design concept by Vikas Soni</p>
           <h2 id="concept-cta-title">Want a Website Like This?</h2>
         </div>
-        <a className="concept-button" href={themeInquiry(theme.slug)} target="_top">
-          Build My Website in This Style <ArrowUpRight size={18} aria-hidden="true" />
-        </a>
+        <div className="concept-closing-cta">
+          <div className="concept-closing-dock" aria-hidden="true">
+            <span className="concept-dock-ring" />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              className="concept-dock-ghost"
+              src={themeObjectPath(theme)}
+              alt=""
+              width={84}
+              height={84}
+              loading="lazy"
+            />
+          </div>
+          <a className="concept-button" href={themeInquiry(theme.slug)} target="_top">
+            Build My Website in This Style <ArrowUpRight size={18} aria-hidden="true" />
+          </a>
+        </div>
       </section>
       <div className="concept-footer-bar">
         <span>{theme.brand} · Fictional brand</span>

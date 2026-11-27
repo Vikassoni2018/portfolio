@@ -1,4 +1,4 @@
-.demo-shell:not(.demo-shell--embedded) .concept { padding-bottom: 4.75rem; }
+.demo-shell:not(.demo-shell--embedded) .concept { padding-bottom: 4.1rem; }
 html:has(.concept[data-motion=off]) { scroll-behavior: auto; }
 .preview-canvas {
   position: fixed; inset: 0; z-index: 52; overflow: clip;

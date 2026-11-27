@@ -21,37 +21,80 @@
 .concept input:focus-visible + label { outline: 3px solid var(--focus, var(--accent)); outline-offset: 5px; }
 .concept section[id], .concept main[id] { scroll-margin-top: 1.5rem; }
 .concept-wrap, .concept-section, .brand-nav, .concept-footer { width: min(100%, 1440px); margin-inline: auto; padding-inline: var(--gutter); }
-.concept-section { padding-block: clamp(3rem, 9vw, 7rem); }
+.concept-section { padding-block: clamp(1.75rem, 3.8vw, 3rem); }
 .concept-section :where(h2 + p, h3 + p), .concept-section > :where(p:not(.concept-kicker)) {
-  margin-block-start: .9rem;
+  margin-block-start: .65rem;
   max-inline-size: var(--reading);
 }
 .concept .concept-kicker {
   display: flex; align-items: center; gap: .45rem; font-size: .74rem; font-weight: 700; text-wrap: balance;
-  letter-spacing: .13em; line-height: 1.5; text-transform: uppercase; margin-bottom: .85rem;
+  letter-spacing: .13em; line-height: 1.5; text-transform: uppercase; margin-bottom: .5rem;
 }
-.brand-nav { min-height: 5rem; display: flex; align-items: center; justify-content: space-between; gap: .75rem 1.5rem; }
+.brand-nav { min-height: 4.1rem; display: flex; align-items: center; justify-content: space-between; gap: .75rem 1.5rem; }
 .brand-name { display: inline-flex; gap: .6rem; align-items: center; font-size: 1.3rem; font-weight: 700; line-height: 1; }
 .brand-name svg { flex: none; }
 .brand-nav nav { display: flex; gap: .15rem 1.2rem; align-items: center; flex-wrap: wrap; }
 .brand-nav nav a { display: inline-flex; align-items: center; min-height: 44px; font-size: .83rem; font-weight: 700; }
 .brand-nav nav a:hover, .concept-footer-bar a:hover { text-decoration: underline; text-underline-offset: .24em; }
 .concept .hero-copy { min-width: 0; position: relative; z-index: 1; align-self: center; }
-.concept .hero-copy > p:not(.concept-kicker) { margin-block: 1.4rem 1.65rem; max-width: 39ch; font-size: clamp(1rem, 1.6vw, 1.22rem); }
+.concept .hero-copy > p:not(.concept-kicker) { margin-block: 1rem 1.25rem; max-width: 39ch; font-size: clamp(1rem, 1.6vw, 1.22rem); }
 .concept-button { display: inline-flex; align-items: center; justify-content: center; gap: .6rem; min-height: 48px; max-width: 100%; padding: .75rem 1.25rem; font-size: .9rem; font-weight: 700; line-height: 1.3; color: var(--button-ink); background: var(--button); border-radius: .45rem; }
 .concept-button svg { flex: none; }
 .concept-button:hover { text-decoration: underline; text-underline-offset: .22em; }
 .concept-photo { position: relative; width: 100%; min-height: 0; overflow: hidden; background: var(--surface); }
 .concept-photo img { object-fit: cover; }
-:where(.concept) details { padding: .8rem 0; }
-:where(.concept) summary { cursor: pointer; padding: .4rem 0; font-weight: 700; }
-:where(.concept) details p { padding: .45rem 0; max-width: var(--reading); }
-.concept footer { padding-block: clamp(1.7rem, 5vw, 4rem) 1.4rem; }
+.concept-scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 45;
+  pointer-events: none;
+  background: var(--accent);
+  transform-origin: left center;
+  transform: scaleX(0);
+}
+.concept-float-obj {
+  pointer-events: none;
+  user-select: none;
+  will-change: transform, opacity;
+}
+.concept-float-obj img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 18px 28px rgba(10, 12, 24, 0.24));
+}
+.glass-obj-prism { position: absolute; right: 2%; top: 0; width: clamp(86px, 11vw, 146px); z-index: 3; }
+.clay-obj-vessel { position: absolute; left: 2%; top: 2%; width: clamp(82px, 10vw, 132px); z-index: 3; }
+.cartoon-obj-citrus { position: absolute; right: 0; bottom: -2%; width: clamp(90px, 11.5vw, 150px); z-index: 3; }
+.neu-obj-speaker { position: absolute; right: 3%; bottom: 3%; width: clamp(86px, 10.5vw, 138px); z-index: 3; }
+.brutal-obj-cam { position: absolute; right: 0; bottom: -4%; width: clamp(84px, 10.5vw, 140px); z-index: 3; }
+.luxury-image { position: relative; }
+.luxury-obj-gold { position: absolute; left: 2%; bottom: 8%; width: clamp(80px, 9.5vw, 130px); z-index: 3; }
+.retro-obj-moka { position: absolute; right: 2%; bottom: 6%; width: clamp(76px, 9.5vw, 126px); z-index: 3; }
+.retro-brew-moka { width: clamp(92px, 10vw, 132px); justify-self: center; }
+.cyber-obj-pad { position: absolute; right: calc(var(--gutter) + 1rem); bottom: 20%; width: clamp(96px, 13vw, 175px); z-index: 2; }
+.bento-obj-tablet { position: absolute; right: var(--gutter); bottom: 4%; width: clamp(98px, 12vw, 165px); z-index: 3; }
+.immersive-obj-cans { position: absolute; right: 3%; bottom: 8%; width: clamp(98px, 12.5vw, 172px); z-index: 2; }
+@media (max-width: 720px) {
+  .cyber-obj-pad, .immersive-obj-cans { width: 88px; top: 10%; bottom: auto; right: 1rem; opacity: 0.92; }
+  .bento-obj-tablet { width: 92px; bottom: 1%; right: 0.75rem; }
+  .glass-obj-prism, .clay-obj-vessel, .cartoon-obj-citrus, .neu-obj-speaker, .brutal-obj-cam, .luxury-obj-gold, .retro-obj-moka {
+    width: clamp(68px, 20vw, 105px);
+  }
+}
+:where(.concept) details { padding: .6rem 0; }
+:where(.concept) summary { cursor: pointer; padding: .35rem 0; font-weight: 700; }
+:where(.concept) details p { padding: .35rem 0; max-width: var(--reading); }
+.concept footer { padding-block: clamp(1.25rem, 3vw, 2.25rem) 1.25rem; }
 .concept-design-notes {
   display: grid;
   grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr);
-  gap: 1.5rem clamp(1.5rem, 5vw, 4rem);
-  padding-block-end: clamp(2rem, 5vw, 4rem);
+  gap: 1.25rem clamp(1.5rem, 4vw, 3rem);
+  padding-block-end: clamp(1.25rem, 3vw, 2.25rem);
 }
 .concept-design-notes h2 { font-size: clamp(1.6rem, 3.5vw, 3rem); }
 .concept-design-notes p { margin-block: .6rem .8rem; max-width: var(--reading); }
@@ -60,21 +103,109 @@
 .concept-design-notes a { display: inline-flex; align-items: center; gap: .4rem; min-height: 44px; font-size: .9rem; font-weight: 700; text-decoration: underline; text-underline-offset: .2em; }
 .concept-design-notes a svg { flex: none; }
 .concept-service-links { display: flex; flex-wrap: wrap; column-gap: 1.15rem; }
-.concept-closing { display: flex; gap: 1.5rem; justify-content: space-between; align-items: end; padding: clamp(1.4rem, 5vw, 4rem); background: var(--surface); border-radius: var(--card-radius, 1rem); }
+.concept-closing { display: flex; gap: 1.25rem; justify-content: space-between; align-items: center; padding: clamp(1.25rem, 3vw, 2.35rem); background: var(--surface); border-radius: var(--card-radius, 1rem); }
 .concept-closing > div { min-width: 0; }
-.concept-closing h2 { font-size: clamp(2rem, 4.65vw, 4.3rem); }
+.concept-closing h2 { font-size: clamp(1.9rem, 4.2vw, 3.8rem); }
 .concept-closing a { flex-shrink: 0; }
-.concept-footer-bar { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; column-gap: 1rem; margin-top: 1.5rem; font-size: .8rem; }
+.concept-closing-cta { display: inline-flex; align-items: center; gap: 1rem; flex-shrink: 0; }
+.concept-closing-dock {
+  position: relative;
+  width: 84px;
+  height: 84px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  border-radius: 1.25rem;
+  border: 1.5px dashed color-mix(in srgb, var(--accent) 55%, transparent);
+  background: color-mix(in srgb, var(--paper) 65%, transparent);
+  overflow: visible;
+}
+.concept-dock-ring {
+  position: absolute;
+  inset: 8px;
+  border-radius: 50%;
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+  pointer-events: none;
+}
+.concept-dock-ghost {
+  width: 66px;
+  height: auto;
+  object-fit: contain;
+  opacity: 0.92;
+  filter: drop-shadow(0 8px 14px rgba(10, 12, 24, 0.22));
+  transition: opacity .25s ease;
+}
+.concept[data-animation-ready="true"] .concept-dock-ghost[data-motion-dock="active"] { opacity: 0; }
+.concept-travel-obj {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 42;
+  pointer-events: none;
+  user-select: none;
+  will-change: transform, opacity;
+  filter: drop-shadow(0 18px 28px rgba(10, 12, 24, 0.26));
+}
+.concept-travel-obj img,
+.concept-closing-dock > .concept-travel-obj img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+.concept-closing-dock.is-bumped { animation: conceptDockBump .48s cubic-bezier(.2,.9,.25,1.3); }
+@keyframes conceptDockBump {
+  0%, 100% { transform: scale(1); }
+  38% { transform: scale(1.09) translateY(3px); }
+  70% { transform: scale(.97) translateY(-1px); }
+}
+.concept-tray-splash {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0;
+  height: 0;
+  z-index: 6;
+  pointer-events: none;
+}
+.concept-tray-splash .ring {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  margin: -11px 0 0 -11px;
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+  animation: conceptSplashRing .8s ease-out forwards;
+}
+.concept-tray-splash i {
+  position: absolute;
+  width: var(--s, 4px);
+  height: var(--s, 4px);
+  margin: calc(var(--s, 4px) / -2) 0 0 calc(var(--s, 4px) / -2);
+  border-radius: 50%;
+  background: var(--accent);
+  animation: conceptSplashDot .78s cubic-bezier(.15,.7,.3,1) forwards;
+}
+@keyframes conceptSplashRing {
+  from { transform: scale(.45); opacity: 1; }
+  to { transform: scale(3.4); opacity: 0; }
+}
+@keyframes conceptSplashDot {
+  0% { transform: translate(0, 0) scale(1); opacity: 1; }
+  100% { transform: translate(var(--dx), var(--dy)) scale(.2); opacity: 0; }
+}
+.concept-footer-bar { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; column-gap: 1rem; margin-top: 1.15rem; font-size: .8rem; }
 .concept-footer-bar nav { display: flex; align-items: center; gap: .35rem .6rem; flex-wrap: wrap; }
-.concept-footer-bar a { padding-block: .55rem; }
+.concept-footer-bar a { padding-block: .5rem; }
 @media (721px <= width <= 960px) {
   .concept :is(.glass-hero, .clay-hero, .cartoon-hero, .neu-hero, .brutal-hero, .luxury-hero, .retro-hero, .bento-hero) {
-    min-height: clamp(26rem, 67vw, 36rem);
-    padding-block: clamp(2.5rem, 6vw, 4.25rem);
+    min-height: clamp(22rem, 52vw, 29rem);
+    padding-block: clamp(1.75rem, 4vw, 2.75rem);
   }
 }
 @media (max-width: 850px) {
   .concept-closing { align-items: start; flex-direction: column; }
+  .concept-closing-cta { flex-wrap: wrap; }
 }
 @media (max-width: 720px) {
   :where(.concept) h1 { font-size: clamp(2.9rem, 12.5vw, 5.5rem); }

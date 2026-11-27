@@ -4,7 +4,7 @@
   --surface: #dce4e8; --raised: 14px 14px 28px #c4cbd2,-14px -14px 28px #ffffffb8; --recessed: inset 8px 8px 18px #bdc8d2,inset -8px -8px 18px #ffffffba;
 }
 .concept--neu .concept-button { border-radius: 3rem; box-shadow: 6px 6px 14px #aebac2, -6px -6px 14px #ffffff; }
-.neu-hero { display: grid; grid-template-columns: 1fr .85fr; align-items: center; min-height: 630px; gap: 2rem; padding-block: 3rem; }
+.neu-hero { display: grid; grid-template-columns: 1fr .85fr; align-items: center; min-height: clamp(440px, 54vh, 515px); gap: 1.75rem; padding-block: 1.75rem; }
 .neu-hero h1 { font-weight: 800; }
 .neu-hero em { display: block; }
 .neu-display { display: grid; place-items: center; border-radius: 44%; aspect-ratio: 1.1; box-shadow: var(--recessed); }
@@ -39,7 +39,7 @@
 .neu-control:has(#ambient-1:checked) .neu-dial i { rotate: 45deg; }
 .neu-control:has(#ambient-2:checked) .neu-dial i { rotate: 90deg; }
 
-.neu-rooms-grid, .neu-specs-grid, .neu-details > div { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; margin-top: 1.75rem; }
+.neu-rooms-grid, .neu-specs-grid, .neu-details > div { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.1rem; margin-top: 1.15rem; }
 .neu-card, .neu-spec-card { border-radius: 1.5rem; padding: .9rem; box-shadow: var(--raised); background: #e7ebef; display: flex; flex-direction: column; overflow: hidden; }
 .neu-card-photo, .neu-spec-photo { aspect-ratio: 1.48; border-radius: 1.05rem; box-shadow: var(--recessed); }
 .neu-card-body { padding: 1rem .35rem .35rem; display: flex; flex-direction: column; gap: .5rem; }

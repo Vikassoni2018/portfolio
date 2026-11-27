@@ -1,7 +1,7 @@
 import "./cartoon.css";
 import { Citrus, Flame, Sparkles, Star } from "lucide-react";
 import { ConceptStories } from "../ConceptStories";
-import { BrandNav, Jump, Photo, type ThemeProps } from "../ThemeParts";
+import { BrandNav, ConceptObject, Jump, Photo, type ThemeProps } from "../ThemeParts";
 
 const flavors = [
   {
@@ -111,6 +111,7 @@ export default function Cartoon({ theme }: ThemeProps) {
               <path d="M142 185h12m111 0h12" stroke="#b2432c" />
             </g>
           </svg>
+          <ConceptObject theme={theme} className="cartoon-obj-citrus" />
         </div>
       </section>
 

@@ -1,7 +1,7 @@
 import "./luxury.css";
 import { Gem, Sparkles } from "lucide-react";
 import { ConceptStories } from "../ConceptStories";
-import { BrandNav, Jump, Photo, type ThemeProps } from "../ThemeParts";
+import { BrandNav, ConceptObject, Jump, Photo, type ThemeProps } from "../ThemeParts";
 
 const pieces = [
   {
@@ -68,6 +68,7 @@ export default function Luxury({ theme }: ThemeProps) {
         <div className="luxury-image">
           <Photo theme={theme} priority />
           <span>Forma · A study in curved surfaces</span>
+          <ConceptObject theme={theme} className="luxury-obj-gold" />
         </div>
       </section>
 

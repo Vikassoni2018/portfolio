@@ -1,7 +1,7 @@
 import "./retro.css";
 import { Clock, Coffee, Disc3, Flame, Sparkles } from "lucide-react";
 import { ConceptStories } from "../ConceptStories";
-import { BrandNav, Jump, Photo, type ThemeProps } from "../ThemeParts";
+import { BrandNav, ConceptObject, Jump, Photo, type ThemeProps } from "../ThemeParts";
 
 const roasts = [
   {
@@ -74,6 +74,7 @@ export default function Retro({ theme }: ThemeProps) {
         <div className="retro-poster">
           <Photo theme={theme} priority />
           <div className="retro-stamp" data-spin><Disc3 size={25} aria-hidden="true" /> Slow brewed<br />Good company</div>
+          <ConceptObject theme={theme} className="retro-obj-moka" />
           <p>After Hours Roasters</p>
         </div>
       </section>
@@ -109,14 +110,14 @@ export default function Retro({ theme }: ThemeProps) {
       </section>
 
       <section id="brew" className="concept-section retro-brew" aria-labelledby="retro-brew-title">
-        <div className="retro-brew-head">
-          <div>
-            <p className="concept-kicker"><Flame size={14} aria-hidden="true" /> The house recipe</p>
-            <h2 id="retro-brew-title">A better coffee break.</h2>
-            <p>Start with 20 grams of fresh grounds to 320 grams of filtered water. Wet evenly for a 30-second bloom, then finish in slow concentric pours.</p>
+          <div className="retro-brew-head">
+            <div>
+              <p className="concept-kicker"><Flame size={14} aria-hidden="true" /> The house recipe</p>
+              <h2 id="retro-brew-title">A better coffee break.</h2>
+              <p>Start with 20 grams of fresh grounds to 320 grams of filtered water. Wet evenly for a 30-second bloom, then finish in slow concentric pours.</p>
+            </div>
+            <ConceptObject theme={theme} className="retro-brew-moka" />
           </div>
-          <Coffee size={112} aria-hidden="true" data-reveal />
-        </div>
         <div className="retro-apparatus-grid">
           {apparatus.map((item) => (
             <article className="retro-card" data-reveal key={item.title}>
