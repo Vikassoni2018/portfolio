@@ -224,6 +224,75 @@ export const posts: Post[] = [
         text: "AMP is no longer required for the mobile search carousel, so it is rarely worth adopting for SEO alone in 2026. Its constraints remain a useful teacher, though: the reason AMP pages felt fast was a hard cap on third-party JavaScript. Applying that same discipline to a normal theme gets most of the benefit without the format."
       }
     ]
+  },
+  {
+    slug: "shopify-discount-apis-graphql-functions",
+    title: "Shopify Discount APIs Explained: GraphQL Mutations, BXGY & Functions",
+    metaTitle: "Shopify Discount APIs & Functions Guide | Vikas Soni",
+    metaDescription:
+      "Practical guide by Vikas Soni to Shopify Admin GraphQL Discount APIs (discountCodeBasicCreate, discountAutomaticBxgyCreate), stacking rules, and Shopify Functions.",
+    date: "2026-10-12",
+    readingMinutes: 7,
+    tags: ["Shopify", "Discount APIs", "GraphQL", "Shopify Functions"],
+    excerpt:
+      "Replacing legacy PriceRules and deprecated Shopify Scripts requires understanding Admin GraphQL discount mutations, combinesWith stacking policies, and Shopify Functions.",
+    body: [
+      {
+        type: "p",
+        text: "When merchants ask for volume tiers, Buy X Get Y (BXGY) triggers, or ERP-synced flash promotions inside Shopify, legacy REST PriceRules quickly run out of expressiveness. Modern Shopify backend integrations rely on Admin GraphQL Discount APIs and Shopify Functions."
+      },
+      { type: "h2", text: "1. Programmatic GraphQL mutations for code and automatic offers" },
+      {
+        type: "p",
+        text: "Your PHP, Symfony, Laravel, or Node.js app can create and expire discounts directly via discountCodeBasicCreate, discountAutomaticBasicCreate, and discountAutomaticBxgyCreate while validating userErrors cleanly."
+      },
+      {
+        type: "code",
+        lang: "graphql",
+        code: "mutation ($input: DiscountCodeBasicInput!) {\n  discountCodeBasicCreate(basicCodeDiscount: $input) {\n    codeDiscountNode { id }\n    userErrors { field message code }\n  }\n}"
+      },
+      { type: "h2", text: "2. Explicit stacking rules with combinesWith" },
+      {
+        type: "p",
+        text: "Unexpected coupon stacking erodes margins. Every GraphQL discount mutation accepts productDiscounts, orderDiscounts, and shippingDiscounts booleans inside combinesWith so your backend governs exact checkout combinations deterministically."
+      },
+      {
+        type: "callout",
+        text: "Engineering note by Vikas Soni: store campaign metadata on Shopify App Metafields alongside Shopify Functions so discount logic executes at Shopify's edge without slowing down checkout requests."
+      }
+    ]
+  },
+  {
+    slug: "shopify-store-boost-jsonld-geo-aeo",
+    title: "Boosting Shopify Stores with JSON-LD Schema, GEO, AEO & LLMO",
+    metaTitle: "Shopify JSON-LD Schema, GEO, AEO & Speed Boost | Vikas Soni",
+    metaDescription:
+      "How Vikas Soni combines Shopify Core Web Vitals speed optimization, unified Product JSON-LD @graph schemas, GEO, AEO, and llms.txt structure so stores win Search & AI visibility.",
+    date: "2026-11-10",
+    readingMinutes: 8,
+    tags: ["Shopify", "JSON-LD Schema", "GEO", "AEO", "LLMO", "SEO"],
+    excerpt:
+      "Ranking and getting cited across Google AI Overviews, ChatGPT Search, and Perplexity takes both fast Core Web Vitals and structured JSON-LD Schema graphs paired with clear direct answers.",
+    body: [
+      {
+        type: "p",
+        text: "High-performing Shopify storefronts need visibility across traditional Google SERPs as well as Answer Engines (AEO), Generative AI Search (GEO), and Large Language Models (LLMO/AIO). Sending clear entity graphs alongside fast page loads solves both."
+      },
+      { type: "h2", text: "Consolidate into one clean Liquid JSON-LD @graph" },
+      {
+        type: "p",
+        text: "Multiple SEO apps injecting duplicate Organization and Product JSON-LD blocks confuse crawlers and bloat templates. Render one authoritative @graph linking Product, Offer, Brand, BreadcrumbList, FAQPage, and Organization by shared @id references."
+      },
+      { type: "h2", text: "Expose clean markdown & FAQ context for LLMs" },
+      {
+        type: "ul",
+        items: [
+          "Publish direct, self-contained Q&A summaries (AEO) rather than vague marketing paragraphs.",
+          "Provide /llms.txt and /llms-full.txt endpoints summarizing verified products, capabilities, and authorship.",
+          "Eliminate blocking ScriptTags so search crawlers and shoppers reach primary content quickly."
+        ]
+      }
+    ]
   }
 ];
 

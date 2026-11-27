@@ -6,10 +6,12 @@ import profile from "@/data/profile.json";
 import projects from "@/data/projects.json";
 import skills from "@/data/skills.json";
 import {
+  homeFaqSchema,
   jsonLdGraph,
   personSchema,
   profilePageSchema,
   projectListSchema,
+  serviceCatalogSchema,
   websiteSchema
 } from "@/lib/seo";
 import type { PortfolioData } from "@/lib/types";
@@ -27,7 +29,9 @@ export default function Home() {
     personSchema(),
     websiteSchema(),
     profilePageSchema(),
-    projectListSchema()
+    serviceCatalogSchema(),
+    projectListSchema(),
+    homeFaqSchema()
   ]);
 
   return (

@@ -1,342 +1,215 @@
 "use client";
 
-import { useCallback, useEffect, useRef } from "react";
-import {
-  BarChart3,
-  Box,
-  CreditCard,
-  MousePointer2,
-  Rotate3D,
-  ShoppingCart,
-  Sparkles
-} from "lucide-react";
+import { useState } from "react";
+import { ArrowUpRight, CheckCircle2, Layers, RefreshCw, ShieldCheck, Webhook } from "lucide-react";
+import Link from "next/link";
+import { TechBadgeIcon } from "@/components/TechIcons";
 
-type Rotation = {
-  x: number;
-  y: number;
+type ArchitecturePreset = {
+  id: string;
+  label: string;
+  title: string;
+  subtitle: string;
+  layerNodes: Array<{ name: string; role: string; iconKey: string }>;
+  telemetry: Array<{ label: string; value: string }>;
+  snippet: string;
 };
 
-const clamp = (value: number, min: number, max: number) => Math.min(Math.max(value, min), max);
+const PRESETS: ArchitecturePreset[] = [
+  {
+    id: "shopify-subs",
+    label: "Subscription Engine",
+    title: "Shopify Recurring Selling Plans",
+    subtitle: "Customer portal, GraphQL Admin contract mutations, and webhook billing cadence.",
+    layerNodes: [
+      { name: "Online Store 2.0", role: "Liquid App Block UI", iconKey: "shopify" },
+      { name: "Admin GraphQL", role: "SellingPlanContract Sync", iconKey: "graphql" },
+      { name: "Symfony Worker", role: "HMAC Webhook Processor", iconKey: "php" }
+    ],
+    telemetry: [
+      { label: "Contract state (Demo)", value: "Active Cycle" },
+      { label: "Webhook verification", value: "HMAC-SHA256" },
+      { label: "Retry queue", value: "Redis + RabbitMQ" }
+    ],
+    snippet: `mutation sellingPlanCreate($input: SellingPlanGroupInput!) {\n  sellingPlanGroupCreate(input: $input) {\n    sellingPlanGroup { id name merchantCode }\n  }\n}`
+  },
+  {
+    id: "payments",
+    label: "Payment Gateways",
+    title: "Unified Gateway & Reconciliation",
+    subtitle: "Stripe, PayPal, and Razorpay checkout orchestration with idempotent settlement logs.",
+    layerNodes: [
+      { name: "Stripe / PayPal", role: "Tokenized Intent Flow", iconKey: "stripe" },
+      { name: "Laravel API", role: "Idempotent Capture", iconKey: "laravel" },
+      { name: "PostgreSQL / MySQL", role: "Ledger Settlement", iconKey: "database" }
+    ],
+    telemetry: [
+      { label: "Demo throughput", value: "Multi-Gateway" },
+      { label: "Idempotency key", value: "Enforced" },
+      { label: "Refund sync", value: "Event-Driven" }
+    ],
+    snippet: `public function capture(string $intentId, string $key): SettlementResult\n{\n    return $this->ledger->runIdempotent($key, fn () => $this->gateway->capture($intentId));\n}`
+  },
+  {
+    id: "api-mesh",
+    label: "API Middleware",
+    title: "Multi-Tenant SaaS & AMP Speed",
+    subtitle: "Centralized access management, Redis caching, and asynchronous queue dispatch.",
+    layerNodes: [
+      { name: "React / Next UI", role: "Merchant Dashboard", iconKey: "react" },
+      { name: "REST + GraphQL", role: "Rate-Limited Proxy", iconKey: "rest" },
+      { name: "Redis Cache", role: "Sub-second Reads", iconKey: "redis" }
+    ],
+    telemetry: [
+      { label: "Cache strategy (Demo)", value: "Write-Through" },
+      { label: "Auth model", value: "Token + RBAC" },
+      { label: "Deployment", value: "Zero-Downtime" }
+    ],
+    snippet: `$redis->setex("store:{$shop}:catalog", 300, json_encode($payload));\n$bus->dispatch(new SyncCatalogMessage($shop));`
+  }
+];
 
 export function InteractiveCommerce3D() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const sceneRef = useRef<HTMLDivElement>(null);
-  const pointerRotation = useRef<Rotation>({ x: 0, y: 0 });
-  const manualRotation = useRef<Rotation>({ x: 0, y: 0 });
-  const scrollProgress = useRef(0.5);
-  const dragState = useRef({
-    active: false,
-    pointerId: -1,
-    lastX: 0,
-    lastY: 0
-  });
-  const animationFrame = useRef<number | null>(null);
-  const reducedMotion = useRef(false);
-
-  const paintScene = useCallback(() => {
-    animationFrame.current = null;
-
-    const scene = sceneRef.current;
-    if (!scene) return;
-
-    const scrollRotation = reducedMotion.current ? 0 : (scrollProgress.current - 0.5) * 64;
-    const scrollTilt = reducedMotion.current ? 0 : (0.5 - scrollProgress.current) * 8;
-    const rotateX = clamp(pointerRotation.current.x + manualRotation.current.x + scrollTilt, -24, 24);
-    const rotateY = pointerRotation.current.y + manualRotation.current.y + scrollRotation;
-
-    scene.style.setProperty("--scene-rotate-x", `${rotateX}deg`);
-    scene.style.setProperty("--scene-rotate-y", `${rotateY}deg`);
-    scene.style.setProperty("--scroll-progress", scrollProgress.current.toFixed(3));
-  }, []);
-
-  const schedulePaint = useCallback(() => {
-    if (animationFrame.current === null) {
-      animationFrame.current = window.requestAnimationFrame(paintScene);
-    }
-  }, [paintScene]);
-
-  useEffect(() => {
-    const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-
-    const updateMotionPreference = () => {
-      reducedMotion.current = motionQuery.matches;
-      schedulePaint();
-    };
-
-    const updateScrollProgress = () => {
-      const section = sectionRef.current;
-      if (!section) return;
-
-      const rect = section.getBoundingClientRect();
-      const viewportHeight = window.innerHeight;
-      if (reducedMotion.current || rect.bottom < 0 || rect.top > viewportHeight) return;
-      scrollProgress.current = clamp((viewportHeight - rect.top) / (viewportHeight + rect.height), 0, 1);
-      schedulePaint();
-    };
-
-    updateMotionPreference();
-    updateScrollProgress();
-    window.addEventListener("scroll", updateScrollProgress, { passive: true });
-    window.addEventListener("resize", updateScrollProgress);
-    motionQuery.addEventListener("change", updateMotionPreference);
-
-    return () => {
-      window.removeEventListener("scroll", updateScrollProgress);
-      window.removeEventListener("resize", updateScrollProgress);
-      motionQuery.removeEventListener("change", updateMotionPreference);
-      if (animationFrame.current !== null) window.cancelAnimationFrame(animationFrame.current);
-    };
-  }, [schedulePaint]);
-
-  const handlePointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
-    if (reducedMotion.current && !dragState.current.active) return;
-    if (dragState.current.active && event.pointerId === dragState.current.pointerId) {
-      const deltaX = event.clientX - dragState.current.lastX;
-      const deltaY = event.clientY - dragState.current.lastY;
-      dragState.current.lastX = event.clientX;
-      dragState.current.lastY = event.clientY;
-      manualRotation.current.y += deltaX * 0.32;
-      manualRotation.current.x = clamp(manualRotation.current.x - deltaY * 0.22, -18, 18);
-    } else {
-      const bounds = event.currentTarget.getBoundingClientRect();
-      const normalizedX = (event.clientX - bounds.left) / bounds.width - 0.5;
-      const normalizedY = (event.clientY - bounds.top) / bounds.height - 0.5;
-      pointerRotation.current.y = normalizedX * 18;
-      pointerRotation.current.x = normalizedY * -12;
-    }
-
-    schedulePaint();
-  };
-
-  const handlePointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
-    event.currentTarget.setPointerCapture(event.pointerId);
-    dragState.current = {
-      active: true,
-      pointerId: event.pointerId,
-      lastX: event.clientX,
-      lastY: event.clientY
-    };
-  };
-
-  const handlePointerUp = (event: React.PointerEvent<HTMLDivElement>) => {
-    if (event.currentTarget.hasPointerCapture(event.pointerId)) {
-      event.currentTarget.releasePointerCapture(event.pointerId);
-    }
-    dragState.current.active = false;
-  };
-
-  const handlePointerLeave = () => {
-    if (dragState.current.active) return;
-    pointerRotation.current = { x: 0, y: 0 };
-    schedulePaint();
-  };
-
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    const keyboardStep = event.shiftKey ? 12 : 6;
-    const changes: Record<string, Rotation> = {
-      ArrowLeft: { x: 0, y: -keyboardStep },
-      ArrowRight: { x: 0, y: keyboardStep },
-      ArrowUp: { x: keyboardStep, y: 0 },
-      ArrowDown: { x: -keyboardStep, y: 0 }
-    };
-    const change = changes[event.key];
-
-    if (!change) return;
-    event.preventDefault();
-    manualRotation.current.x = clamp(manualRotation.current.x + change.x, -18, 18);
-    manualRotation.current.y += change.y;
-    schedulePaint();
-  };
+  const [activeId, setActiveId] = useState<string>(PRESETS[0].id);
+  const current = PRESETS.find((p) => p.id === activeId) ?? PRESETS[0];
 
   return (
     <section
-      ref={sectionRef}
       aria-labelledby="commerce-3d-title"
-      className="relative overflow-hidden border-b border-slate-200 bg-slate-950 text-white"
+      className="relative overflow-hidden bg-gradient-to-b from-[#F8FAFC] via-[#EEF2FF]/75 to-[#F5F3FF]/85 py-20 sm:py-24"
     >
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_72%_45%,rgba(37,99,235,0.28),transparent_32%),radial-gradient(circle_at_15%_10%,rgba(99,102,241,0.16),transparent_26%)]" />
-      <div className="pointer-events-none absolute inset-0 opacity-[0.08] [background-image:linear-gradient(rgba(255,255,255,0.5)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.5)_1px,transparent_1px)] [background-size:42px_42px]" />
-
-      <div className="relative mx-auto grid max-w-[1240px] gap-8 px-5 py-14 sm:px-8 sm:py-16 lg:grid-cols-[0.82fr_1.18fr] lg:items-center lg:gap-10 lg:px-10 lg:py-20">
-        <div className="relative z-10">
-          <div className="inline-flex items-center gap-2 rounded-full border border-blue-400/25 bg-blue-500/10 px-3.5 py-2 text-xs font-extrabold uppercase tracking-[0.14em] text-blue-300">
-            <Sparkles size={15} />
-            Interactive 3D product lab
+      <div className="mx-auto max-w-[1240px] px-5 sm:px-8 lg:px-10">
+        <div className="mb-10 flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
+          <div>
+            <div className="inline-flex items-center gap-2 rounded-full border border-indigo-200/80 bg-white/80 px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-[0.16em] text-indigo-700 backdrop-blur-md">
+              <Layers size={13} aria-hidden="true" />
+              <span>Interactive Architecture Stage · Demo Data</span>
+            </div>
+            <h2
+              id="commerce-3d-title"
+              className="mt-4 max-w-2xl font-display text-3xl font-bold leading-tight tracking-[-0.03em] text-slate-900 sm:text-4xl lg:text-5xl"
+            >
+              Inspect how storefronts, APIs, and payments connect.
+            </h2>
           </div>
-          <h2
-            id="commerce-3d-title"
-            className="mt-5 max-w-xl text-4xl font-black leading-[1.05] tracking-[-0.04em] sm:text-5xl"
-          >
-            Commerce products with depth, motion, and clarity.
-          </h2>
-          <p className="mt-5 max-w-xl text-base font-medium leading-7 text-slate-400">
-            Explore a connected storefront, checkout, and analytics system designed as one scalable product
-            experience.
+          <p className="max-w-md text-sm font-medium leading-6 text-slate-600">
+            Select a system blueprint below to trace request lifecycles across storefront blocks, PHP middleware, gateways, and queues. Illustrative demo states only.
           </p>
-          <p className="mt-5 rounded-xl border border-amber-300/30 bg-amber-300/10 p-4 text-sm font-semibold leading-6 text-amber-100"><strong>Demo Data · Illustrative Metrics</strong><br />Revenue, orders, conversion and growth figures are fictional UI examples. This demo is not a record of client results.</p>
-
-          <div className="mt-7 grid max-w-xl gap-3 sm:grid-cols-3">
-            {[
-              [MousePointer2, "Mouse follow"],
-              [Rotate3D, "Drag to rotate"],
-              [Box, "Scroll motion"]
-            ].map(([Icon, label]) => {
-              const FeatureIcon = Icon as typeof MousePointer2;
-              return (
-                <div
-                  key={label as string}
-                  className="flex items-center gap-2.5 rounded-xl border border-white/10 bg-white/[0.045] px-3.5 py-3 text-xs font-bold text-slate-300"
-                >
-                  <FeatureIcon className="text-blue-400" size={17} />
-                  {label as string}
-                </div>
-              );
-            })}
-          </div>
         </div>
 
         <div
-          role="application"
-          tabIndex={0}
-          aria-label="Interactive 3D commerce model. Move the pointer, drag, or use arrow keys to rotate."
-          onPointerMove={handlePointerMove}
-          onPointerDown={handlePointerDown}
-          onPointerUp={handlePointerUp}
-          onPointerCancel={handlePointerUp}
-          onPointerLeave={handlePointerLeave}
-          onKeyDown={handleKeyDown}
-          className="commerce-3d-stage relative min-h-[430px] cursor-grab touch-pan-y select-none outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-4 focus-visible:ring-offset-slate-950 sm:min-h-[520px] active:cursor-grabbing"
+          role="tablist"
+          aria-label="Commerce architecture blueprints"
+          className="mb-8 flex flex-wrap gap-2.5"
         >
-          <div className="pointer-events-none absolute left-1/2 top-1/2 h-52 w-52 -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500/25 blur-[70px]" />
-          <div className="commerce-3d-orbit commerce-3d-orbit-one pointer-events-none absolute left-1/2 top-1/2 h-[330px] w-[330px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-blue-400/20 sm:h-[430px] sm:w-[430px]" />
-          <div className="commerce-3d-orbit commerce-3d-orbit-two pointer-events-none absolute left-1/2 top-1/2 h-[250px] w-[250px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/10 sm:h-[340px] sm:w-[340px]" />
+          {PRESETS.map((preset) => {
+            const selected = preset.id === activeId;
+            return (
+              <button
+                key={preset.id}
+                type="button"
+                role="tab"
+                aria-selected={selected}
+                onClick={() => setActiveId(preset.id)}
+                className={`min-h-11 rounded-full px-5 py-2.5 text-sm font-bold transition ${
+                  selected
+                    ? "bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] text-white shadow-md shadow-indigo-500/20"
+                    : "glass-pill text-slate-700 hover:border-indigo-300 hover:text-indigo-700"
+                }`}
+              >
+                {preset.label}
+              </button>
+            );
+          })}
+        </div>
 
-          <div
-            ref={sceneRef}
-            className="commerce-3d-scene absolute inset-0"
-            style={
-              {
-                "--scene-rotate-x": "0deg",
-                "--scene-rotate-y": "0deg",
-                "--scroll-progress": "0.5"
-              } as React.CSSProperties
-            }
-          >
-            <div className="commerce-3d-model absolute left-1/2 top-1/2 h-[280px] w-[205px] -translate-x-1/2 -translate-y-1/2 sm:h-[340px] sm:w-[250px]">
-              <div className="commerce-3d-device-face commerce-3d-device-front absolute inset-0 overflow-hidden rounded-[1.8rem] border border-white/20 bg-slate-900 p-3 shadow-[0_35px_80px_rgba(0,0,0,0.5)] sm:p-4">
-                <div className="flex h-full flex-col overflow-hidden rounded-[1.35rem] bg-gradient-to-b from-white to-blue-50 p-4 text-slate-950 sm:p-5">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600 text-white">
-                        <ShoppingCart size={16} />
-                      </span>
-                      <div>
-                        <p className="text-[9px] font-black uppercase tracking-[0.14em] text-blue-600">Storefront</p>
-                        <p className="text-[11px] font-extrabold">Commerce OS</p>
-                      </div>
-                    </div>
-                    <span className="h-2 w-2 rounded-full bg-emerald-500 shadow-[0_0_12px_rgba(16,185,129,0.8)]" />
-                  </div>
-
-                  <div className="mt-4 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-700 p-4 text-white shadow-lg shadow-blue-600/20">
-                    <p className="text-[9px] font-bold uppercase tracking-[0.12em] text-blue-200">Demo revenue today</p>
-                    <p className="mt-1 text-2xl font-black tracking-[-0.04em]">$24.8k</p>
-                    <div className="mt-3 flex h-10 items-end gap-1">
-                      {[42, 68, 52, 88, 64, 94, 76].map((height, index) => (
-                        <span
-                          key={index}
-                          className="flex-1 rounded-t-sm bg-white/65"
-                          style={{ height: `${height}%` }}
-                        />
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="mt-3 grid grid-cols-2 gap-2">
-                    {[
-                      ["Orders", "1,284"],
-                      ["Conversion", "4.8%"]
-                    ].map(([label, value]) => (
-                      <div key={label} className="rounded-xl border border-slate-200 bg-white p-3 shadow-sm">
-                        <p className="text-[8px] font-bold uppercase tracking-[0.1em] text-slate-400">{label}</p>
-                        <p className="mt-1 text-sm font-black">{value}</p>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="mt-3 flex flex-1 items-center gap-2 rounded-xl border border-slate-200 bg-white px-3">
-                    <span className="h-9 w-9 rounded-lg bg-gradient-to-br from-amber-200 to-orange-400" />
-                    <div className="min-w-0 flex-1">
-                      <p className="truncate text-[10px] font-extrabold">Premium collection</p>
-                      <p className="mt-0.5 text-[8px] font-semibold text-slate-400">Ready to ship worldwide</p>
-                    </div>
-                    <span className="text-[10px] font-black text-blue-600">$89</span>
-                  </div>
-                </div>
+        <div className="glass-panel-strong grid gap-8 rounded-3xl p-5 sm:p-8 lg:grid-cols-[1.05fr_0.95fr] lg:p-10">
+          <div className="flex min-w-0 flex-col justify-between">
+            <div>
+              <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.14em] text-indigo-600">
+                <RefreshCw size={14} aria-hidden="true" />
+                <span>Blueprint Overview</span>
               </div>
+              <h3 className="mt-2 font-display text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
+                {current.title}
+              </h3>
+              <p className="mt-2.5 text-sm font-medium leading-6 text-slate-600">
+                {current.subtitle}
+              </p>
 
-              <div className="commerce-3d-device-face commerce-3d-device-back absolute inset-0 rounded-[1.8rem] border border-blue-400/30 bg-gradient-to-br from-blue-700 to-indigo-950 p-6">
-                <div className="flex h-full flex-col items-center justify-center rounded-[1.25rem] border border-white/10 bg-white/[0.04] text-center">
-                  <span className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10 text-blue-300">
-                    <Box size={30} />
-                  </span>
-                  <p className="mt-5 text-xs font-black uppercase tracking-[0.16em] text-blue-200">Connected system</p>
-                  <p className="mt-2 max-w-[150px] text-[10px] font-semibold leading-5 text-slate-400">
-                    Storefront, payments, data, and operations in sync.
+              <div className="mt-7 grid gap-3 sm:grid-cols-3">
+                {current.layerNodes.map((node, index) => (
+                  <div
+                    key={node.name}
+                    className="rounded-2xl border border-indigo-100/90 bg-white/85 p-4 shadow-sm"
+                  >
+                    <div className="flex items-center justify-between">
+                      <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-indigo-50">
+                        <TechBadgeIcon id={node.iconKey} size={18} />
+                      </span>
+                      <span className="font-mono text-[10px] font-bold text-indigo-500">
+                        0{index + 1}
+                      </span>
+                    </div>
+                    <p className="mt-3 text-sm font-bold text-slate-900">{node.name}</p>
+                    <p className="mt-0.5 text-xs font-medium text-slate-500">{node.role}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-8 grid grid-cols-3 gap-3 border-t border-indigo-100/80 pt-6">
+              {current.telemetry.map((item) => (
+                <div key={item.label}>
+                  <p className="font-mono text-[11px] font-semibold uppercase tracking-wider text-slate-500">
+                    {item.label}
+                  </p>
+                  <p className="mt-1 flex items-center gap-1.5 text-xs font-bold text-slate-900 sm:text-sm">
+                    <CheckCircle2 size={14} className="shrink-0 text-indigo-600" aria-hidden="true" />
+                    <span>{item.value}</span>
                   </p>
                 </div>
-              </div>
-              <div className="commerce-3d-device-side commerce-3d-device-side-right absolute right-0 top-[7%] h-[86%] w-8 rounded-r-lg bg-gradient-to-b from-blue-500 to-indigo-900" />
-              <div className="commerce-3d-device-side commerce-3d-device-side-left absolute left-0 top-[7%] h-[86%] w-8 rounded-l-lg bg-gradient-to-b from-slate-700 to-slate-950" />
+              ))}
             </div>
-
-            <div className="commerce-3d-satellite commerce-3d-satellite-left absolute left-[2%] top-[15%] sm:left-[7%] sm:top-[12%]">
-              <div className="commerce-3d-float commerce-3d-float-one w-36 rounded-2xl border border-white/15 bg-slate-900/90 p-4 shadow-2xl backdrop-blur sm:w-44">
-                <div className="flex items-center justify-between">
-                  <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-500/15 text-emerald-400">
-                    <CreditCard size={18} />
-                  </span>
-                  <span className="rounded-full bg-emerald-500/15 px-2 py-1 text-[8px] font-black uppercase tracking-[0.1em] text-emerald-300">
-                    Demo
-                  </span>
-                </div>
-                <p className="mt-4 text-[9px] font-bold uppercase tracking-[0.14em] text-slate-500">Payments</p>
-                <p className="mt-1 text-sm font-black">Global checkout</p>
-                <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-white/10">
-                  <div className="h-full w-[84%] rounded-full bg-gradient-to-r from-emerald-400 to-cyan-400" />
-                </div>
-              </div>
-            </div>
-
-            <div className="commerce-3d-satellite commerce-3d-satellite-right absolute bottom-[9%] right-[1%] sm:bottom-[8%] sm:right-[5%]">
-              <div className="commerce-3d-float commerce-3d-float-two w-36 rounded-2xl border border-white/15 bg-slate-900/90 p-4 shadow-2xl backdrop-blur sm:w-44">
-                <div className="flex items-center justify-between">
-                  <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-violet-500/15 text-violet-300">
-                    <BarChart3 size={18} />
-                  </span>
-                  <span className="text-[9px] font-black text-blue-300">+28.4%</span>
-                </div>
-                <p className="mt-4 text-[9px] font-bold uppercase tracking-[0.14em] text-slate-500">Intelligence</p>
-                <p className="mt-1 text-sm font-black">Growth analytics</p>
-                <div className="mt-3 flex h-8 items-end gap-1">
-                  {[35, 52, 44, 72, 62, 86].map((height, index) => (
-                    <span
-                      key={index}
-                      className="flex-1 rounded-t-sm bg-gradient-to-t from-blue-600 to-violet-400"
-                      style={{ height: `${height}%` }}
-                    />
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            <span className="commerce-3d-particle commerce-3d-particle-one absolute left-[22%] top-[73%] h-3 w-3 rounded-full bg-blue-400 shadow-[0_0_18px_rgba(96,165,250,0.9)]" />
-            <span className="commerce-3d-particle commerce-3d-particle-two absolute right-[20%] top-[18%] h-2 w-2 rounded-full bg-violet-400 shadow-[0_0_16px_rgba(167,139,250,0.9)]" />
           </div>
 
-          <p className="pointer-events-none absolute bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap text-[10px] font-bold uppercase tracking-[0.15em] text-slate-500">
-            Drag · move · scroll
-          </p>
+          <div className="flex min-w-0 flex-col justify-between rounded-2xl border border-indigo-100 bg-slate-50/90 p-4 sm:p-6">
+            <div>
+              <div className="mb-4 flex items-center justify-between border-b border-slate-200/80 pb-3">
+                <div className="flex items-center gap-2 font-mono text-xs font-semibold text-slate-600">
+                  <Webhook size={14} className="text-indigo-600" aria-hidden="true" />
+                  <span>contract-sample</span>
+                </div>
+                <span className="inline-flex items-center gap-1 rounded-full bg-indigo-100/80 px-2.5 py-0.5 font-mono text-[10px] font-bold text-indigo-700">
+                  <ShieldCheck size={11} aria-hidden="true" />
+                  Demo Data · Illustrative
+                </span>
+              </div>
+
+              <pre
+                tabIndex={0}
+                aria-label="Interactive architecture code sample"
+                className="overflow-x-auto rounded-xl border border-slate-200/80 bg-white/95 p-4 font-mono text-xs leading-relaxed text-slate-800 shadow-inner"
+              >
+                <code>{current.snippet}</code>
+              </pre>
+            </div>
+
+            <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
+              <p className="text-xs font-medium text-slate-500">
+                Built cleanly without unverified vanity metrics.
+              </p>
+              <Link
+                href="/#contact"
+                data-conversion="primary_cta_click"
+                data-location="architecture_lab"
+                className="inline-flex min-h-10 items-center gap-1.5 rounded-full bg-slate-900 px-4 py-2 text-xs font-bold text-white transition hover:bg-indigo-600"
+              >
+                Discuss Architecture
+                <ArrowUpRight size={14} aria-hidden="true" />
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </section>

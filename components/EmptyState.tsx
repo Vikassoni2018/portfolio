@@ -1,6 +1,6 @@
 export function EmptyState({ label }: { label: string }) {
   return (
-    <div className="rounded-2xl border border-dashed border-white/15 bg-white/[0.03] px-5 py-8 text-center text-sm text-[#77737f]">
+    <div className="rounded-2xl border border-dashed border-indigo-200/80 bg-white/75 px-5 py-8 text-center text-sm font-medium text-slate-600 backdrop-blur-md">
       {label}
     </div>
   );

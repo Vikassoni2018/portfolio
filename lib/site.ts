@@ -9,9 +9,15 @@ export const siteUrl = (
 ).replace(/\/+$/, "");
 
 export const siteName = "Vikas Soni";
-export const siteTitle = "Shopify App Developer & Backend Integrations | Vikas Soni";
+export const siteAlternateNames = [
+  "Vikas Soni Portfolio",
+  "Vikas Soni — Shopify App & Store Developer",
+  "vikas-soni"
+];
+export const siteTitle =
+  "Vikas Soni — Shopify App, Store Boost, Discount API & PHP/Next.js Developer";
 export const siteDescription =
-  "Custom Shopify app development, GraphQL API integrations and PHP/Symfony backends for merchants, agencies and SaaS founders. Discuss your project with Vikas Soni.";
+  "Official portfolio of Vikas Soni, Senior Shopify & Full-Stack Developer specializing in custom Shopify app creation, Shopify store creation, cross-selling widgets, Discount APIs, JSON-LD speed optimization, PHP Symfony, Laravel, Node.js, React, and Next.js.";
 
 export const linkedinUrl = "https://www.linkedin.com/in/vikas-soni-95a815212/";
 export const githubUrl = "";

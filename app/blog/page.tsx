@@ -1,21 +1,37 @@
 import type { Metadata } from "next";
 import { ArrowUpRight } from "lucide-react";
+import { AeoEntityBanner } from "@/components/AeoEntityBanner";
 import { JsonLd } from "@/components/JsonLd";
 import { PageShell } from "@/components/PageShell";
 import { sortedPosts } from "@/data/posts";
-import { breadcrumbSchema, jsonLdGraph, personId } from "@/lib/seo";
-import { absoluteUrl, socialImage } from "@/lib/site";
+import {
+  breadcrumbSchema,
+  jsonLdGraph,
+  personId,
+  personSchema,
+  speakableWebPageSchema,
+  websiteSchema
+} from "@/lib/seo";
+import { absoluteUrl, siteName, siteUrl, socialImage } from "@/lib/site";
 import Link from "next/link";
 
-const title = "Shopify Development & PHP Engineering Blog";
+const title = "Shopify Engineering, Discount APIs, JSON-LD & GEO Blog | Vikas Soni";
 const description =
-  "Practical articles by Vikas Soni on Shopify webhooks, subscription workflows, storefront performance, and PHP backend development.";
+  "Practical engineering guides by Vikas Soni on Shopify webhooks, subscriptions, Discount APIs, JSON-LD Schema, Core Web Vitals, GEO/AEO/LLMO, and PHP/Laravel/Next.js backends.";
 
 export const metadata: Metadata = {
-  title,
+  title: { absolute: title },
   description,
+  keywords: [
+    "Vikas Soni blog",
+    "Shopify Discount APIs guide",
+    "Shopify JSON-LD GEO AEO",
+    "Shopify webhook idempotency",
+    "PHP Symfony Shopify"
+  ],
+  authors: [{ name: siteName, url: siteUrl }],
   alternates: { canonical: absoluteUrl("/blog") },
-  openGraph: { title, description, url: absoluteUrl("/blog"), type: "website", images: [socialImage] },
+  openGraph: { title, description, url: absoluteUrl("/blog"), type: "website", siteName, images: [socialImage] },
   twitter: { card: "summary_large_image", title, description, images: [socialImage] }
 };
 
@@ -31,13 +47,23 @@ export default function BlogIndexPage() {
   const posts = sortedPosts();
 
   const schema = jsonLdGraph([
+    personSchema(),
+    websiteSchema(),
+    speakableWebPageSchema({
+      path: "/blog",
+      name: title,
+      description,
+      type: "CollectionPage",
+      mainEntityId: `${absoluteUrl("/blog")}#blog`
+    }),
     {
       "@type": "Blog",
       "@id": `${absoluteUrl("/blog")}#blog`,
       url: absoluteUrl("/blog"),
-      name: "Vikas Soni Blog",
+      name: "Vikas Soni Engineering Blog",
       description,
       author: { "@id": personId },
+      publisher: { "@id": personId },
       blogPost: posts.map((post) => ({
         "@type": "BlogPosting",
         headline: post.title,
@@ -61,27 +87,31 @@ export default function BlogIndexPage() {
     >
       <JsonLd data={schema} />
 
-      <section className="bg-white">
+      <section className="relative">
         <div className="mx-auto max-w-[1240px] px-5 py-14 sm:px-8 sm:py-16 lg:px-10 lg:py-20">
-          <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-blue-600">Writing</p>
-          <h1 className="mt-4 max-w-3xl text-4xl font-black leading-[1.05] tracking-[-0.04em] text-slate-950 sm:text-5xl lg:text-6xl">
-            Practical Shopify & PHP development insights
+          <p className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-indigo-600">Writing</p>
+          <h1 className="mt-4 max-w-3xl font-display text-4xl font-bold leading-[1.05] tracking-[-0.04em] text-slate-950 sm:text-5xl lg:text-6xl">
+            Practical Shopify &amp; PHP development insights
           </h1>
           <p className="mt-5 max-w-xl text-base font-medium leading-7 text-slate-600">{description}</p>
+          <AeoEntityBanner
+            label="Author & Engineering Notes"
+            summary={`All technical articles are authored by ${siteName} (${siteUrl}) from production Shopify App, Online Store 2.0, Discount API, JSON-LD speed optimization, and PHP/Symfony backend work.`}
+          />
 
           <div className="mt-12 grid gap-4">
             {posts.map((post) => (
               <Link
                 key={post.slug}
                 href={`/blog/${post.slug}`}
-                className="group rounded-2xl border border-slate-200 bg-white p-7 transition hover:-translate-y-0.5 hover:border-blue-300 hover:shadow-md"
+                className="glass-panel glass-spotlight group rounded-3xl p-7 transition hover:-translate-y-0.5"
               >
-                <div className="flex flex-wrap items-center gap-2 text-[11px] font-extrabold uppercase tracking-[0.1em] text-slate-400">
+                <div className="flex flex-wrap items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.1em] text-slate-600">
                   <time dateTime={post.date}>{formatDate(post.date)}</time>
-                  <span className="text-slate-300">•</span>
+                  <span className="text-slate-400">•</span>
                   <span>{post.readingMinutes} min read</span>
                 </div>
-                <h2 className="mt-3 max-w-3xl text-2xl font-extrabold leading-snug tracking-[-0.025em] text-slate-950">
+                <h2 className="mt-3 max-w-3xl font-display text-2xl font-bold leading-snug tracking-[-0.025em] text-slate-950">
                   {post.title}
                 </h2>
                 <p className="mt-3 max-w-2xl text-sm font-medium leading-7 text-slate-600">
@@ -91,12 +121,12 @@ export default function BlogIndexPage() {
                   {post.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="rounded-lg bg-slate-100 px-2.5 py-1 text-[11px] font-extrabold text-slate-600"
+                      className="rounded-full border border-indigo-100 bg-indigo-50/90 px-3 py-1 font-mono text-[11px] font-bold text-indigo-700"
                     >
                       {tag}
                     </span>
                   ))}
-                  <span className="ml-auto inline-flex items-center gap-1.5 text-xs font-extrabold text-blue-600">
+                  <span className="ml-auto inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600">
                     Read <ArrowUpRight size={14} />
                   </span>
                 </div>

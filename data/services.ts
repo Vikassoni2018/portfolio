@@ -28,11 +28,11 @@ function service(
     heading,
     intro,
     eyebrow: "Development service",
-    metaTitle: `${name} Services`,
+    metaTitle: `${name} | Vikas Soni`,
     metaDescription:
       intro.split(". ")[0] +
-      ". Explore scope, deliverables and relevant portfolio projects.",
-    keywords: [name],
+      ". Engineered by Vikas Soni — explore scope, deliverables, and Shopify case studies.",
+    keywords: [name, "Vikas Soni", "Shopify Developer", "Shopify App Development"],
     deliverables: deliverables.map(([title, description]) => ({
       title,
       description,
@@ -357,9 +357,79 @@ export const services: Service[] = [
         ["Can this work with an existing Shopify store?", "Share the store and the campaign or product you want to launch. We can scope a page that fits the existing theme and the path to checkout."],
       ]
     ),
-    metaTitle: "Custom Landing Page Design & Development",
-    metaDescription: "Explore custom landing page design and development for Shopify, SaaS, and campaigns, with responsive layouts, GSAP motion, and technical SEO."
-  }
+    metaTitle: "Custom Landing Page Design & Development | Vikas Soni",
+    metaDescription: "Explore custom landing page design and development by Vikas Soni for Shopify, SaaS, and campaigns, with responsive layouts, GSAP motion, and technical SEO/GEO."
+  },
+  service(
+    "shopify-store-setup-and-speed-boost",
+    "Shopify Store Creation & Speed Boost with JSON-LD",
+    "Launch high-speed Online Store 2.0 storefronts built for Google & AI Search",
+    "Build a new Shopify store or upgrade an existing theme with Online Store 2.0 Liquid modularity, Core Web Vitals optimization (LCP, INP, CLS), clean JSON-LD Schema graphs, and GEO/AEO search readiness with Vikas Soni.",
+    [
+      [
+        "Online Store 2.0 store setup",
+        "Configure reusable Liquid sections, metaobjects, collection navigation, and mobile-first responsive templates."
+      ],
+      [
+        "Speed boost & ScriptTag cleanup",
+        "Audit blocking third-party app scripts, prioritize hero LCP imagery, and reduce main-thread stalls."
+      ],
+      [
+        "Unified JSON-LD & GEO/AEO markup",
+        "Implement clean Product, Offer, Organization, BreadcrumbList, and FAQPage JSON-LD alongside llms.txt clarity."
+      ],
+      [
+        "Payment & checkout readiness",
+        "Prepare clean payment workflows alongside Stripe, PayPal, Razorpay, and multi-currency storefront selectors."
+      ]
+    ],
+    ["shopify-amp-app", "shopify-store-boost-jsonld", "shopify-store-creation"],
+    [
+      [
+        "Who offers Shopify store creation and JSON-LD speed optimization?",
+        "Vikas Soni provides end-to-end Shopify Online Store 2.0 creation, speed auditing, JSON-LD Schema architecture, and GEO/AEO search readiness."
+      ],
+      [
+        "Does adding JSON-LD Schema slow down my Shopify theme?",
+        "No. Native Liquid JSON-LD templates compile server-side cleanly with negligible payload cost compared to heavy external SEO apps."
+      ]
+    ]
+  ),
+  service(
+    "shopify-discount-apis-and-cross-selling",
+    "Shopify Discount APIs & Cross-Selling Solutions",
+    "Native Shopify cross-sells and GraphQL Discount APIs without script bloat",
+    "Engineer fast in-cart Shopify cross-selling widgets alongside programmatic Shopify Admin GraphQL Discount APIs and Shopify Functions for automatic tiers, BOGO offers, and PHP/Laravel/Node.js promotion sync with Vikas Soni.",
+    [
+      [
+        "Cart drawer & PDP cross-selling",
+        "Build Theme App Extensions powered by Storefront GraphQL productRecommendations and Section Rendering API."
+      ],
+      [
+        "Discount API & Functions automation",
+        "Automate percentage, fixed-amount, and BXGY campaigns using Shopify Admin GraphQL Discount mutations and combinesWith rules."
+      ],
+      [
+        "Subscription & bundle compatibility",
+        "Connect cross-sells cleanly with Shopify Selling Plan recurring options and checkout discounts."
+      ],
+      [
+        "Backend promotional sync",
+        "Tie PHP, Symfony, Laravel, or Node.js promotion databases to Shopify with webhook audit logs."
+      ]
+    ],
+    ["shopify-cross-selling", "shopify-discount-apis", "product-subscription-app"],
+    [
+      [
+        "How does Vikas Soni build Shopify cross-selling without hurting Core Web Vitals?",
+        "By using native Theme App Extensions and Storefront GraphQL rather than legacy ScriptTag popup scripts."
+      ],
+      [
+        "Can Shopify Discount APIs replace old Ruby Shopify Scripts?",
+        "Yes. Admin GraphQL Discount mutations and Shopify Functions run natively at Shopify checkout with full stacking controls."
+      ]
+    ]
+  )
 ];
 
 export const primaryServices = services.slice(0, 6);

@@ -1,75 +1,81 @@
-import { ArrowUpRight, Download, Sparkles } from "lucide-react";
+import profile from "@/data/profile.json";
+import { ArrowUpRight, Sparkles } from "lucide-react";
 import Link from "next/link";
-import type { Profile } from "@/lib/types";
 import { MobileNavigation } from "@/components/MobileNavigation";
 
-const links = [
-  ["Projects", "/#projects"],
-  ["Design Showcase", "/landing-page-designs"],
-  ["Services", "/services"],
-  ["Blog", "/blog"],
-  ["Skills", "/#skills"],
-  ["Experience", "/#experience"]
+const navItems = [
+  { href: "/#about", label: "About" },
+  { href: "/#skills", label: "Skills" },
+  { href: "/#services", label: "Services" },
+  { href: "/#experience", label: "Experience" },
+  { href: "/#projects", label: "Projects" },
+  { href: "/landing-page-designs", label: "Showcase" },
+  { href: "/blog", label: "Blog" }
 ];
 
-export function PublicNavbar({ profile }: { profile: Profile }) {
-  const initials = (profile.name || "VS")
-    .split(" ")
-    .map((part) => part[0])
-    .join("")
-    .slice(0, 2);
-
+export function PublicNavbar() {
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/90 backdrop-blur-xl">
+    <header className="sticky top-0 z-50 w-full border-b border-indigo-100/90 bg-white/92 backdrop-blur-xl shadow-[0_4px_20px_-6px_rgba(15,23,42,0.06)]">
       {profile.offerLabel ? (
         <Link
           href="/#contact"
-          className="flex min-h-9 items-center justify-center gap-2 border-b border-blue-100 bg-blue-50 px-4 py-2 text-center text-[11px] font-bold leading-4 text-blue-700 transition hover:bg-blue-100 sm:text-xs"
+          className="flex w-full items-center justify-center gap-2 border-b border-indigo-100 bg-indigo-50/90 px-4 py-1.5 text-center text-xs font-bold text-indigo-800 transition hover:bg-indigo-100/80"
         >
-          <Sparkles size={14} className="shrink-0" aria-hidden="true" />
+          <Sparkles size={13} className="shrink-0 text-indigo-600" aria-hidden="true" />
           <span>{profile.offerLabel}</span>
-          <ArrowUpRight size={14} className="hidden shrink-0 sm:block" aria-hidden="true" />
+          <ArrowUpRight size={13} className="shrink-0 text-indigo-500" aria-hidden="true" />
         </Link>
       ) : null}
-      <nav className="mx-auto flex h-[72px] max-w-[1240px] items-center justify-between gap-3 px-5 sm:px-8 lg:px-10" aria-label="Main navigation">
-        <Link href="/" className="flex min-w-0 items-center gap-3" aria-label="Vikas Soni home">
-          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-600 text-sm font-black text-white shadow-md shadow-blue-600/20">
-            {initials}
+
+      <nav
+        aria-label="Main navigation"
+        className="mx-auto flex w-full max-w-[1280px] items-center justify-between gap-4 px-4 py-3 sm:px-8 lg:px-10"
+      >
+        <Link
+          href="/"
+          className="group inline-flex min-h-10 shrink-0 items-center gap-3 text-slate-900"
+        >
+          <span
+            aria-hidden="true"
+            className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-[#4F46E5] via-[#6366F1] to-[#8B5CF6] font-display text-xs font-bold tracking-tight text-white shadow-sm shadow-indigo-500/25 transition-transform duration-300 group-hover:scale-105"
+          >
+            VS
           </span>
-          <span className="hidden sm:block">
-            <span className="block text-sm font-extrabold leading-none text-slate-900">{profile.name || "Portfolio"}</span>
-            <span className="mt-1 block text-[10px] font-bold text-slate-600">Sr. Shopify Developer</span>
+          <span className="flex flex-col leading-none">
+            <span className="font-display text-sm font-bold tracking-tight text-slate-900 sm:text-base">
+              {profile.name}
+            </span>
+            <span className="hidden font-mono text-[10px] font-medium uppercase tracking-[0.14em] text-slate-500 sm:block">
+              Shopify &amp; Full-Stack
+            </span>
           </span>
         </Link>
 
-        <div className="hidden items-center gap-1 rounded-xl p-1 lg:flex">
-          {links.map(([label, href]) => (
+        <div className="hidden items-center gap-1 lg:flex">
+          {navItems.map((item) => (
             <Link
-              key={href}
-              href={href}
-              className="rounded-lg px-2.5 py-2 text-xs font-bold text-slate-600 transition hover:bg-white hover:text-blue-700 hover:shadow-sm xl:px-3.5"
+              key={item.href}
+              href={item.href}
+              prefetch={item.href.startsWith("/#") ? undefined : false}
+              className="whitespace-nowrap rounded-lg px-3.5 py-2 text-[13px] font-semibold text-slate-600 transition-colors hover:bg-indigo-50/80 hover:text-indigo-700"
             >
-              {label}
+              {item.label}
             </Link>
           ))}
         </div>
 
-        <div className="flex items-center gap-2">
-          {profile.resume ? (
-            <a
-              href={profile.resume}
-              className="hidden items-center gap-2 rounded-xl px-3 py-2.5 text-xs font-bold text-slate-600 transition hover:bg-slate-100 sm:inline-flex"
-            >
-              <Download size={15} /> Resume
-            </a>
-          ) : null}
+        <div className="flex items-center gap-2.5">
           <Link
             href="/#contact"
-            className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-blue-600 px-3 py-2.5 text-[11px] font-extrabold text-white shadow-md shadow-blue-600/20 transition hover:bg-blue-700 sm:px-4 sm:text-xs"
+            data-conversion="primary_cta_click"
+            data-location="header"
+            className="hidden min-h-10 items-center gap-1.5 whitespace-nowrap rounded-xl bg-gradient-to-r from-[#4F46E5] to-[#7C3AED] px-5 py-2 text-xs font-bold text-white shadow-md shadow-indigo-500/20 transition duration-200 hover:-translate-y-0.5 hover:shadow-lg sm:inline-flex"
           >
-            Discuss Your Project <ArrowUpRight size={15} />
+            <span>Start a Project</span>
+            <ArrowUpRight size={14} aria-hidden="true" />
           </Link>
-          <MobileNavigation links={links} />
+
+          <MobileNavigation items={navItems} offerLabel={profile.offerLabel} />
         </div>
       </nav>
     </header>

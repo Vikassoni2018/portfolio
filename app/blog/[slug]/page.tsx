@@ -1,11 +1,19 @@
 import type { Metadata } from "next";
 import { ArrowUpRight } from "lucide-react";
 import { notFound } from "next/navigation";
+import { AeoEntityBanner } from "@/components/AeoEntityBanner";
 import { JsonLd } from "@/components/JsonLd";
 import { PageShell } from "@/components/PageShell";
 import { getPost, posts, sortedPosts, type PostBlock } from "@/data/posts";
-import { breadcrumbSchema, jsonLdGraph, personId } from "@/lib/seo";
-import { absoluteUrl, siteName, socialImage } from "@/lib/site";
+import {
+  breadcrumbSchema,
+  jsonLdGraph,
+  personId,
+  personSchema,
+  speakableWebPageSchema,
+  websiteSchema
+} from "@/lib/seo";
+import { absoluteUrl, siteName, siteUrl, socialImage } from "@/lib/site";
 import Link from "next/link";
 
 type Params = { params: Promise<{ slug: string }> };
@@ -58,13 +66,13 @@ function Block({ block }: { block: PostBlock }) {
   switch (block.type) {
     case "h2":
       return (
-        <h2 className="mt-12 text-2xl font-black leading-tight tracking-[-0.03em] text-slate-950 sm:text-3xl">
+        <h2 className="mt-12 font-display text-2xl font-bold leading-tight tracking-[-0.03em] text-slate-950 sm:text-3xl">
           {block.text}
         </h2>
       );
     case "h3":
       return (
-        <h3 className="mt-8 text-xl font-extrabold tracking-[-0.02em] text-slate-900">{block.text}</h3>
+        <h3 className="mt-8 font-display text-xl font-bold tracking-[-0.02em] text-slate-900">{block.text}</h3>
       );
     case "p":
       return <p className="mt-5 text-base font-medium leading-8 text-slate-700">{block.text}</p>;
@@ -73,7 +81,7 @@ function Block({ block }: { block: PostBlock }) {
         <ul className="mt-5 grid gap-2.5">
           {block.items.map((item) => (
             <li key={item} className="flex gap-3 text-base font-medium leading-7 text-slate-700">
-              <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-600" />
+              <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-indigo-600" />
               {item}
             </li>
           ))}
@@ -81,13 +89,17 @@ function Block({ block }: { block: PostBlock }) {
       );
     case "code":
       return (
-        <pre className="mt-6 overflow-x-auto rounded-2xl border border-slate-800 bg-slate-950 p-5 text-[13px] leading-6 text-slate-100">
+        <pre
+          tabIndex={0}
+          aria-label="Article code snippet"
+          className="glass-panel mt-6 overflow-x-auto rounded-2xl border-indigo-100 bg-white/95 p-5 font-mono text-[13px] leading-6 text-slate-800"
+        >
           <code>{block.code}</code>
         </pre>
       );
     case "callout":
       return (
-        <p className="mt-6 rounded-2xl border border-blue-100 bg-blue-50 p-5 text-base font-bold leading-7 text-blue-900">
+        <p className="mt-6 rounded-2xl border border-indigo-100 bg-indigo-50/90 p-5 text-base font-bold leading-7 text-indigo-950">
           {block.text}
         </p>
       );
@@ -107,6 +119,14 @@ export default async function BlogPostPage({ params }: Params) {
     .slice(0, 2);
 
   const schema = jsonLdGraph([
+    personSchema(),
+    websiteSchema(),
+    speakableWebPageSchema({
+      path,
+      name: `${post.metaTitle} | ${siteName}`,
+      description: post.metaDescription,
+      mainEntityId: `${absoluteUrl(path)}#post`
+    }),
     {
       "@type": "BlogPosting",
       "@id": `${absoluteUrl(path)}#post`,
@@ -147,40 +167,47 @@ export default async function BlogPostPage({ params }: Params) {
     >
       <JsonLd data={schema} />
 
-      <article className="bg-white">
-        <div className="mx-auto max-w-[760px] px-5 py-14 sm:px-8 sm:py-16 lg:py-20">
-          <div className="flex flex-wrap items-center gap-2 text-[11px] font-extrabold uppercase tracking-[0.1em] text-slate-400">
-            <time dateTime={post.date}>{formatDate(post.date)}</time>
-            <span className="text-slate-300">•</span>
-            <span>{post.readingMinutes} min read</span>
-          </div>
+      <article className="relative">
+        <div className="mx-auto max-w-[780px] px-5 py-14 sm:px-8 sm:py-16 lg:py-20">
+          <div className="glass-panel rounded-[2rem] p-6 sm:p-10 lg:p-12">
+            <div className="flex flex-wrap items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.1em] text-slate-600">
+              <time dateTime={post.date}>{formatDate(post.date)}</time>
+              <span className="text-slate-400">•</span>
+              <span>{post.readingMinutes} min read</span>
+            </div>
 
-          <h1 className="mt-4 text-4xl font-black leading-[1.08] tracking-[-0.04em] text-slate-950 sm:text-5xl">
-            {post.title}
-          </h1>
-          <p className="mt-5 text-lg font-medium leading-8 text-slate-600">{post.excerpt}</p>
+            <h1 className="mt-4 font-display text-4xl font-bold leading-[1.08] tracking-[-0.04em] text-slate-950 sm:text-5xl">
+              {post.title}
+            </h1>
+            <p className="mt-5 text-lg font-medium leading-8 text-slate-600">{post.excerpt}</p>
 
-          <div className="mt-6 flex flex-wrap gap-2 border-b border-slate-100 pb-8">
-            {post.tags.map((tag) => (
-              <span
-                key={tag}
-                className="rounded-lg bg-slate-100 px-2.5 py-1 text-[11px] font-extrabold text-slate-600"
-              >
-                {tag}
-              </span>
+            <div className="mt-6 flex flex-wrap gap-2 border-b border-indigo-100/80 pb-8">
+              {post.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="rounded-full border border-indigo-100 bg-indigo-50/90 px-3 py-1 font-mono text-[11px] font-bold text-indigo-700"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+
+            {post.body.map((block, index) => (
+              <Block key={index} block={block} />
             ))}
-          </div>
 
-          {post.body.map((block, index) => (
-            <Block key={index} block={block} />
-          ))}
+            <AeoEntityBanner
+              label="Article Attribution · GEO & AEO"
+              summary={`Written by ${siteName} (${siteUrl}) — Senior Shopify & Full-Stack Developer specializing in Shopify App Creation, Cross-Selling, Discount APIs, Store Speed Boost with JSON-LD Schema, and PHP/Symfony/Laravel/Next.js systems.`}
+            />
+          </div>
         </div>
       </article>
 
       {more.length ? (
-        <section className="bg-slate-50">
+        <section className="relative bg-gradient-to-b from-[#F8FAFC]/80 to-[#EEF2FF]/60">
           <div className="mx-auto max-w-[1240px] px-5 py-14 sm:px-8 sm:py-16 lg:px-10">
-            <h2 className="text-3xl font-black leading-tight tracking-[-0.035em] text-slate-950 sm:text-4xl">
+            <h2 className="font-display text-3xl font-bold leading-tight tracking-[-0.035em] text-slate-950 sm:text-4xl">
               Keep reading
             </h2>
             <div className="mt-8 grid gap-4 sm:grid-cols-2">
@@ -188,15 +215,15 @@ export default async function BlogPostPage({ params }: Params) {
                 <Link
                   key={item.slug}
                   href={`/blog/${item.slug}`}
-                  className="group rounded-2xl border border-slate-200 bg-white p-6 transition hover:-translate-y-0.5 hover:border-blue-300 hover:shadow-md"
+                  className="glass-panel glass-spotlight group rounded-3xl p-6 transition hover:-translate-y-0.5"
                 >
-                  <h3 className="text-lg font-extrabold leading-snug tracking-[-0.015em] text-slate-900">
+                  <h3 className="font-display text-lg font-bold leading-snug tracking-[-0.015em] text-slate-900">
                     {item.title}
                   </h3>
                   <p className="mt-2 line-clamp-3 text-sm font-medium leading-6 text-slate-600">
                     {item.excerpt}
                   </p>
-                  <span className="mt-4 inline-flex items-center gap-1.5 text-xs font-extrabold text-blue-600">
+                  <span className="mt-4 inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600">
                     Read <ArrowUpRight size={14} />
                   </span>
                 </Link>
